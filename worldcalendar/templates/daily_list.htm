@@ -1,0 +1,484 @@
+<html>
+<head>
+<title>Daily</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+</head>
+<body topmargin=5 {$onload}>
+{$includes}
+
+{include_if_exists file="include/header.php"}
+
+<form name="frmSearch" method="GET" action="Calendar_list.php">
+<input type="Hidden" name="a" value="search">
+<input type="Hidden" name="value" value="1">
+<input type="Hidden" name="SearchFor" value="">
+<input type="Hidden" name="SearchOption" value="">
+<input type="Hidden" name="SearchField" value="">
+</form>
+<table width=99% align=center border=0 cellpadding=0 cellspacing=0><tr><td>
+
+<table class="navigation" cellspacing="0" cellpadding="0" width=100% border=0 height=36>
+<tr>
+<td class=logged_left width=5></td>
+<td align=left class=logged valign=middle style="padding-top:2">
+<span style="white-space:nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font style="FONT-FAMILY: Verdana, Arial;">Logged as</font>&nbsp;<b>{$userid}</b>&nbsp;
+{if $userid=="Guest"}
+<span class=buttonborder><input type=button class=button value="Login" onClick="window.location.href='login.php?a=logout';"></span>
+{else}
+<span class=buttonborder><input type=button class=button value="Log out" onClick="window.location.href='login.php?a=logout';"></span>
+{/if}
+
+
+</span>
+<td align=right class=logged valign=middle style="padding-top:2">&nbsp;
+<span style="white-space:nowrap">
+
+{if $rowsfound}
+
+ {if $allow_export} 
+&nbsp;&nbsp;&nbsp;
+<span class=buttonborder><input type=button class=button value="Export results" onClick="window.open('daily_export.php','wExport');return false;"></span>
+ {/if} 
+
+ {if $allow_export} 
+&nbsp;&nbsp;&nbsp;
+<span class=buttonborder><input type=button class=button value="Printer-friendly version" onClick="window.open('daily_print.php','wPrint');return false;"></span>
+ {/if} 
+
+{/if}
+
+<!--language-->
+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</td>
+<td class=logged_right width=5></td>
+</tr>
+</table>
+
+<br>
+<table class="body2" cellspacing="0" cellpadding="0" border=0>
+<tr>
+{if $allow_calendar}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="calendar_list.php">Calendar</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_daily}
+		<td width=5px><img src="include/img/but_left_1.gif" border=0></td>
+	<td class="td_border_menu_gif">
+	<a width=5px class="menu_db" href="daily_list.php">Daily</a>
+	</td>
+	<td><img src="include/img/but_right_1.gif" border=0></td>
+{/if}
+{if $allow_monthly}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="monthly_list.php">Monthly</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_weekly}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="weekly_list.php">Weekly</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_yearly}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="yearly_list.php">Yearly</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_customer}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="customer_list.php">Customers</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_category}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="category_list.php">Tasks</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_Copy_of_calendar}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="Copy_of_calendar_list.php">edit calendar</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_customer_statistics}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="customer_statistics_list.php">customer statistics</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_task_statistics}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="task_statistics_list.php">task statistics</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_users}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="users_list.php">Users</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_howto}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="howto_list.php">How to (FAQ)</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+</tr></table>
+
+
+
+<table class="main_table_border_P" cellspacing="0" cellpadding="0" width=100% border=0>
+<tr>
+<td width=100% height=10px colspan=2></td>
+<td class=up_right2 width=5px height=10px>&nbsp;</td>
+</tr>
+<tr>
+<td class=body3 align=right style="padding-top:12px;padding-right:10px;" colspan=3 height=40px>
+ {if $allow_add} 
+ <!-- Add new record -->
+<span class=buttonborder {$row00AddHideD_value}><input disptype="control1" class=button type=button value="Add new" onclick="window.location.href='daily_add.php?wind=daily'"></span>
+
+ {/if} 
+
+ {if $allow_delete}  
+<span class=buttonborder><input disptype="control1" class=button type=button value="Delete selected" onClick="if (confirm('Do you really want to delete these records?')) frmAdmin.submit(); return false;"></span>
+ {/if}  
+</td>
+</tr>
+
+<tr>
+<td class=navigat_left width=5px height=15px>&nbsp;</td>
+<td class=navigat width=100%>&nbsp;</td>
+<td class=navigat_right width=5px>&nbsp;</td>
+</tr>
+</table>
+
+<tr><td width=100% class=body2>&nbsp;{doevent name="Daily_Next_Prev"}<br></td></tr>
+ {if $rowsfound}
+
+
+ {if $allow_search} 
+<form method="POST" action="daily_list.php" name="frmAdmin">
+	<input type=hidden id="a" name="a" value="delete">
+<tr><td colspan=2>
+<!-- delete form -->
+
+<table name="maintable" class="data" align="center" width="100%" border="0" cellpadding=3 cellspacing=0>
+<!-- table header -->
+<tr valign="top" class=blackshade>
+
+<!--{if $column1show}-->
+
+<td class="headerlist_left_gif_P">&nbsp;</td>
+
+
+ {if $allow_edit} 
+<td width=50 align="center" class="headerlist"><img src="include/img/icon_edit.gif"></td>
+ {/if}  
+
+
+<td width=50 align="center" class="headerlist"><img src="include/img/icon_view.gif"></td>
+
+ {if $allow_delete || $allow_export } 
+<td width=50 align="center" class="headerlist">
+<input type=checkbox onClick = "var i; /*this.checked=!this.checked; */
+if ((typeof frmAdmin.elements['selection[]'].length)=='undefined')
+	frmAdmin.elements['selection[]'].checked=this.checked;
+else
+for (i=0;i<frmAdmin.elements['selection[]'].length;++i) 
+	frmAdmin.elements['selection[]'][i].checked=this.checked;">
+</td>
+ {/if}  
+
+
+<td class="headerlist">
+<table cellpadding=0 cellspacing=0 border=0 align=center><tr><td>
+<a class="tablelinks" 
+href="daily_list.php?orderby={$order_dir_DateField}DateField">
+Date</a>
+</td>
+<td>{$order_image_DateField}</td>
+</table>
+</td>
+<td class="headerlist">
+<table cellpadding=0 cellspacing=0 border=0 align=center><tr><td>
+<a class="tablelinks" 
+href="daily_list.php?orderby={$order_dir_TimeField}TimeField">
+Time</a>
+</td>
+<td>{$order_image_TimeField}</td>
+</table>
+</td>
+<td class="headerlist">
+<table cellpadding=0 cellspacing=0 border=0 align=center><tr><td>
+<a class="tablelinks" 
+href="daily_list.php?orderby={$order_dir_Description}Description">
+Description</a>
+</td>
+<td>{$order_image_Description}</td>
+</table>
+</td>
+<td class="headerlist">
+<table cellpadding=0 cellspacing=0 border=0 align=center><tr><td>
+<a class="tablelinks" 
+href="daily_list.php?orderby={$order_dir_Category}Category">
+Category</a>
+</td>
+<td>{$order_image_Category}</td>
+</table>
+</td>
+<td class="headerlist">
+<table cellpadding=0 cellspacing=0 border=0 align=center><tr><td>
+<a class="tablelinks" 
+href="daily_list.php?orderby={$order_dir_details}details">
+details</a>
+</td>
+<td>{$order_image_details}</td>
+</table>
+</td>
+<td class="headerlist">
+<table cellpadding=0 cellspacing=0 border=0 align=center><tr><td>
+<a class="tablelinks" 
+href="daily_list.php?orderby={$order_dir_Theme}Theme">
+Subject</a>
+</td>
+<td>{$order_image_Theme}</td>
+</table>
+</td>
+<td class="headerlist">
+<table cellpadding=0 cellspacing=0 border=0 align=center><tr><td>
+<a class="tablelinks" 
+href="daily_list.php?orderby={$order_dir_income}income">
+income</a>
+</td>
+<td>{$order_image_income}</td>
+</table>
+</td>
+<td class="headerlist_right2">
+<table cellpadding=0 cellspacing=0 border=0 align=center><tr><td>
+<a class="tablelinks" 
+href="daily_list.php?orderby={$order_dir_outcome}outcome">
+outcome</a>
+</td>
+<td>{$order_image_outcome}</td>
+</table>
+</td>
+<td class="headerlist_right_gif_P">&nbsp;</td>
+<!--{/if}-->
+</tr>
+
+
+<!-- table data -->
+<!--{foreach from=$rowinfo item=row}-->
+
+
+<tr valign="top"
+{$row.shadeclass} 
+onmouseover="this.className = 'rowselected';" onmouseout="this.className = '{$row.shadeclassname}';"
+{$row.rowstyle}
+> 
+
+
+<!--{if $column1show}-->
+
+
+<td>&nbsp;</td>
+
+ {if $allow_edit} 
+<td align="center" valign=middle class=borderbody>
+
+
+{if $row.HideMess}
+<a class="tablelinks" href="daily_edit.php?{$row.1editlink}&wind=daily" >
+Edit</a>
+{/if}
+
+
+</td>
+ {/if}  
+
+
+
+<td align="center" valign=middle class=borderbody>
+
+<a class="tablelinks" href="daily_view.php?{$row.1editlink}&wind=daily" >
+View</a>
+
+</td>
+
+ {if $allow_delete || $allow_export } 
+<td align="center" valign=middle class=borderbody>
+
+
+<input type=checkbox name="selection[]" value="{$row.1keyblock}" id="check{$row.1recno}">
+
+
+</td>
+ {/if}  
+
+
+
+
+<td align=center valign=middle class=borderbody {$row.1DateField_style} >
+
+{$row.1DateField_value}
+
+&nbsp;
+
+</td>
+<td align=center valign=middle class=borderbody {$row.1TimeField_style} >
+
+{$row.1TimeField_value}
+
+&nbsp;
+
+</td>
+<td align=center valign=middle class=borderbody {$row.1Description_style} >
+
+{$row.1Description_value}
+
+&nbsp;
+
+</td>
+<td align=center valign=middle class=borderbody {$row.1Category_style} style="background-color:{$row.1Color_value}">
+
+{$row.1Category_value}
+
+&nbsp;
+
+</td>
+<td align=center valign=middle class=borderbody {$row.1details_style} >
+
+{$row.1details_value}
+
+&nbsp;
+
+</td>
+<td align=center valign=middle class=borderbody {$row.1Theme_style} >
+
+{$row.1Theme_value}
+
+&nbsp;
+
+</td>
+<td align=center valign=middle class=borderbody {$row.1income_style} >
+
+{$row.1income_value}
+
+&nbsp;
+
+</td>
+<td align=center valign=middle  {$row.1outcome_style} >
+
+{$row.1outcome_value}
+
+&nbsp;
+
+</td>
+<td>&nbsp;</td>
+
+<!--{/if} - column show-->
+<!--{/foreach}-->
+
+</tr>
+
+<tr class=blackshade>
+
+<!--{if $column1show}-->
+    <td class=headerlistdown_left2_P height=15></td>
+		 {if $allow_edit} 
+	<td class=blackshade>&nbsp;</td>
+	 {/if}  
+	
+		
+		
+		<td class=blackshade>&nbsp;</td>
+	
+	     {if $allow_delete || $allow_export } 
+	<td class=blackshade>&nbsp;</td>
+	 {/if}  
+	
+
+		<td class=blackshade>&nbsp;
+		</td>
+		<td class=blackshade>&nbsp;
+		</td>
+		<td class=blackshade>&nbsp;
+		</td>
+		<td class=blackshade>&nbsp;
+		</td>
+		<td class=blackshade>&nbsp;
+		</td>
+		<td class=blackshade>&nbsp;
+		</td>
+		<td class=blackshade>&nbsp;
+		</td>
+		<td class=blackshade>&nbsp;
+		</td>
+	<td class=headerlistdown_right2_P height=15>&nbsp;</td>
+{/if}
+	</tr>
+
+
+
+{/if} 
+</table>
+<br>
+</td>
+</tr>
+ {/if}  
+
+{if $maxpages>1 || $message!=""}
+{if $message!=""}
+</table>
+{/if}
+<tr><td align=center>
+<b class="xtop"><b class="xb1"></b><b class="xb2"></b><b class="xb3"></b><b class="xb4"></b></b>
+<div class="xboxcontent">
+<table cellpadding=0 cellspacing=0 border=0 width=99% align=center>
+{if $rowsfound}
+<tr>
+<td align="center">{$pagination}</td>
+</tr>
+{/if} 
+<tr name=notfound_message>
+<td align="center" valign=middle>
+<b>{$message}</b>
+</td>
+</tr>
+</table>
+</div>
+<b class="xbottom"><b class="xb4"></b><b class="xb3"></b><b class="xb2"></b><b class="xb1"></b></b>
+</td></tr>
+{/if}
+
+</table>
+</td></tr></table>
+</td></tr></table>
+{doevent name="ListOnLoad"}
+</td></tr></table>
+</td></tr></table>
+</form>
+{include_if_exists file="include/footer.php"}
+{$linkdata}
+</body>
+</html>

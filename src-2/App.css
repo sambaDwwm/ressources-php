@@ -1,0 +1,58 @@
+* {
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+}
+header {
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  background-color: black;
+  padding: 10px 20px;
+  align-items: center;
+}
+header>nav {
+  display: flex;
+}
+header>nav>a {
+  color:white;
+  margin: 10px;
+  text-decoration: none;
+}
+header>nav>a:hover {
+  text-decoration: underline;
+}
+footer {
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  padding: 10px;
+}
+section {
+  min-height: 88vh;
+}
+
+#connexion,#inscription {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+#connexion>article,#inscription>article {
+  display: flex;
+  flex-direction: column;
+  border: solid black 1px;
+  padding: 20px;
+  width:300px;
+}
+#connexion>article>*,#inscription>article>* {
+  margin: 10px;
+  min-height: 40px;
+}
+#connexion>article>button,#inscription>article>button {
+  background-color: #009900;
+  font-size: 1.2rem;
+  font-weight: bold;
+}

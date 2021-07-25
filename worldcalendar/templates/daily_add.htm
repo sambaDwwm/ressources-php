@@ -1,0 +1,277 @@
+<html>
+<head><title>Daily</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+{$includes}
+</head>
+
+<body {$bodyonload}>
+{if $hshow}
+{include_if_exists file="include/header.php"}
+{/if}
+{doevent name="AddOnLoad"}
+{doevent name="Daily_Javascript"}
+<TABLE CELLPADDING=0 CELLSPACING=0 align=center border=0>
+<tr>
+    <td>
+
+        <div class="xboxcontentb">
+        <table cellpadding=0 cellspacing=0 border=0 width=100%>
+        <tr>
+            <td {$row00header_value}>
+                <table cellpadding=0 cellspacing=0 border=0 width=100%>
+                <tr>
+                    <td class=upeditmenu_left width=5px height=36px></td>
+                    <td class=upeditmenu_center align=center>
+Add Event
+                    </td>
+                    <td class=upeditmenu_right width=5px height=36px></td>
+                </tr>
+                </table>
+            </td>
+        </tr>
+
+{if $message!=""}
+        <tr>
+            <td width=100% align=center style="padding:10px" class=borderedit>
+                <table cellpadding=0 cellspacing=0 border=0 width=100% align=center>
+                <tr>
+                    <td>
+                        <b class="xtop"><b class="xb1"></b><b class="xb2"></b><b class="xb3"></b><b class="xb4"></b></b>
+                        <div class="xboxcontent">
+                            <table cellpadding=5 cellspacing=0 border=0 width=90% align=center>
+                            <tr>
+                                <td align=center>{$message}</td>
+                            </tr>
+                            </table>
+                        </div>
+                        <b class="xbottom"><b class="xb4"></b><b class="xb3"></b><b class="xb2"></b><b class="xb1"></b></b>
+                    </td>
+                </tr>
+                </table>
+            </td>
+        </tr>
+{/if}
+
+        <tr>
+            <td style="padding:10px" class=borderedit>
+                <div class="xboxcontentb">
+                <form name="editform" encType="multipart/form-data" method="post" action="daily_add.php" {$onsubmit} {$row00form_value}>
+                <input type=hidden name="a" value="added">
+		 <input type=hidden name="wind" value="{$row00window_value}">
+                    <table cellpadding=4 cellspacing=0 border=0 border=0>
+
+                    <tr id=DateField>
+                          <td class=editshadeleft_b width=150 style="padding-left:15px;">Date</td>
+                        <td width=250 class=editshaderight_lb style="padding-left:10px;"
+colspan=3
+>
+    {build_edit_control field="DateField" mode="add" value=$value_DateField}
+                          </td>
+                    </tr>
+                    <tr id=TimeField>
+                          <td class=editshade_b width=150 style="padding-left:15px;">Time</td>
+                        <td width=250 class=editshade_lb style="padding-left:10px;" 
+
+>
+    {doevent name="Build_TimeField"}
+    
+                          </td>
+                    <tr id=Theme>
+                          <td class=editshade_b width=150 style="padding-left:15px;">Subject</td>
+                        <td width=250 class=editshade_lb style="padding-left:10px;" 
+colspan=3
+>
+    {build_edit_control field="Theme" mode="add" value=$value_Theme}
+                          </td>
+                    </tr>
+                    <tr id=Description>
+                          <td class=editshade_b width=150 style="padding-left:15px;">Description</td>
+                        <td width=250 class=editshade_lb style="padding-left:10px;" 
+colspan=3
+>
+    {build_edit_control field="Description" mode="add" value=$value_Description}
+                          </td>
+                    </tr>
+                    <tr id=Category>
+                          <td class=editshade_b width=150 style="padding-left:15px;">Category</td>
+                        <td width=250 class=editshade_lb style="padding-left:10px;"  id=bgc 
+colspan=3
+>
+    {build_edit_control field="Category" mode="add" value=$value_Category}
+                          </td>
+                    </tr>
+                    <tr id=details>
+                          <td class=editshade_b width=150 style="padding-left:15px;">details</td>
+                        <td width=250 class=editshade_lb style="padding-left:10px;" 
+colspan=3
+>
+    {build_edit_control field="details" mode="add" value=$value_details}
+                          </td>
+                    </tr>
+                          <td class=editshade_lb width=150 style="padding-left:15px;color:#336699;">End Time</td>
+                        <td width=250 class=editshade_lb style="padding-left:10px;" 
+
+>
+    
+    {doevent name="Build_EndTime"}
+                          </td>
+                    </tr>
+                    <tr id=DayEvent>
+                          <td class=editshade_b width=150 style="padding-left:15px;">Whole Day Event</td>
+                        <td width=250 class=editshade_lb style="padding-left:10px;" 
+colspan=3
+>
+    {build_edit_control field="DayEvent" mode="add" value=$value_DayEvent}
+                          </td>
+                    </tr>
+                    <tr id=Recurrence>
+                          <td class=editshade_b width=150 style="padding-left:15px;">Recurrent Event</td>
+                        <td width=250 class=editshade_lb style="padding-left:10px;" 
+colspan=3
+>
+    {build_edit_control field="Recurrence" mode="add" value=$value_Recurrence}
+                          </td>
+                    </tr>
+                    <tr id=EndDate>
+                          <td class=editshade_b width=150 style="padding-left:15px;">End Date</td>
+                        <td width=250 class=editshade_lb style="padding-left:10px;" 
+colspan=3
+>
+    {build_edit_control field="EndDate" mode="add" value=$value_EndDate}
+                          </td>
+                    </tr>
+                    <tr id=Period>
+                          <td class=editshade_b width=150 style="padding-left:15px;">Period</td>
+                        <td width=250 class=editshade_lb style="padding-left:10px;" 
+colspan=3
+>
+    {build_edit_control field="Period" mode="add" value=$value_Period}
+                          </td>
+                    </tr>
+                    <tr id=income>
+                          <td class=editshade_b width=150 style="padding-left:15px;">income</td>
+                        <td width=250 class=editshade_lb style="padding-left:10px;" 
+colspan=3
+>
+    {build_edit_control field="income" mode="add" value=$value_income}
+                          </td>
+                    </tr>
+                    <tr id=outcome>
+                          <td class=editshade_b width=150 style="padding-left:15px;">outcome</td>
+                        <td width=250 class=editshade_lb style="padding-left:10px;" 
+colspan=3
+>
+    {build_edit_control field="outcome" mode="add" value=$value_outcome}
+                          </td>
+                    </tr>
+                    <tr>
+                        <td colspan=4 align=center class=downedit>
+                            <span class=buttonborder><input class=button type=submit value="&nbsp;&nbsp;Save&nbsp;&nbsp;"  name=submit1></span>
+                            <span class=buttonborder><input class=button type=reset value="&nbsp;&nbsp;Reset&nbsp;&nbsp;"></span>
+{if $row00window_value!="daily"}
+	{if $row00window_value!="calendar"}
+                    		<span class=buttonborder><input class=button type=button value="&nbsp;&nbsp;Close window&nbsp;&nbsp;" onclick="document.getElementById('addnew').style.display='none';document.getElementById('addnew1').innerHTML='';return false;"></span>
+	{else}
+		                    <span class=buttonborder><input class=button type=button value="&nbsp;&nbsp;Back to list&nbsp;&nbsp;" onclick="window.location.href='calendar_list.php?a=return'"></span>
+	{/if}
+{else}
+	                        <span class=buttonborder><input class=button type=button value="&nbsp;&nbsp;Back to list&nbsp;&nbsp;" onclick="window.location.href='daily_list.php?a=return'"></span>
+{/if}
+                        </td>
+                    </tr>
+                    </table>
+                <b class="xbottom"><b class="xb4a"></b><b class="xb3a"></b><b class="xb2a"></b><b class="xb1a"></b></b>
+            </td>
+        </tr>
+        </table>
+        </div>
+        <b class="xbottom"><b class="xb4b4"></b><b class="xb3b4"></b><b class="xb2b4"></b><b class="xb1b4"></b></b>
+    </td>
+</tr>
+</table>
+</body>
+</html>
+{literal}
+<script>
+
+
+document.forms.editform.value_DayEvent.onclick=function()
+{
+if(document.forms.editform.value_DayEvent.checked)
+{
+	document.forms.editform.value_TimeField.disabled=true;
+	document.forms.editform.value_EndTime.disabled=true;
+}
+else
+{
+	document.forms.editform.value_TimeField.disabled=false;
+	document.forms.editform.value_EndTime.disabled=false;
+}
+}
+document.forms.editform.value_Recurrence.onclick=function()
+{
+if(!document.forms.editform.value_Recurrence.checked)
+{
+	document.getElementById("EndDate").style.display='none';
+	document.getElementById("Period").style.display='none';
+}
+else
+{
+	document.getElementById("EndDate").style.display='';
+	document.getElementById("Period").style.display='';
+}
+}
+document.forms.editform.value_Category.onchange=function()
+{
+	if(a[document.forms.editform.value_Category.options[document.forms.editform.value_Category.selectedIndex].value]==undefined)
+		document.getElementById('bgc').style.backgroundColor='white';
+	else
+		document.getElementById('bgc').style.backgroundColor=a[document.forms.editform.value_Category.options[document.forms.editform.value_Category.selectedIndex].value];
+	
+}
+	document.editform.monthvalue_DateField.options[0] = null;
+	document.editform.dayvalue_DateField.options[0] = null;
+	document.editform.yearvalue_DateField.options[0] = null;
+	document.editform.monthvalue_EndDate.options[0] = null;
+	document.editform.dayvalue_EndDate.options[0] = null;
+	document.editform.yearvalue_EndDate.options[0] = null;
+	document.editform.value_Period.options[0] = null;
+	document.getElementById("EndDate").style.display='none';
+	document.getElementById("Period").style.display='none';
+	var sDate=new Date();
+	for(i=0;i<document.editform.yearvalue_DateField.length;i++)
+	{
+		if(document.editform.yearvalue_DateField[0].value<sDate.getFullYear())
+			document.editform.yearvalue_DateField.options[0] = null;
+	}
+	for(i=0;i<document.editform.yearvalue_EndDate.length;i++)
+	{
+		if(document.editform.yearvalue_EndDate[0].value<sDate.getFullYear())
+			document.editform.yearvalue_EndDate.options[0] = null;
+	}
+	if(document.editform.wind.value!='monthly' && document.editform.wind.value!='weekly')
+	document.editform.value_Theme.focus();
+if(document.forms.editform.value_DayEvent.checked)
+{
+	document.forms.editform.value_TimeField.disabled=true;
+	document.forms.editform.value_EndTime.disabled=true;
+
+}
+else
+{
+	document.forms.editform.value_TimeField.disabled=false;
+	document.forms.editform.value_EndTime.disabled=false;
+}
+
+if(!document.forms.editform.value_Recurrence.checked)
+{
+	document.getElementById("EndDate").style.display='none';
+	document.getElementById("Period").style.display='none';
+}
+else
+{
+	document.getElementById("EndDate").style.display='';
+	document.getElementById("Period").style.display='';
+}
+</script>
+{/literal}

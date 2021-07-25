@@ -1,0 +1,37 @@
+/* --- LEFT COLUMN ---------------------- */
+#navColumnLeftWrapper H3.side_box_heading { background-position:right top; background-image:url(../images/heading-bg-rtl.gif); background-repeat:no-repeat; background-color:#e9e9e9; text-align:right; }
+#navColumnLeftWrapper { margin:auto; margin-left:0px; margin-right:8px; color:#4b4b4b; width:220px; }
+
+/* --- NAV COLUMN ---------------------- */
+#navColumnIcon  { vertical-align:top; background-color:#eceded; padding-top:14px;}
+#imgCollapse	{ position:absolute; margin-right:-19px; border:0px; cursor:pointer; }
+#imgExpand 		{ display:none; margin-right:3px; margin-left:0px; border:0px; cursor:pointer; }
+
+.site_version   { float:left; width:120px; text-align:left; }
+
+#divDashboardMessages { padding:9px 9px 9px 0px; text-align: right; }
+#divDashboardMessages IMG { margin-left:-3px; margin-right:10px; cursor:pointer; float:left; }
+
+#divAlertMessages { padding:5px 0px 5px 0px; text-align: right; }
+TD.message_text         { text-align: right; }
+TD.message_text_single  { text-align: right; }
+.main_text { text-align: right;}
+
+LEGEND     { text-align: right; }
+
+DIV.center_box_content { text-align: right; }
+
+/* --- DOCTOR CARD */
+DIV.doctor_card { float:right; }
+DIV.doctor_card DIV.photo { float:right; }
+DIV.doctor_card DIV.description { text-align: right;}
+DIV.appointment_row { text-align: right; }
+
+/* --- APPOINTMENT NAVIGATION */
+UL.appointment_navigation { list-style-type:none; display:block; width:710px; margin-bottom:60px; padding-right:8px; }
+UL.appointment_navigation LI.active { float:right; padding:5px; border:1px solid #00ff00; margin-right:10px; background-color: #bee4e5; border:1px solid #5fb7c9; }
+UL.appointment_navigation LI { float:right; padding:5px; border:1px solid #00ff00; margin-right:10px; border:1px solid #cccccc; }
+
+/* --- LOGIN PAGE */
+h1.login a { background-image: url(../../../images/icons/apphp_logo.png); background-image: none,url(../../../images/icons/apphp_logo.png); background-size: 80px 40px; background-position: center top; background-repeat: no-repeat; color: #999; width: 80px; height: 40px; font-size: 20px; font-weight: 400; line-height: 1.3em; margin: -40px 0 0 10px; padding: 0; text-decoration: none; text-indent: 9999px; outline: 0; overflow: hidden; display: block; float: left; }
+TABLE.loginForm { text-align: right; }

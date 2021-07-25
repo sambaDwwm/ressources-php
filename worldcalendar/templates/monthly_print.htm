@@ -1,0 +1,736 @@
+<html>
+<head>
+<title>Monthly</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+</head>
+<body style="background:white">
+
+{include_if_exists file="include/header.php"}
+{doevent name="PrintOnLoad"}
+	
+	
+<h1>Monthly</h1>
+<table align="center" width="100%" border="0" cellpadding=0 cellspacing=1 style="border:1px solid black">
+<tr><td width="2%" height=20></td>
+<td width="14%" align=center valign=middle style="border-bottom:1px solid black"><b>{$row00sdname1}</b></td>
+<td width="14%" align=center valign=middle style="border-bottom:1px solid black"><b>{$row00sdname2}</b></td>
+<td width="14%" align=center valign=middle style="border-bottom:1px solid black"><b>{$row00sdname3}</b></td>
+<td width="14%" align=center valign=middle style="border-bottom:1px solid black"><b>{$row00sdname4}</b></td>
+<td width="14%" align=center valign=middle style="border-bottom:1px solid black"><b>{$row00sdname5}</b></td>
+<td width="14%" align=center valign=middle style="border-bottom:1px solid black"><b>{$row00sdname6}</b></td>
+<td width="14%" align=center valign=middle style="border-bottom:1px solid black"><b>{$row00sdname7}</b></td>
+</tr>
+<tr>
+<td align=center width="2%" style="border-right:1px solid black" 
+{if $row001Date_value!="" || $row007Date_value!=""}
+<b>>></b>{/if}
+</td>
+<td width="14%">
+{if $row001Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row001Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row001Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row002Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row002Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row002Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row003Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row003Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row003Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row004Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row004Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row004Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row005Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row005Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row005Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row006Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row006Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row006Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row007Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row007Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row007Day_value}
+</td></tr></table>
+{/if}
+</td>
+</tr>
+<tr>
+<td align=center width="2%" style="border-right:1px solid black" 
+{if $row008Date_value!="" || $row0014Date_value!=""}
+<b>>></b>{/if}
+</td>
+<td width="14%">
+{if $row008Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row008Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row008Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row009Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row009Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row009Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0010Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0010Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0010Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0011Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0011Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0011Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0012Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0012Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0012Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0013Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0013Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0013Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0014Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0014Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0014Day_value}
+</td></tr></table>
+{/if}
+</td>
+</tr>
+<tr>
+<td align=center width="2%" style="border-right:1px solid black" 
+{if $row0015Date_value!="" || $row0021Date_value!=""}
+<b>>></b>{/if}
+</td>
+<td width="14%">
+{if $row0015Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0015Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0015Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0016Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0016Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0016Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0017Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0017Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0017Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0018Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0018Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0018Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0019Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0019Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0019Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0020Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0020Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0020Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0021Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0021Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0021Day_value}
+</td></tr></table>
+{/if}
+</td>
+</tr>
+<tr>
+<td align=center width="2%" style="border-right:1px solid black" 
+{if $row0022Date_value!="" || $row0028Date_value!=""}
+<b>>></b>{/if}
+</td>
+<td width="14%">
+{if $row0022Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0022Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0022Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0023Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0023Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0023Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0024Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0024Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0024Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0025Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0025Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0025Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0026Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0026Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0026Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0027Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0027Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0027Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0028Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0028Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0028Day_value}
+</td></tr></table>
+{/if}
+</td>
+</tr>
+<tr>
+<td align=center width="2%" style="border-right:1px solid black" 
+{if $row0029Date_value!="" || $row0035Date_value!=""}
+<b>>></b>{/if}
+</td>
+<td width="14%">
+{if $row0029Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0029Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0029Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0030Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0030Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0030Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0031Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0031Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0031Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0032Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0032Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0032Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0033Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0033Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0033Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0034Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0034Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0034Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0035Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0035Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0035Day_value}
+</td></tr></table>
+{/if}
+</td>
+</tr>
+<tr>
+<td align=center width="2%" style="border-right:1px solid black" 
+{if $row0036Date_value!="" || $row0042Date_value!=""}
+<b>>></b>{/if}
+</td>
+<td width="14%">
+{if $row0036Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0036Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0036Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0037Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0037Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0037Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0038Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0038Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0038Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0039Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0039Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0039Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0040Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0040Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0040Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0041Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0041Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0041Day_value}
+</td></tr></table>
+{/if}
+</td>
+<td width="14%">
+{if $row0042Date_value!=""}
+<table height=178 width=100% cellpadding=1 cellspacing=0 style="border:1px solid black">
+<tr><td  height=20 valign=middle align=right style="border-bottom:1px solid black">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td align=left>&nbsp;</td>
+<td align=right>
+<b>{$row0042Date_value}</b>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%">
+{$row0042Day_value}
+</td></tr></table>
+{/if}
+</td>
+</tr>
+</td>
+</table>
+{include_if_exists file="include/footer.php"}
+</body>
+
+</html>

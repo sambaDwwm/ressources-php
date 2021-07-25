@@ -1,0 +1,143 @@
+<html>
+<head><title>edit calendar</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+{$includes}
+</head>
+
+<body {$bodyonload}>
+{include_if_exists file="include/header.php"}
+<form name="editform" encType="multipart/form-data" method="post" action="Copy_of_calendar_edit.php" {$onsubmit}>
+
+
+{doevent name="EditOnLoad"}
+
+
+
+<TABLE CELLPADDING=0 CELLSPACING=0 align=center border=0>
+<tr><td>
+
+<div class="xboxcontentb">
+<table cellpadding=0 cellspacing=0 border=0>
+<tr><td>
+<table cellpadding=0 cellspacing=0 border=0 width=100%>
+<tr>
+<td class=upeditmenu_left width=5px height=36px></td>
+<td class=upeditmenu_center align=center>
+edit calendar, Edit record [
+id: {$show_key1}
+]
+<input type=hidden name=editid1 value="{$key1}">
+
+</td>
+<td class=upeditmenu_right width=5px height=36px></td>
+</tr>
+</table>
+</td></tr>
+
+{if $message!=""}
+<tr><td width=100% align=center style="padding:10px" class=borderedit>
+<table cellpadding=0 cellspacing=0 border=0 width=100%><tr><td>
+<b class="xtop"><b class="xb1"></b><b class="xb2"></b><b class="xb3"></b><b class="xb4"></b></b>
+<div class="xboxcontent">
+<table cellpadding=5 cellspacing=0 border=0 width=90% align=center>
+<tr><td colspan=2 align=center>{$message}</td></tr>
+</table>
+</div>
+<b class="xbottom"><b class="xb4"></b><b class="xb3"></b><b class="xb2"></b><b class="xb1"></b></b>
+</td></tr></table>
+</td></tr>
+{/if}
+
+<tr><td style="padding:10px" class=borderedit>
+<div class="xboxcontentb">
+<table cellpadding=4 cellspacing=0 border=0>
+
+<tr>
+    <td class=editshadeleft_b width=150 style="padding-left:15px;">Subject</td>
+    <td width=250 class=editshaderight_lb style="padding-left:10px;">
+    {build_edit_control field="Theme" value=$value_Theme mode="edit"}
+    </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">customer</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {build_edit_control field="Description" value=$value_Description mode="edit"}
+    </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">task</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {build_edit_control field="Category" value=$value_Category mode="edit"}
+    </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">details</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {build_edit_control field="details" value=$value_details mode="edit"}
+    </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">Date</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {build_edit_control field="DateField" value=$value_DateField mode="edit"}
+    </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">Time</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {build_edit_control field="TimeField" value=$value_TimeField mode="edit"}
+    </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">End Time</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {build_edit_control field="EndTime" value=$value_EndTime mode="edit"}
+    </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">Whole Day Event</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {build_edit_control field="DayEvent" value=$value_DayEvent mode="edit"}
+    </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">End Date</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {build_edit_control field="EndDate" value=$value_EndDate mode="edit"}
+    </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">Period</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {build_edit_control field="Period" value=$value_Period mode="edit"}
+    </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">Recurrence</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {build_edit_control field="Recurrence" value=$value_Recurrence mode="edit"}
+    </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">income</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {build_edit_control field="income" value=$value_income mode="edit"}
+    </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">outcome</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {build_edit_control field="outcome" value=$value_outcome mode="edit"}
+    </td></tr>
+<tr><td colspan=2 align=left class=downedit>
+   <img src="images/icon_required.gif"> - Required field
+   </td></tr>
+ <tr><td colspan=2 align=center class=downedit>
+ <span class=buttonborder><input class=button type=submit value="&nbsp;&nbsp;Save&nbsp;&nbsp;"  name=submit1></span>
+ <span class=buttonborder><input class=button type=reset value="&nbsp;&nbsp;Reset&nbsp;&nbsp;"></span>
+ <span class=buttonborder><input class=button type=button value="&nbsp;&nbsp;Back to list&nbsp;&nbsp;" onclick="window.location.href='Copy_of_calendar_list.php?a=return'"></span>
+ <input type=hidden name="a" value="edited">
+ </td></tr>
+</form>
+</table>
+</div>
+<b class="xbottom"><b class="xb4a"></b><b class="xb3a"></b><b class="xb2a"></b><b class="xb1a"></b></b>
+</td></tr>
+</table>
+</div>
+<b class="xbottom"><b class="xb4b4"></b><b class="xb3b4"></b><b class="xb2b4"></b><b class="xb1b4"></b></b>
+ </td></tr></table><br>
+{include_if_exists file="include/footer.php"}
+
+{$linkdata}
+<script>SetToFirstControl();</script>
+</body>
+</html>

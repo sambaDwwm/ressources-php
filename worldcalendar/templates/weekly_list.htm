@@ -1,0 +1,837 @@
+<html>
+<head>
+<title>Monthly</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+
+</head>
+<script>
+{literal}
+var uagent    = navigator.userAgent.toLowerCase();
+var is_safari = ( (uagent.indexOf('safari') != -1) || (navigator.vendor == "Apple Computer, Inc.") );
+var is_opera  = (uagent.indexOf('opera') != -1);
+var is_webtv  = (uagent.indexOf('webtv') != -1); 
+var ua_vers   = parseInt(navigator.appVersion); 
+var is_win    =  ( (uagent.indexOf("win") != -1) || (uagent.indexOf("16bit") !=- 1) ); 
+var is_ie     = ( (uagent.indexOf('msie') != -1) && (!is_opera) && (!is_safari) && (!is_webtv) ); 
+var mclick=0;
+var xpos;
+var ypos;
+var offx;
+var offy;
+function move_mouse()
+{
+    if(mclick==1)
+    {
+        ypos=event.y+document.body.scrollTop;
+	xpos=event.x+document.body.scrollLeft;
+	if(xpos-offx>0 && ypos-offy>0 && document.getElementById('addnew').offsetWidth+xpos-offx<document.body.clientWidth && document.getElementById('addnew').offsetHeight+ypos-offy<document.body.clientHeight)
+	{
+	    document.getElementById('addnew').style.left=xpos-offx;
+  	    document.getElementById('addnew').style.top=ypos-offy;
+	}
+    }
+}
+function move_mouse_M(ev)
+{
+    if(mclick==1)
+    {
+	ypos=ev.clientY;
+	xpos=ev.clientX;
+	if(xpos-offx>0 && ypos-offy>0 && document.getElementById('addnew').offsetWidth+xpos-offx<window.innerWidth && document.getElementById('addnew').offsetHeight+ypos-offy<window.innerHeight)
+	{
+	    document.getElementById('addnew').style.left=xpos-offx;
+	    document.getElementById('addnew').style.top=ypos-offy;
+	}
+    }
+    return true;
+}
+{/literal}
+</script>
+<body topmargin=5 {$onload} onselectstart="if(mclick==1)return false;else return true;" onmousemove="if(is_ie)move_mouse();else move_mouse_M(event);" onmouseup="mclick=0;">
+{$includes}
+<script language="JavaScript" src="include/calendar.js"></script>
+{include_if_exists file="include/header.php"}
+{doevent name="ListOnLoad"}
+<form name="frmSearch" method="GET" action="calendar_list.php">
+<input type="Hidden" name="a" value="search">
+<input type="Hidden" name="value" value="1">
+<input type="Hidden" name="SearchFor" value="">
+<input type="Hidden" name="SearchOption" value="">
+<input type="Hidden" name="SearchField" value="">
+</form>
+<table width=99% align=center border=0 cellpadding=0 cellspacing=0><tr><td>
+
+<table class="navigation" cellspacing="0" cellpadding="0" width=100% border=0 height=36>
+<tr>
+<td class=logged_left width=5></td>
+<td align=left class=logged valign=middle style="padding-top:2">
+<span style="white-space:nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font style="FONT-FAMILY: Verdana, Arial;">Logged as</font>&nbsp;<b>{$userid}</b>&nbsp;
+{if $userid=="Guest"}
+<span class=buttonborder><input type=button class=button value="Login" onClick="window.location.href='login.php?a=logout';"></span>
+{else}
+<span class=buttonborder><input type=button class=button value="Log out" onClick="window.location.href='login.php?a=logout';"></span>
+{/if}
+
+
+</span>
+<td align=right class=logged valign=middle style="padding-top:2">&nbsp;
+<span style="white-space:nowrap">
+
+{if $rowsfound}
+
+ {if $allow_export} 
+&nbsp;&nbsp;&nbsp;
+<span class=buttonborder><input type=button class=button value="Export results" onClick="window.open('weekly_export.php','wExport');return false;"></span>
+ {/if} 
+
+ {if $allow_export} 
+&nbsp;&nbsp;&nbsp;
+<span class=buttonborder><input type=button class=button value="Printer-friendly version" onClick="window.open('weekly_print.php','wPrint');return false;"></span>
+ {/if} 
+
+{/if}
+
+<!--language-->
+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</td>
+<td class=logged_right width=5></td>
+</tr>
+</table>
+
+<br>
+<table class="body2" cellspacing="0" cellpadding="0" border=0>
+<tr>
+{if $allow_calendar}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="calendar_list.php">Calendar</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_daily}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="daily_list.php">Daily</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_monthly}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="monthly_list.php">Monthly</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_weekly}
+		<td width=5px><img src="include/img/but_left_1.gif" border=0></td>
+	<td class="td_border_menu_gif">
+	<a width=5px class="menu_db" href="weekly_list.php">Weekly</a>
+	</td>
+	<td><img src="include/img/but_right_1.gif" border=0></td>
+{/if}
+{if $allow_yearly}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="yearly_list.php">Yearly</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_customer}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="customer_list.php">Customers</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_category}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="category_list.php">Tasks</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_Copy_of_calendar}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="Copy_of_calendar_list.php">edit calendar</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_customer_statistics}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="customer_statistics_list.php">customer statistics</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_task_statistics}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="task_statistics_list.php">task statistics</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_users}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="users_list.php">Users</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_howto}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="howto_list.php">How to (FAQ)</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+</tr></table>
+
+
+
+<table class="main_table_border_P" cellspacing="0" cellpadding="0" width=100% border=0>
+<tr>
+<td width=100% height=10px colspan=2></td>
+<td class=up_right2 width=5px height=10px>&nbsp;</td>
+</tr>
+
+<tr>
+<td class=navigat_left width=5px height=15px>&nbsp;</td>
+<td class=navigat width=100%>&nbsp;</td>
+<td class=navigat_right width=5px>&nbsp;</td>
+</tr>
+</table>
+
+<tr><td width=100% class=body2>&nbsp;</td></tr>
+
+
+ {if $allow_search} 
+<form method="POST" action="weekly_list.php" name="frmAdmin">
+	<input type=hidden id="a" name="a" value="delete">
+<tr><td colspan=2>
+<!-- delete form -->
+
+&nbsp;{doevent name="Weekly_Next_Prev"}<br>
+
+<form method="POST" action="weekly_list.php" name="frmAdmin">
+	<input type=hidden id="a" name="a" value="delete">
+
+<table align="center" width="100%" border="0" cellpadding=0 cellspacing=0>
+<tr>
+<td>
+{if $row001Date_value!=""}
+<table height=100 width=100% border=0 cellpadding=3 cellspacing=0 {$row001TableNow_value}>
+<tr><td height=20 align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideW1_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick1_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd1_value}">
+{if $row001Now_value}<b>{/if}
+{$row001Date_value}
+{if $row001Now_value}</b>{/if}
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top id="add{$row001sDay_value}" 
+ class=shade
+>
+{$row001Day_value}
+</td></tr></table>
+<input type=hidden id=kol{$row001sDay_value} value={$row001KolStr_value}>
+<tr><td height=5></td></tr>
+{/if}
+</td>
+</tr>
+<tr>
+<td>
+{if $row002Date_value!=""}
+<table height=100 width=100% border=0 cellpadding=3 cellspacing=0 {$row002TableNow_value}>
+<tr><td height=20 align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideW2_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick2_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd2_value}">
+{if $row002Now_value}<b>{/if}
+{$row002Date_value}
+{if $row002Now_value}</b>{/if}
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top id="add{$row002sDay_value}" 
+ class=shade
+>
+{$row002Day_value}
+</td></tr></table>
+<input type=hidden id=kol{$row002sDay_value} value={$row002KolStr_value}>
+<tr><td height=5></td></tr>
+{/if}
+</td>
+</tr>
+<tr>
+<td>
+{if $row003Date_value!=""}
+<table height=100 width=100% border=0 cellpadding=3 cellspacing=0 {$row003TableNow_value}>
+<tr><td height=20 align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideW3_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick3_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd3_value}">
+{if $row003Now_value}<b>{/if}
+{$row003Date_value}
+{if $row003Now_value}</b>{/if}
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top id="add{$row003sDay_value}" 
+ class=shade
+>
+{$row003Day_value}
+</td></tr></table>
+<input type=hidden id=kol{$row003sDay_value} value={$row003KolStr_value}>
+<tr><td height=5></td></tr>
+{/if}
+</td>
+</tr>
+<tr>
+<td>
+{if $row004Date_value!=""}
+<table height=100 width=100% border=0 cellpadding=3 cellspacing=0 {$row004TableNow_value}>
+<tr><td height=20 align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideW4_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick4_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd4_value}">
+{if $row004Now_value}<b>{/if}
+{$row004Date_value}
+{if $row004Now_value}</b>{/if}
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top id="add{$row004sDay_value}" 
+ class=shade
+>
+{$row004Day_value}
+</td></tr></table>
+<input type=hidden id=kol{$row004sDay_value} value={$row004KolStr_value}>
+<tr><td height=5></td></tr>
+{/if}
+</td>
+</tr>
+<tr>
+<td>
+{if $row005Date_value!=""}
+<table height=100 width=100% border=0 cellpadding=3 cellspacing=0 {$row005TableNow_value}>
+<tr><td height=20 align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideW5_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick5_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd5_value}">
+{if $row005Now_value}<b>{/if}
+{$row005Date_value}
+{if $row005Now_value}</b>{/if}
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top id="add{$row005sDay_value}" 
+ class=shade
+>
+{$row005Day_value}
+</td></tr></table>
+<input type=hidden id=kol{$row005sDay_value} value={$row005KolStr_value}>
+<tr><td height=5></td></tr>
+{/if}
+</td>
+</tr>
+<tr>
+<td>
+{if $row006Date_value!=""}
+<table height=100 width=100% border=0 cellpadding=3 cellspacing=0 {$row006TableNow_value}>
+<tr><td height=20 align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideW6_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick6_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd6_value}">
+{if $row006Now_value}<b>{/if}
+{$row006Date_value}
+{if $row006Now_value}</b>{/if}
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top id="add{$row006sDay_value}" 
+ class=blackshade
+>
+{$row006Day_value}
+</td></tr></table>
+<input type=hidden id=kol{$row006sDay_value} value={$row006KolStr_value}>
+<tr><td height=5></td></tr>
+{/if}
+</td>
+</tr>
+<tr>
+<td>
+{if $row007Date_value!=""}
+<table height=100 width=100% border=0 cellpadding=3 cellspacing=0 {$row007TableNow_value}>
+<tr><td height=20 align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideW7_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick7_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd7_value}">
+{if $row007Now_value}<b>{/if}
+{$row007Date_value}
+{if $row007Now_value}</b>{/if}
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top id="add{$row007sDay_value}" 
+ class=blackshade
+>
+{$row007Day_value}
+</td></tr></table>
+<input type=hidden id=kol{$row007sDay_value} value={$row007KolStr_value}>
+<tr><td height=5></td></tr>
+{/if}
+</td>
+</tr>
+</td>
+</tr>
+<tr height=30><td colspan=1>&nbsp;</td></tr><tr>
+
+
+</table>
+</form>
+<br>
+</td>
+</tr>
+ {/if}  
+
+{if $maxpages>1 || $message!=""}
+{if $message!=""}
+</table>
+{/if}
+<tr><td align=center>
+<b class="xtop"><b class="xb1"></b><b class="xb2"></b><b class="xb3"></b><b class="xb4"></b></b>
+<div class="xboxcontent">
+<table cellpadding=0 cellspacing=0 border=0 width=99% align=center>
+{if $rowsfound}
+<tr>
+<td align="center">{$pagination}</td>
+</tr>
+{/if} 
+<tr name=notfound_message>
+<td align="center" valign=middle>
+</td>
+</tr>
+</table>
+</div>
+<b class="xbottom"><b class="xb4"></b><b class="xb3"></b><b class="xb2"></b><b class="xb1"></b></b>
+</td></tr>
+{/if}
+
+</table>
+</td></tr></table>
+</td></tr></table>
+</td></tr></table>
+</td></tr></table>
+</form>
+{include_if_exists file="include/footer.php"}
+{$linkdata}
+{$Weekly_Array}
+<div style="display:none;position:absolute;" id=addnew>
+<table width=100% height=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td id=addnew1 style="background-color:white;"></td>
+<td>
+    <table cellpadding=0 cellspacing=0 border=0 width=6px height=100%>
+	<tr><td height=6px width=6px></td></tr>
+	<tr><td style="background:url(images/shadow_up_right.gif);-moz-opacity:0.4;filter: alpha(opacity=40);" width=6px height=6px></td></tr>
+	<tr><td style="background:url(images/shadow_right.gif) repeat;-moz-opacity:0.4;filter: alpha(opacity=40);" width=6px></td></tr>
+    </table>
+</td>
+</tr>
+<tr>
+<td width=100%>
+    <table cellpadding=0 cellspacing=0 border=0 height=6px width=100%>
+	<tr><td width=6px height=6px></td>
+   	<td style="background:url(images/shadow_down_left.gif);-moz-opacity:0.4;filter: alpha(opacity=40);" height=6px width=6px></td>
+	<td style="background:url(images/shadow_down.gif) repeat;-moz-opacity:0.4;filter: alpha(opacity=40);" height=6px width=98%></td></tr>
+    </table>
+</td>
+<td style="background:url(images/shadow_down_right.gif);-moz-opacity:0.4;filter: alpha(opacity=40);" height=6px width=6px>
+</td>
+</tr>
+</table>
+</div>
+{$iframe}
+</body>
+</html>
+{literal}
+<script>
+
+function add_div(d,m,y)
+{
+$.get("daily_add.php",
+	{
+	rndval: Math.random(),
+	wind: 'weekly',
+	days: d,
+	mon: m,
+	yr: y
+	},
+	function(xml)
+	{
+	if(xml.indexOf('<form method="POST" action="login.php" id=form1 name=form1>')>=0)
+	{
+		window.location.href='login.php?a=logout';
+	}
+	else
+	{
+	if(is_ie)
+	{
+	var height=document.body.clientHeight;
+	var width=document.body.clientWidth;
+	}
+	else
+	{
+	var height=window.innerHeight;
+	var width=window.innerWidth;
+	}
+	width = (width-550)/2;
+	height = (height-500)/2;
+	document.getElementById('addnew').style.width=550;
+	document.getElementById('addnew').style.left=width;
+	document.getElementById('addnew').style.top=height;
+	document.getElementById("addnew1").innerHTML=xml;
+	document.editform.monthvalue_DateField.options[0] = null;
+	document.editform.dayvalue_DateField.options[0] = null;
+	document.editform.yearvalue_DateField.options[0] = null;
+	document.editform.monthvalue_EndDate.options[0] = null;
+	document.editform.dayvalue_EndDate.options[0] = null;
+	document.editform.yearvalue_EndDate.options[0] = null;
+	document.editform.value_Period.options[0] = null;
+	var sDate=new Date();
+	for(i=0;i<document.editform.yearvalue_DateField.length;i++)
+	{
+		if(document.editform.yearvalue_DateField[0].value<sDate.getFullYear())
+			document.editform.yearvalue_DateField.options[0] = null;
+	}
+	for(i=0;i<document.editform.yearvalue_EndDate.length;i++)
+	{
+		if(document.editform.yearvalue_EndDate[0].value<sDate.getFullYear())
+			document.editform.yearvalue_EndDate.options[0] = null;
+	}
+	document.getElementById('addnew').style.display="";
+	document.getElementById('addnew1').style.border="1px solid gray";
+	document.editform.value_Theme.focus();
+
+	document.forms.editform.value_Category.onchange=function()
+	{
+		if(a[document.forms.editform.value_Category.options[document.forms.editform.value_Category.selectedIndex].value]==undefined)
+			document.getElementById('bgc').style.backgroundColor='white';
+		else
+			document.getElementById('bgc').style.backgroundColor=a[document.forms.editform.value_Category.options[document.forms.editform.value_Category.selectedIndex].value];
+	
+	}
+
+	document.getElementById("EndDate").style.display='none';
+	document.getElementById("Period").style.display='none';
+
+
+	document.forms.editform.value_DayEvent.onclick=function()
+	{
+	    if(document.forms.editform.value_DayEvent.checked)
+    	    {
+		document.forms.editform.value_TimeField.disabled=true;
+		document.forms.editform.value_EndTime.disabled=true;
+	    }
+	    else
+	    {
+		document.forms.editform.value_TimeField.disabled=false;
+		document.forms.editform.value_EndTime.disabled=false;
+	    }
+	}
+	document.forms.editform.value_Recurrence.onclick=function()
+	{
+	    if(!document.forms.editform.value_Recurrence.checked)
+	    {
+		document.getElementById("EndDate").style.display='none';
+		document.getElementById("Period").style.display='none';
+	    }
+	    else
+   	    {
+		document.getElementById("EndDate").style.display='';
+		document.getElementById("Period").style.display='';
+	    }
+	}
+	}
+	}
+);
+}
+function view_div(d,m,y,id)
+{
+$.get("daily_view.php",
+	{
+	rndval: Math.random(),
+	wind: 'weekly',
+	days: d,
+	mon: m,
+	yr: y,
+	editid1: id
+	},
+	function(xml)
+	{
+	if(is_ie)
+	{
+	var height=document.body.clientHeight;
+	var width=document.body.clientWidth;
+	}
+	else
+	{
+	var height=window.innerHeight;
+	var width=window.innerWidth;
+	}
+	width = (width-450)/2;
+	height = (height-350)/2;
+	document.getElementById('addnew').style.width=450;
+	document.getElementById('addnew').style.left=width;
+	document.getElementById('addnew').style.top=height;
+	document.getElementById("addnew1").innerHTML=xml;
+	document.getElementById('addnew').style.display="";
+	document.getElementById('addnew1').style.border="1px solid gray";
+	}
+);
+}
+function edit_div(d,m,y,id)
+{
+$.get("daily_edit.php",
+	{
+	rndval: Math.random(),
+	wind: 'weekly',
+	days: d,
+	mon: m,
+	yr: y,
+	editid1: id
+	},
+	function(xml)
+	{
+	if(xml.indexOf('<form method="POST" action="login.php" id=form1 name=form1>')>=0)
+	{
+		window.location.href='login.php?a=logout';
+	}
+	else
+	{
+	if(is_ie)
+	{
+	var height=document.body.clientHeight;
+	var width=document.body.clientWidth;
+	}
+	else
+	{
+	var height=window.innerHeight;
+	var width=window.innerWidth;
+	}
+	width = (width-550)/2;
+	height = (height-500)/2;
+	document.getElementById('addnew').style.width=550;
+	document.getElementById('addnew').style.left=width;
+	document.getElementById('addnew').style.top=height;
+	document.getElementById("addnew1").innerHTML=xml;
+	document.getElementById('addnew1').style.border="1px solid gray";
+	document.editform.monthvalue_DateField.options[0] = null;
+	document.editform.dayvalue_DateField.options[0] = null;
+	document.editform.yearvalue_DateField.options[0] = null;
+	document.editform.monthvalue_EndDate.options[0] = null;
+	document.editform.dayvalue_EndDate.options[0] = null;
+	document.editform.yearvalue_EndDate.options[0] = null;
+	var sDate=new Date();
+	for(i=0;i<document.editform.yearvalue_DateField.length;i++)
+	{
+		if(document.editform.yearvalue_DateField[0].value<sDate.getFullYear())
+			document.editform.yearvalue_DateField.options[0] = null;
+	}
+	for(i=0;i<document.editform.yearvalue_EndDate.length;i++)
+	{
+		if(document.editform.yearvalue_EndDate[0].value<sDate.getFullYear())
+			document.editform.yearvalue_EndDate.options[0] = null;
+	}
+	document.editform.value_Period.options[0] = null;
+	document.getElementById('addnew').style.display="";
+	document.editform.value_Theme.focus();
+if(document.forms.editform.value_DayEvent.checked)
+{
+	document.forms.editform.value_TimeField.disabled=true;
+	document.forms.editform.value_EndTime.disabled=true;
+}
+else
+{
+	document.forms.editform.value_TimeField.disabled=false;
+	document.forms.editform.value_EndTime.disabled=false;
+}
+if(!document.forms.editform.value_Recurrence.checked)
+{
+	document.getElementById("EndDate").style.display='none';
+	document.getElementById("Period").style.display='none';
+}
+else
+{
+	document.getElementById("EndDate").style.display='';
+	document.getElementById("Period").style.display='';
+}
+
+document.forms.editform.value_DayEvent.onclick=function()
+{
+if(document.forms.editform.value_DayEvent.checked)
+{
+	document.forms.editform.value_TimeField.disabled=true;
+	document.forms.editform.value_EndTime.disabled=true;
+
+}
+else
+{
+	document.forms.editform.value_TimeField.disabled=false;
+	document.forms.editform.value_EndTime.disabled=false;
+}
+}
+document.forms.editform.value_Recurrence.onclick=function()
+{
+if(!document.forms.editform.value_Recurrence.checked)
+{
+	document.getElementById("EndDate").style.display='none';
+	document.getElementById("Period").style.display='none';
+}
+else
+{
+	document.getElementById("EndDate").style.display='';
+	document.getElementById("Period").style.display='';
+}
+}
+document.forms.editform.value_Category.onchange=function()
+{
+	if(a[document.forms.editform.value_Category.options[document.forms.editform.value_Category.selectedIndex].value]==undefined)
+		document.getElementById('bgc').style.backgroundColor='white';
+	else
+		document.getElementById('bgc').style.backgroundColor=a[document.forms.editform.value_Category.options[document.forms.editform.value_Category.selectedIndex].value];
+	
+}
+	}
+}
+);
+}
+function SetDatevalue_DateField()
+{
+    if ($('select[@name=monthvalue_DateField]').get(0).value!='' && $('select[@name=dayvalue_DateField]').get(0).value!='' && $('select[@name=yearvalue_DateField]').get(0).value!='')
+    {
+        $('input[@name=value_DateField]').get(0).value= ''+$('select[@name=yearvalue_DateField]').get(0).value + '-' + $('select[@name=monthvalue_DateField]').get(0).value + '-' + $('select[@name=dayvalue_DateField]').get(0).value; 
+        $('input[@name=tsvalue_DateField]').get(0).value='' + $('select[@name=dayvalue_DateField]').get(0).value+'-'+$('select[@name=monthvalue_DateField]').get(0).value+'-'+$('select[@name=yearvalue_DateField]').get(0).value; 
+    } 
+    else 
+    { 
+        $('input[@name=tsvalue_DateField]').get(0).value= '1-10-2007'; 
+        $('input[@name=value_DateField]').get(0).value= '';
+    }
+} 
+function updatevalue_DateField(newDate)
+{
+    var dt_datetime; 
+    var curdate = new Date(); 
+    dt_datetime = newDate;
+    $('input[@name=value_DateField]').get(0).value =  dt_datetime.getFullYear() + '-' + (dt_datetime.getMonth()+1) + '-' + dt_datetime.getDate();
+    $('select[@name=dayvalue_DateField]').get(0).selectedIndex = dt_datetime.getDate();
+    $('select[@name=monthvalue_DateField]').get(0).selectedIndex = dt_datetime.getMonth()+1;
+    for(i=0; i<$('select[@name=yearvalue_DateField]').get(0).options.length;i++)
+        if($('select[@name=yearvalue_DateField]').get(0).options[i].value==dt_datetime.getFullYear())
+        {
+            $('select[@name=yearvalue_DateField]').get(0).selectedIndex=i; 
+            break;
+        }
+    $('input[@name=tsvalue_DateField]').get(0).value = dt_datetime.getDate() + '-' + (dt_datetime.getMonth()+1) + '-' + dt_datetime.getFullYear();
+}
+function SetDatevalue_EndDate()
+{
+    if ($('select[@name=monthvalue_EndDate]').get(0).value!='' && $('select[@name=dayvalue_EndDate]').get(0).value!='' && $('select[@name=yearvalue_EndDate]').get(0).value!='')
+    {
+        $('input[@name=value_EndDate]').get(0).value= ''+$('select[@name=yearvalue_EndDate]').get(0).value + '-' + $('select[@name=monthvalue_EndDate]').get(0).value + '-' + $('select[@name=dayvalue_EndDate]').get(0).value; 
+        $('input[@name=tsvalue_EndDate]').get(0).value='' + $('select[@name=dayvalue_EndDate]').get(0).value+'-'+$('select[@name=monthvalue_EndDate]').get(0).value+'-'+$('select[@name=yearvalue_EndDate]').get(0).value; 
+    } 
+    else 
+    { 
+        $('input[@name=tsvalue_EndDate]').get(0).value= '1-10-2007'; 
+        $('input[@name=value_EndDate]').get(0).value= '';
+    }
+} 
+function updatevalue_EndDate(newDate)
+{
+    var dt_datetime; 
+    var curdate = new Date(); 
+    dt_datetime = newDate;
+    $('input[@name=value_EndDate]').get(0).value =  dt_datetime.getFullYear() + '-' + (dt_datetime.getMonth()+1) + '-' + dt_datetime.getDate();
+    $('select[@name=dayvalue_EndDate]').get(0).selectedIndex = dt_datetime.getDate();
+    $('select[@name=monthvalue_EndDate]').get(0).selectedIndex = dt_datetime.getMonth()+1;
+    for(i=0; i<$('select[@name=yearvalue_EndDate]').get(0).options.length;i++)
+        if($('select[@name=yearvalue_EndDate]').get(0).options[i].value==dt_datetime.getFullYear())
+        {
+            $('select[@name=yearvalue_EndDate]').get(0).selectedIndex=i; 
+            break;
+        }
+    $('input[@name=tsvalue_EndDate]').get(0).value = dt_datetime.getDate() + '-' + (dt_datetime.getMonth()+1) + '-' + dt_datetime.getFullYear();
+}
+function omd(ev)
+{
+    mclick=1;
+    if(is_ie)
+    {
+    	offx=ev.x-document.getElementById('addnew').offsetLeft;
+    	offy=ev.y-document.getElementById('addnew').offsetTop;
+    }
+    else
+    {
+    	offx=ev.clientX-document.getElementById('addnew').offsetLeft;
+    	offy=ev.clientY-document.getElementById('addnew').offsetTop;
+    }
+}
+</script>
+{/literal}
+</body>
+</html>

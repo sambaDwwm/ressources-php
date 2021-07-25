@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>How to (FAQ)</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+</head>
+<body style="background:white">
+{literal}
+<style> 
+table {  border-collapse: collapse} 
+td { 
+ padding: 5px; 
+ margin: 0px; 
+ border-width: 1px; 
+ border-style: solid; 
+ border-color: #000000; 
+}
+</style> 
+{/literal}
+{include_if_exists file="include/header.php"}
+{doevent name="PrintOnLoad"}
+	
+	
+<h1>How to (FAQ)</h1>
+<table align='center' width='95%' border='0' cellpadding=3 cellspacing=2>
+
+
+<tr>
+<!--{if $column1show}-->
+		<td><b>ask</b></td>
+	<td><b>answer</b></td>
+<!--{/if}-->	
+</tr>
+{foreach from=$rowinfo item=row}
+<tr valign=top>
+
+
+
+
+<td>
+{$row.1ask_value}
+</td>
+<td>
+{$row.1answer_value}
+</td>
+
+</tr>
+{/foreach}
+<!-- totals row -->
+</table>
+{include_if_exists file="include/footer.php"}
+</body>
+
+</html>

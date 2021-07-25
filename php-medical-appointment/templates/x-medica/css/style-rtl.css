@@ -1,0 +1,78 @@
+
+div.logo-wrapper                { text-align:right; float:right; }
+div.logo-wrapper .slogan        { margin-right:98px; margin-left:0px; }
+div.logo-wrapper img            { margin:0 0px -32px 10px; }
+div.logo-right-text             { margin:0px 10px 10px 2px; float:left; text-align:left; }
+div.logo-right-text img         { margin-left:7px; margin-right:0px; }
+
+.top-search-form                { float:left; margin:-43px 0 0 20px; height:40px; }
+#main-superfish-wrapper         { float:right; }
+#main-superfish-wrapper li      { float:right; }
+
+div.left-sidebar.columns        { float: right; }
+div.left-sidebar.columns        { float: right; }
+div.page-item.columns           { float: left; }
+div.left_box_container ul       { margin-left:0px; margin-right: 15px; }
+table.tblSideBlock input        { margin: 3px 0px 3px 10px; }
+
+.sub-menu                       { float:none; right:0px; }
+.sub-menu li                    { text-align: right; }
+
+.column, .columns               { float: right; }
+div.footer-menu-wrapper         { direction:rtl; text-align: right; }
+div.social-icon-wrapper         { text-align: left; }
+div.copyright-left              { float:right; }
+div.copyright-right             { float:left; }
+
+
+/* Custom mobile style
+------------------------------------------------ */
+@media only screen and (max-width: 767px) {
+	div.top-navigation-left li:last-child { margin-left: 0px; }
+	div.top-navigation-left     { text-align:center; margin:0 auto; float: none; }    
+    div.top-navigation-right    { text-align:center; margin:0 auto; float: none; }
+    
+    #menu-top-menu              { margin:0 auto; float: none; width:190px; }
+    
+	div.logo-wrapper            { text-align:center; float: none !important; padding-top:10px; padding-bottom:30px; line-height:30px; }
+    div.logo-wrapper .slogan    { margin:0 auto; }
+    div.logo-wrapper img        { margin:0px 10px 0 10px; }
+    
+    div.responsive-menu-wrapper select option { padding-right:4px; }
+    div.responsive-menu-wrapper select optgroup { padding-right:5px; }
+    
+}
+
+/* Doctors
+---------------------------------------------------- */
+TABLE.tblDoctorInfo TR TD UL    { margin-right:15px; margin-left:0px; }
+TABLE.tblDoctorInfo TR TD IMG   { margin-right:0px; }
+TABLE.tblDoctorInfo TR TD IMG.doctor_photo { margin-right:5px; margin-left:12px; }
+
+/* Appointment Navigation
+---------------------------------------------------- */
+UL.appointment_navigation       { margin-right:-10px; }
+UL.appointment_navigation LI    { float:right; argin-left:10px; margin-right:10px; }
+UL.appointment_navigation LI.active { float:right; }
+
+/* Doctor Card
+---------------------------------------------------- */
+DIV.doctor_card                 { width:380px; float:right; margin-right:0px; }
+DIV.doctor_card DIV.photo       { width:100px; float:right; }
+DIV.doctor_card DIV.description { width:260px; float:right; }
+DIV.doctor_card DIV             { padding:5px; }
+
+/* Footer
+---------------------------------------------------- */
+footer-menu-wrapper a           { direction:rtl; }
+
+/* Homepage alerts
+---------------------------------------------------- */
+#divDashboardMessagesImg        { margin:10px 9px 0 -9px; cursor:pointer; float:left; }
+#divDashboardRequired           { float:right; }
+#divAlertRequired               { float:right; }
+
+/* Membership plans
+-------------------------------------------------- */
+DIV.membership_plans_container .plans_wrapper DIV.item { float:right; }
+DIV.membership_plans_container H2 { text-align: right; }

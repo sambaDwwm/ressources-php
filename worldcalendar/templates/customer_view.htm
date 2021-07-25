@@ -1,0 +1,96 @@
+<html>
+<title>Customers</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+<body bgcolor=white >
+{include_if_exists file="include/header.php"}
+{$message}
+{doevent name="ViewOnLoad"}
+
+<TABLE CELLPADDING=0 CELLSPACING=0 align=center border=0>
+<tr><td>
+
+<div class="xboxcontentb">
+<table cellpadding=0 cellspacing=0 border=0>
+<tr><td>
+<table cellpadding=0 cellspacing=0 border=0 width=100%>
+<tr>
+<td class=upeditmenu_left width=5px height=36px></td>
+<td class=upeditmenu_center align=center>
+Customers, View record [
+idcustomer: {$show_key1}
+]
+
+</td>
+<td class=upeditmenu_right width=5px height=36px></td>
+</tr>
+</table>
+</td></tr>
+<tr><td style="padding:10px" class=borderedit>
+<div class="xboxcontentb">
+<table cellpadding=4 cellspacing=0 border=0">
+
+<tr>
+    <td class=editshadeleft_b width=150 style="padding-left:15px;">idcustomer</td>
+    <td width=250 class=editshaderight_lb style="padding-left:10px;">
+    {$show_idcustomer}&nbsp;
+  </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">name</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {$show_name}&nbsp;
+  </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">contact</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {$show_contact}&nbsp;
+  </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">telephones</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {$show_telephones}&nbsp;
+  </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">postinfo</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {$show_postinfo}&nbsp;
+  </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">customerdetails</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {$show_customerdetails}&nbsp;
+  </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">username</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {$show_username}&nbsp;
+  </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">password</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {$show_password}&nbsp;
+  </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">email</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {$show_email}&nbsp;
+  </td></tr>
+<tr><td colspan=2 align=left class=downedit>
+   <img src="images/icon_required.gif"> - Required field
+   </td></tr>
+ <tr><td colspan=2 align=center class=downedit>
+<span class=buttonborder><input class=button type=button value="&nbsp;&nbsp;Back to list&nbsp;&nbsp;" onclick="window.location.href='customer_list.php?a=return'"></span>
+ </td></tr>
+
+</table>
+</div>
+<b class="xbottom"><b class="xb4a"></b><b class="xb3a"></b><b class="xb2a"></b><b class="xb1a"></b></b>
+</td></tr>
+</table>
+</div>
+<b class="xbottom"><b class="xb4b4"></b><b class="xb3b4"></b><b class="xb2b4"></b><b class="xb1b4"></b></b>
+ </td></tr></table><br>
+
+{include_if_exists file="include/footer.php"}
+
+</body>
+</html>

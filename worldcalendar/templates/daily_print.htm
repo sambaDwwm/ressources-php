@@ -1,0 +1,85 @@
+<html>
+<head>
+<title>Daily</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+</head>
+<body style="background:white">
+{literal}
+<style> 
+table {  border-collapse: collapse} 
+td { 
+ padding: 5px; 
+ margin: 0px; 
+ border-width: 1px; 
+ border-style: solid; 
+ border-color: #000000; 
+}
+</style> 
+{/literal}
+{include_if_exists file="include/header.php"}
+{doevent name="PrintOnLoad"}
+	
+	
+<h1>Daily</h1>
+<table align='center' width='95%' border='0' cellpadding=3 cellspacing=2>
+
+
+<tr>
+<!--{if $column1show}-->
+		<td><b>Date</b></td>
+	<td><b>Date</b></td>
+	<td><b>Color</b></td>
+	<td><b>Time</b></td>
+	<td><b>Category</b></td>
+	<td><b>Subject</b></td>
+	<td><b>Description</b></td>
+	<td><b>details</b></td>
+	<td><b>income</b></td>
+	<td><b>outcome</b></td>
+<!--{/if}-->	
+</tr>
+{foreach from=$rowinfo item=row}
+<tr valign=top>
+
+
+
+
+<td>
+{$row.1DateField2_value}
+</td>
+<td>
+{$row.1DateField_value}
+</td>
+<td>
+{$row.1Color_value}
+</td>
+<td>
+{$row.1TimeField_value}
+</td>
+<td>
+{$row.1Category_value}
+</td>
+<td>
+{$row.1Theme_value}
+</td>
+<td>
+{$row.1Description_value}
+</td>
+<td>
+{$row.1details_value}
+</td>
+<td>
+{$row.1income_value}
+</td>
+<td>
+{$row.1outcome_value}
+</td>
+
+</tr>
+{/foreach}
+<!-- totals row -->
+</table>
+{include_if_exists file="include/footer.php"}
+</body>
+
+</html>

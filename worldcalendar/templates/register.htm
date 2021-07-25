@@ -1,0 +1,148 @@
+<html>
+<head>
+<title>Register</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+</head>
+<body text="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" link="#0066cc" {$bodyonload}>
+{$includes}
+{include_if_exists file="include/header.php"}
+{doevent name="RegisterOnLoad"}
+<form encType="multipart/form-data" method="POST" action="register.php" name="editform" {$onsubmit}>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="99%">
+  <tr>
+    <td valign="center" align="middle"> 
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td  valign="top" align="right"> 
+                  <table width="300" border="0" cellspacing="4" cellpadding="4" align="center">
+                    <tr> 
+                      <td>&nbsp;</td>
+                    </tr>
+                  </table>
+                  <TABLE CELLPADDING=0 CELLSPACING=0 align=center border=0>
+                    <tr><td>
+
+                    <div class="xboxcontentb">
+                    <table cellpadding=0 cellspacing=0 border=0>
+                    <tr><td>
+                    <table cellpadding=0 cellspacing=0 border=0 width=100%>
+                    <tr>
+                    <td class=upeditmenu_left width=5px height=36px></td>
+                    <td class=upeditmenu_center align=center>
+							 <b><font size=+1>Register</font></b></td>
+                    </td>
+                    <td class=upeditmenu_right width=5px height=36px></td>
+                    </tr>
+                    </table>
+                    </td></tr>
+                    <tr> 
+                      <td valign="top" align=center class=borderedit>
+                        <table cellpadding=5 cellspacing=0 border=0>
+                        <tr><td>
+                        <b class="xtop"><b class="xb1"></b><b class="xb2"></b><b class="xb3"></b><b class="xb4"></b></b>
+                        <div class="xboxcontent" align=center>
+                        <table width="300" border=0 align="center" cellpadding=3 cellspacing=0>
+                          <tbody>
+					<!--username-->
+						  <tr> 
+	                            <td align=right width="50%"> 
+                              <div align="left">Username:</div>
+                            </td>
+                            <td width="50%"> 
+                              {build_edit_control field="username" mode="add" value=$value_username}
+                            </td>
+						  </tr>
+					<!--password-->
+                            <td align=right width="50%"> 
+                              <div align="left">Password:</div>
+                            </td>
+                            <td width="50%"> 
+							<input type=password name="value_password" value="{$value_password}">
+                            </td>
+                          </tr>
+                          <tr> 
+                            <td align=right width="50%"> 
+                              <div align="left">Re-enter password:</div>
+                            </td>
+                            <td width="50%"> 
+							<input type=password name="value1_password" value="">
+                            </td>
+					<!--email-->
+						  <tr> 
+	                            <td align=right width="50%"> 
+                              <div align="left">email:</div>
+                            </td>
+                            <td width="50%"> 
+                              {build_edit_control field="email" mode="add" value=$value_email}
+                            </td>
+						  </tr>
+					<!--group-->
+						  <tr> 
+	                            <td align=right width="50%"> 
+                              <div align="left">group:</div>
+                            </td>
+                            <td width="50%"> 
+                              {build_edit_control field="group" mode="add" value=$value_group}
+                            </td>
+						  </tr>
+					<!--info-->
+						  <tr> 
+	                            <td align=right width="50%"> 
+                              <div align="left">info:</div>
+                            </td>
+                            <td width="50%"> 
+                              {build_edit_control field="info" mode="add" value=$value_info}
+                            </td>
+						  </tr>
+                          <tr><td class="linedownD1" height=1px width=100% colspan=2></td></tr>
+                          <tr class=downedit><td height=5px colspan=2></td></tr>
+                          <tr class=downedit> 
+                            <td colspan=2 align=middle>
+								<input type=hidden name=btnSubmit value="Register">
+								<span class=buttonborder><input {$submitonclick} type=submit value="Submit" class=button></span>
+                            </td>
+                          </tr>
+								   <tr class=downedit>
+								   <td align=center colspan=2>
+										<font color=red>{$message}</font>
+									</td></tr>
+                          <tr class=downedit> 
+                            <td colspan=2 align=middle>
+								<a href="login.php">Back to login page</a>
+                            </td>
+                          </tr>
+                          </tbody> 
+                        </table>
+                        </div>
+                        <b class="xbottom"><b class="xb4a"></b><b class="xb3a"></b><b class="xb2a"></b><b class="xb1a"></b></b>
+                        </td></tr></table>
+                        </td>
+                    </tr>
+                  </table>
+                  </div>
+                  <b class="xbottom"><b class="xb4b4"></b><b class="xb3b4"></b><b class="xb2b4"></b><b class="xb1b4"></b></b>
+                      </td>
+                    </tr>
+                  </table>
+                  </form>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+{include_if_exists file="include/footer.php"}
+</body>
+{$linkdata}
+</html>

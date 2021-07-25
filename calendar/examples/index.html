@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>calendar.class.php v2.6</title>
+<style type="text/css">
+/* resets */
+p, h1, h2, h3, h4, h5, h6, ul, ol, dl {
+	margin: 0;
+	padding: 0;
+	font-size: 1em;
+	font-weight: normal;
+	}
+ul, ol, dl {
+	list-style: none;
+	}
+/* layout */
+body {
+	margin: 2em auto;
+	width: 60%;
+	font-size: 76%;
+	font-family: Arial, Helvetica, sans-serif;
+	}
+	
+h1, h2, h3 {
+	font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	}
+h1 {
+	margin-bottom: .6em;
+	font-size: 3em;
+	color: #090;
+	}
+h2 {
+	margin: 2em .6em .5em .6em;
+	font-size: 2.6em;
+	color: #039;
+	}
+h3 {
+	font-size: 1.8em;
+	color: #333;
+	}
+	
+p {
+	margin-bottom: 1em;
+	font-size: 1.2em;
+	line-height: 1.2;
+	}
+	
+a {
+	font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #039;
+	}
+a:hover {
+	text-decoration: none;
+	color: #00f;
+	}
+	
+#credits {
+	margin-bottom: 1em;
+	}
+	
+.example {
+	border-top: 1px dashed #333;
+	padding: 2em 1em;
+	}
+.example.last {
+	border-bottom: 1px dashed #333;
+	}
+.example:hover {
+	background:  #eff6ff;
+	}
+</style>
+</head>
+
+<body>
+<h1>calendar.class.php v2.6</h1>
+<div id="credits">
+<p>copyright &copy; 2008 Jim Mayes<br />
+licensed under: <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share Alike 3.0 License</a></p>
+<p>This class may not be used for commercial purposes without written consent.</p>
+<p>Visit <a href="http://style-vs-substance.com">Style Vs. SUBSTANCE</a> for information and updates</p>
+</div>
+
+<h2>New Features</h2>
+    
+<div class="example">
+    <h3>Link Only Specified Dates</h3>
+    <p>Previously, the $link_days property allowed for either all days to be links ($link_days = 1), or to not have days link at all ($link_days = 0). Version 2.5 adds a third option to link only dates supplied in the $highlighted_dates array. Set $link_days = 2 and only your higlighted days will be links.</p>
+    <p><a href="example_25_1.php">View Example</a></p>
+</div>
+    
+<div class="example">
+    <h3>Formatable Day Linking</h3>
+    <p>Previously, it was possible to set the destination URL of day links by assigning $link_to. The date would then be automatically appended to that URL in the format ?date=Y-m-d. Version 2.5 adds the property $formatted_link_to which accepts a string containing formatting options valid to PHP's date function. This allows the calendar to be used with site utilizing "cruft free urls".</p>
+    <p><a href="example_25_2.php">View Example</a></p>
+</div>
+    
+<div class="example">
+    <h3>Specify Start of Week</h3>
+    <p>A commonly requested feature is the ability to designate the day of the week for weeks to start with. The property, $week_start accepts a numeric value representing the day of the week on which to start the week. Valid ranges are 1 = Monday thru 7 = Sunday. Setting $week_start = 1 for example will begin weeks on Monday.</p>
+	
+	<p><em>***Because versions before 2.6 contained a display bug the old property $week_start_on has been removed and replaced with the new $week_start property. $week_start follows the ISO-8601 spec (1 = Monday thru 7 = Sunday). The old property did not (0 = Sunday thru 6 = Saturday). The old property was removed to purposely break backwards compatibility and force use of the new property.</em></p>
+	
+    <p><a href="example_26_3.php">View Example</a></p>
+</div>
+
+<h2>Basic Usage Examples</h2>
+    
+<div class="example">
+    <h3>Example 1 - Simple Calendar Output</h3>
+    <p>By default, calendar.class.php will output the current month with today's date marked with a CSS class (.today) ready for you to style</p>
+    <p><a href="example_1.php">View Example 1</a></p>
+</div>
+
+<div class="example">
+    <h3>Example 2 - Specified Month</h3>
+    <p>calendar.class.php allows you to display a specific month by providing the just a month and year.</p>
+    <p><a href="example_2.php">View Example 2</a></p>
+</div>
+
+<div class="example">
+    <h3>Example 3 - Specified Date</h3>
+    <p>Provide a full date in YYYY-MM-DD format and calendar.class.php will output the correct month with the specified date marked with a CSS class (.selected) ready for you to style.</p>
+    <p><a href="example_3.php">View Example 3</a></p>
+</div>
+
+<div class="example">
+    <h3>Example 4 - Hilighted Dates</h3>
+    <p>calendar.class.php will accept an array of dates to mark on the calendar with a hilighted CSS class. You can use the default class name (.highlighted) or specify your own.</p>
+    <p><a href="example_4.php">View Example 4</a></p>
+</div>
+
+<div class="example">
+    <h3>Example 5 - Days as Links</h3>
+    <p>calendar.class.php can make each day on the calendar a link with the date appended to the URL as a variable named "date". This behavior is turned on by default but can be turned off. You may also specify the URL that the days link to and calendar.class.php will append the "date" variable to the URL you supply.</p>
+    <p><a href="example_5.php">View Example 5</a></p>
+</div>
+
+<div class="example last">
+    <h3>Example 6 - Localized Output</h3>
+    <p>Version 2 of calendar.class.php now adds a localization layer to the calendar output. Use PHP's setlocale() function to output the calendar customized for your locale.</p>
+    <p><a href="example_6.php">View Example 6</a></p>
+</div>
+
+<h2>Advanced Usage Examples</h2>
+</div>
+
+<div class="example">
+    <h3>Example 7 - Previous, Current and Next Months</h3>
+    <p>calendar.class.php is flexible enough to easily display multiple month calendars with ease.</p>
+    <p><a href="example_7.php">View Example 7</a></p>
+</div>
+
+<div class="example last">
+    <h3>Example 8 - Full Year-at-a-time Calendar</h3>
+    <p>Creating a full year-at-a-time calendar.class.php is easily accomplished with a simple PHP loop.</p>
+    <p><a href="example_8.php">View Example 8</a></p>
+</div>
+</body>
+</html>

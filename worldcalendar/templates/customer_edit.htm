@@ -1,0 +1,119 @@
+<html>
+<head><title>Customers</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+{$includes}
+</head>
+
+<body {$bodyonload}>
+{include_if_exists file="include/header.php"}
+<form name="editform" encType="multipart/form-data" method="post" action="customer_edit.php" {$onsubmit}>
+
+
+{doevent name="EditOnLoad"}
+
+
+
+<TABLE CELLPADDING=0 CELLSPACING=0 align=center border=0>
+<tr><td>
+
+<div class="xboxcontentb">
+<table cellpadding=0 cellspacing=0 border=0>
+<tr><td>
+<table cellpadding=0 cellspacing=0 border=0 width=100%>
+<tr>
+<td class=upeditmenu_left width=5px height=36px></td>
+<td class=upeditmenu_center align=center>
+Customers, Edit record [
+idcustomer: {$show_key1}
+]
+<input type=hidden name=editid1 value="{$key1}">
+
+</td>
+<td class=upeditmenu_right width=5px height=36px></td>
+</tr>
+</table>
+</td></tr>
+
+{if $message!=""}
+<tr><td width=100% align=center style="padding:10px" class=borderedit>
+<table cellpadding=0 cellspacing=0 border=0 width=100%><tr><td>
+<b class="xtop"><b class="xb1"></b><b class="xb2"></b><b class="xb3"></b><b class="xb4"></b></b>
+<div class="xboxcontent">
+<table cellpadding=5 cellspacing=0 border=0 width=90% align=center>
+<tr><td colspan=2 align=center>{$message}</td></tr>
+</table>
+</div>
+<b class="xbottom"><b class="xb4"></b><b class="xb3"></b><b class="xb2"></b><b class="xb1"></b></b>
+</td></tr></table>
+</td></tr>
+{/if}
+
+<tr><td style="padding:10px" class=borderedit>
+<div class="xboxcontentb">
+<table cellpadding=4 cellspacing=0 border=0>
+
+<tr>
+    <td class=editshadeleft_b width=150 style="padding-left:15px;">name</td>
+    <td width=250 class=editshaderight_lb style="padding-left:10px;">
+    {build_edit_control field="name" value=$value_name mode="edit"}
+      &nbsp;<img src="images/icon_required.gif">
+  </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">contact</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {build_edit_control field="contact" value=$value_contact mode="edit"}
+    </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">telephones</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {build_edit_control field="telephones" value=$value_telephones mode="edit"}
+    </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">postinfo</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {build_edit_control field="postinfo" value=$value_postinfo mode="edit"}
+    </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">customerdetails</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {build_edit_control field="customerdetails" value=$value_customerdetails mode="edit"}
+    </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">email</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {build_edit_control field="email" value=$value_email mode="edit"}
+    </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">username</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {build_edit_control field="username" value=$value_username mode="edit"}
+    </td></tr>
+<tr>
+    <td class=editshade_b width=150 style="padding-left:15px;">password</td>
+    <td width=250 class=editshade_lb style="padding-left:10px;">
+    {build_edit_control field="password" value=$value_password mode="edit"}
+    </td></tr>
+<tr><td colspan=2 align=left class=downedit>
+   <img src="images/icon_required.gif"> - Required field
+   </td></tr>
+ <tr><td colspan=2 align=center class=downedit>
+ <span class=buttonborder><input class=button type=submit value="&nbsp;&nbsp;Save&nbsp;&nbsp;"  name=submit1></span>
+ <span class=buttonborder><input class=button type=reset value="&nbsp;&nbsp;Reset&nbsp;&nbsp;"></span>
+ <span class=buttonborder><input class=button type=button value="&nbsp;&nbsp;Back to list&nbsp;&nbsp;" onclick="window.location.href='customer_list.php?a=return'"></span>
+ <input type=hidden name="a" value="edited">
+ </td></tr>
+</form>
+</table>
+</div>
+<b class="xbottom"><b class="xb4a"></b><b class="xb3a"></b><b class="xb2a"></b><b class="xb1a"></b></b>
+</td></tr>
+</table>
+</div>
+<b class="xbottom"><b class="xb4b4"></b><b class="xb3b4"></b><b class="xb2b4"></b><b class="xb1b4"></b></b>
+ </td></tr></table><br>
+{include_if_exists file="include/footer.php"}
+
+{$linkdata}
+<script>SetToFirstControl();</script>
+</body>
+</html>

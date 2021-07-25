@@ -1,0 +1,3425 @@
+<html>
+<head>
+<title>Yearly</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+</head>
+<body topmargin=5 {$onload}>
+{$includes}
+
+{include_if_exists file="include/header.php"}
+
+<form name="frmSearch" method="GET" action="yearly_list.php">
+<input type="Hidden" name="a" value="search">
+<input type="Hidden" name="value" value="1">
+<input type="Hidden" name="SearchFor" value="">
+<input type="Hidden" name="SearchOption" value="">
+<input type="Hidden" name="SearchField" value="">
+</form>
+<table width=99% align=center border=0 cellpadding=0 cellspacing=0><tr><td>
+
+<table class="navigation" cellspacing="0" cellpadding="0" width=100% border=0 height=36>
+<tr>
+<td class=logged_left width=5></td>
+<td align=left class=logged valign=middle style="padding-top:2">
+<span style="white-space:nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font style="FONT-FAMILY: Verdana, Arial;">Logged as</font>&nbsp;<b>{$userid}</b>&nbsp;
+<span class=buttonborder><input type=button class=button value="Log out" onClick="window.location.href='login.php?a=logout';"></span>
+
+
+</span>
+<td align=right class=logged valign=middle style="padding-top:2">&nbsp;
+<span style="white-space:nowrap">
+
+{if $rowsfound}
+
+
+
+{/if}
+
+<!--language-->
+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</td>
+<td class=logged_right width=5></td>
+</tr>
+</table>
+
+<br>
+<table class="body2" cellspacing="0" cellpadding="0" border=0>
+<tr>
+{if $allow_calendar}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="calendar_list.php">Calendar</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_daily}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="daily_list.php">Daily</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_monthly}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="monthly_list.php">Monthly</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_weekly}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="weekly_list.php">Weekly</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_yearly}
+		<td width=5px><img src="include/img/but_left_1.gif" border=0></td>
+	<td class="td_border_menu_gif">
+	<a width=5px class="menu_db" href="yearly_list.php">Yearly</a>
+	</td>
+	<td><img src="include/img/but_right_1.gif" border=0></td>
+{/if}
+{if $allow_customer}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="customer_list.php">Customers</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_category}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="category_list.php">Tasks</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_Copy_of_calendar}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="Copy_of_calendar_list.php">edit calendar</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_customer_statistics}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="customer_statistics_list.php">customer statistics</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_task_statistics}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="task_statistics_list.php">task statistics</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_users}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="users_list.php">Users</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_howto}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="howto_list.php">How to (FAQ)</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+</tr></table>
+
+
+
+<table class="main_table_border_P" cellspacing="0" cellpadding="0" width=100% border=0>
+<tr>
+<td width=100% height=10px colspan=2></td>
+<td class=up_right2 width=5px height=10px>&nbsp;</td>
+</tr>
+
+<tr>
+<td class=navigat_left width=5px height=15px>&nbsp;</td>
+<td class=navigat width=100%>&nbsp;</td>
+<td class=navigat_right width=5px>&nbsp;</td>
+</tr>
+</table>
+
+
+<tr><td width=100% class=body2>&nbsp;</td></tr>
+
+<tr><td class=body2 align=center width=100%>{doevent name="Yearly_Next_Prev"}</td></tr>
+
+<table cellpadding=0 cellspacing=20 border=0 align=center >  
+
+<tr>
+<td width=220 height=201 style="border:1px solid gray;">
+
+<table cellpadding=0 cellspacing=1 border=0 width=100% height=100%>
+<tr><td height=30 align=center style="background-color:#C5D2E5;" colspan=8>
+<b>
+<a href="{$linkMonthly1}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">{$row00MonthName1_value}</a>
+</b></td></tr>
+<tr>
+<td height=20 width=10 style="background: url('images/weekdayname.gif') repeat right top;"></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname1_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname2_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname3_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname4_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname5_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname6_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname7_value}</b></td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month1HideRow1}">
+<td style="font-weight:normal;{$NowM1D1}" {$style_m1d1} align=center>
+<a href="{$linkWeeklyM1Week1}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D2}" {$style_m1d2} align=center>
+<a href="{$linkDayM1Day2}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day2_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D3}" {$style_m1d3} align=center>
+<a href="{$linkDayM1Day3}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day3_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D4}" {$style_m1d4} align=center>
+<a href="{$linkDayM1Day4}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day4_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D5}" {$style_m1d5} align=center>
+<a href="{$linkDayM1Day5}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day5_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D6}" {$style_m1d6} align=center>
+<a href="{$linkDayM1Day6}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day6_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D7}" {$style_m1d7} align=center>
+<a href="{$linkDayM1Day7}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day7_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D8}" {$style_m1d8} align=center>
+<a href="{$linkDayM1Day8}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day8_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month1HideRow2}">
+<td style="font-weight:normal;{$NowM1D9}" {$style_m1d9} align=center>
+<a href="{$linkWeeklyM1Week2}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D10}" {$style_m1d10} align=center>
+<a href="{$linkDayM1Day10}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day10_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D11}" {$style_m1d11} align=center>
+<a href="{$linkDayM1Day11}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day11_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D12}" {$style_m1d12} align=center>
+<a href="{$linkDayM1Day12}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day12_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D13}" {$style_m1d13} align=center>
+<a href="{$linkDayM1Day13}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day13_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D14}" {$style_m1d14} align=center>
+<a href="{$linkDayM1Day14}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day14_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D15}" {$style_m1d15} align=center>
+<a href="{$linkDayM1Day15}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day15_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D16}" {$style_m1d16} align=center>
+<a href="{$linkDayM1Day16}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day16_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month1HideRow3}">
+<td style="font-weight:normal;{$NowM1D17}" {$style_m1d17} align=center>
+<a href="{$linkWeeklyM1Week3}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D18}" {$style_m1d18} align=center>
+<a href="{$linkDayM1Day18}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day18_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D19}" {$style_m1d19} align=center>
+<a href="{$linkDayM1Day19}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day19_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D20}" {$style_m1d20} align=center>
+<a href="{$linkDayM1Day20}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day20_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D21}" {$style_m1d21} align=center>
+<a href="{$linkDayM1Day21}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day21_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D22}" {$style_m1d22} align=center>
+<a href="{$linkDayM1Day22}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day22_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D23}" {$style_m1d23} align=center>
+<a href="{$linkDayM1Day23}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day23_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D24}" {$style_m1d24} align=center>
+<a href="{$linkDayM1Day24}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day24_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month1HideRow4}">
+<td style="font-weight:normal;{$NowM1D25}" {$style_m1d25} align=center>
+<a href="{$linkWeeklyM1Week4}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D26}" {$style_m1d26} align=center>
+<a href="{$linkDayM1Day26}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day26_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D27}" {$style_m1d27} align=center>
+<a href="{$linkDayM1Day27}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day27_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D28}" {$style_m1d28} align=center>
+<a href="{$linkDayM1Day28}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day28_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D29}" {$style_m1d29} align=center>
+<a href="{$linkDayM1Day29}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day29_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D30}" {$style_m1d30} align=center>
+<a href="{$linkDayM1Day30}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day30_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D31}" {$style_m1d31} align=center>
+<a href="{$linkDayM1Day31}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day31_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D32}" {$style_m1d32} align=center>
+<a href="{$linkDayM1Day32}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day32_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month1HideRow5}">
+<td style="font-weight:normal;{$NowM1D33}" {$style_m1d33} align=center>
+<a href="{$linkWeeklyM1Week5}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D34}" {$style_m1d34} align=center>
+<a href="{$linkDayM1Day34}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day34_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D35}" {$style_m1d35} align=center>
+<a href="{$linkDayM1Day35}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day35_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D36}" {$style_m1d36} align=center>
+<a href="{$linkDayM1Day36}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day36_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D37}" {$style_m1d37} align=center>
+<a href="{$linkDayM1Day37}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day37_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D38}" {$style_m1d38} align=center>
+<a href="{$linkDayM1Day38}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day38_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D39}" {$style_m1d39} align=center>
+<a href="{$linkDayM1Day39}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day39_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D40}" {$style_m1d40} align=center>
+<a href="{$linkDayM1Day40}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day40_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month1HideRow6}">
+<td style="font-weight:normal;{$NowM1D41}" {$style_m1d41} align=center>
+<a href="{$linkWeeklyM1Week6}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D42}" {$style_m1d42} align=center>
+<a href="{$linkDayM1Day42}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day42_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D43}" {$style_m1d43} align=center>
+<a href="{$linkDayM1Day43}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day43_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D44}" {$style_m1d44} align=center>
+<a href="{$linkDayM1Day44}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day44_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D45}" {$style_m1d45} align=center>
+<a href="{$linkDayM1Day45}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day45_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D46}" {$style_m1d46} align=center>
+<a href="{$linkDayM1Day46}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day46_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D47}" {$style_m1d47} align=center>
+<a href="{$linkDayM1Day47}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day47_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM1D48}" {$style_m1d48} align=center>
+<a href="{$linkDayM1Day48}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month1Day48_value}
+</a>
+</td>
+</tr>
+</table>
+</td>
+<td width=220 height=201 style="border:1px solid gray;">
+
+<table cellpadding=0 cellspacing=1 border=0 width=100% height=100%>
+<tr><td height=30 align=center style="background-color:#C5D2E5;" colspan=8>
+<b>
+<a href="{$linkMonthly2}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">{$row00MonthName2_value}</a>
+</b></td></tr>
+<tr>
+<td height=20 width=10 style="background: url('images/weekdayname.gif') repeat right top;"></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname1_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname2_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname3_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname4_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname5_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname6_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname7_value}</b></td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month2HideRow1}">
+<td style="font-weight:normal;{$NowM2D1}" {$style_m2d1} align=center>
+<a href="{$linkWeeklyM2Week1}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D2}" {$style_m2d2} align=center>
+<a href="{$linkDayM2Day2}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day2_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D3}" {$style_m2d3} align=center>
+<a href="{$linkDayM2Day3}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day3_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D4}" {$style_m2d4} align=center>
+<a href="{$linkDayM2Day4}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day4_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D5}" {$style_m2d5} align=center>
+<a href="{$linkDayM2Day5}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day5_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D6}" {$style_m2d6} align=center>
+<a href="{$linkDayM2Day6}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day6_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D7}" {$style_m2d7} align=center>
+<a href="{$linkDayM2Day7}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day7_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D8}" {$style_m2d8} align=center>
+<a href="{$linkDayM2Day8}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day8_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month2HideRow2}">
+<td style="font-weight:normal;{$NowM2D9}" {$style_m2d9} align=center>
+<a href="{$linkWeeklyM2Week2}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D10}" {$style_m2d10} align=center>
+<a href="{$linkDayM2Day10}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day10_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D11}" {$style_m2d11} align=center>
+<a href="{$linkDayM2Day11}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day11_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D12}" {$style_m2d12} align=center>
+<a href="{$linkDayM2Day12}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day12_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D13}" {$style_m2d13} align=center>
+<a href="{$linkDayM2Day13}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day13_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D14}" {$style_m2d14} align=center>
+<a href="{$linkDayM2Day14}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day14_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D15}" {$style_m2d15} align=center>
+<a href="{$linkDayM2Day15}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day15_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D16}" {$style_m2d16} align=center>
+<a href="{$linkDayM2Day16}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day16_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month2HideRow3}">
+<td style="font-weight:normal;{$NowM2D17}" {$style_m2d17} align=center>
+<a href="{$linkWeeklyM2Week3}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D18}" {$style_m2d18} align=center>
+<a href="{$linkDayM2Day18}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day18_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D19}" {$style_m2d19} align=center>
+<a href="{$linkDayM2Day19}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day19_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D20}" {$style_m2d20} align=center>
+<a href="{$linkDayM2Day20}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day20_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D21}" {$style_m2d21} align=center>
+<a href="{$linkDayM2Day21}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day21_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D22}" {$style_m2d22} align=center>
+<a href="{$linkDayM2Day22}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day22_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D23}" {$style_m2d23} align=center>
+<a href="{$linkDayM2Day23}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day23_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D24}" {$style_m2d24} align=center>
+<a href="{$linkDayM2Day24}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day24_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month2HideRow4}">
+<td style="font-weight:normal;{$NowM2D25}" {$style_m2d25} align=center>
+<a href="{$linkWeeklyM2Week4}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D26}" {$style_m2d26} align=center>
+<a href="{$linkDayM2Day26}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day26_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D27}" {$style_m2d27} align=center>
+<a href="{$linkDayM2Day27}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day27_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D28}" {$style_m2d28} align=center>
+<a href="{$linkDayM2Day28}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day28_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D29}" {$style_m2d29} align=center>
+<a href="{$linkDayM2Day29}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day29_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D30}" {$style_m2d30} align=center>
+<a href="{$linkDayM2Day30}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day30_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D31}" {$style_m2d31} align=center>
+<a href="{$linkDayM2Day31}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day31_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D32}" {$style_m2d32} align=center>
+<a href="{$linkDayM2Day32}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day32_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month2HideRow5}">
+<td style="font-weight:normal;{$NowM2D33}" {$style_m2d33} align=center>
+<a href="{$linkWeeklyM2Week5}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D34}" {$style_m2d34} align=center>
+<a href="{$linkDayM2Day34}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day34_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D35}" {$style_m2d35} align=center>
+<a href="{$linkDayM2Day35}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day35_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D36}" {$style_m2d36} align=center>
+<a href="{$linkDayM2Day36}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day36_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D37}" {$style_m2d37} align=center>
+<a href="{$linkDayM2Day37}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day37_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D38}" {$style_m2d38} align=center>
+<a href="{$linkDayM2Day38}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day38_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D39}" {$style_m2d39} align=center>
+<a href="{$linkDayM2Day39}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day39_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D40}" {$style_m2d40} align=center>
+<a href="{$linkDayM2Day40}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day40_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month2HideRow6}">
+<td style="font-weight:normal;{$NowM2D41}" {$style_m2d41} align=center>
+<a href="{$linkWeeklyM2Week6}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D42}" {$style_m2d42} align=center>
+<a href="{$linkDayM2Day42}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day42_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D43}" {$style_m2d43} align=center>
+<a href="{$linkDayM2Day43}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day43_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D44}" {$style_m2d44} align=center>
+<a href="{$linkDayM2Day44}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day44_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D45}" {$style_m2d45} align=center>
+<a href="{$linkDayM2Day45}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day45_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D46}" {$style_m2d46} align=center>
+<a href="{$linkDayM2Day46}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day46_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D47}" {$style_m2d47} align=center>
+<a href="{$linkDayM2Day47}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day47_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM2D48}" {$style_m2d48} align=center>
+<a href="{$linkDayM2Day48}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month2Day48_value}
+</a>
+</td>
+</tr>
+</table>
+</td>
+<td width=220 height=201 style="border:1px solid gray;">
+
+<table cellpadding=0 cellspacing=1 border=0 width=100% height=100%>
+<tr><td height=30 align=center style="background-color:#C5D2E5;" colspan=8>
+<b>
+<a href="{$linkMonthly3}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">{$row00MonthName3_value}</a>
+</b></td></tr>
+<tr>
+<td height=20 width=10 style="background: url('images/weekdayname.gif') repeat right top;"></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname1_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname2_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname3_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname4_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname5_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname6_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname7_value}</b></td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month3HideRow1}">
+<td style="font-weight:normal;{$NowM3D1}" {$style_m3d1} align=center>
+<a href="{$linkWeeklyM3Week1}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D2}" {$style_m3d2} align=center>
+<a href="{$linkDayM3Day2}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day2_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D3}" {$style_m3d3} align=center>
+<a href="{$linkDayM3Day3}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day3_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D4}" {$style_m3d4} align=center>
+<a href="{$linkDayM3Day4}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day4_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D5}" {$style_m3d5} align=center>
+<a href="{$linkDayM3Day5}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day5_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D6}" {$style_m3d6} align=center>
+<a href="{$linkDayM3Day6}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day6_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D7}" {$style_m3d7} align=center>
+<a href="{$linkDayM3Day7}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day7_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D8}" {$style_m3d8} align=center>
+<a href="{$linkDayM3Day8}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day8_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month3HideRow2}">
+<td style="font-weight:normal;{$NowM3D9}" {$style_m3d9} align=center>
+<a href="{$linkWeeklyM3Week2}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D10}" {$style_m3d10} align=center>
+<a href="{$linkDayM3Day10}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day10_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D11}" {$style_m3d11} align=center>
+<a href="{$linkDayM3Day11}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day11_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D12}" {$style_m3d12} align=center>
+<a href="{$linkDayM3Day12}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day12_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D13}" {$style_m3d13} align=center>
+<a href="{$linkDayM3Day13}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day13_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D14}" {$style_m3d14} align=center>
+<a href="{$linkDayM3Day14}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day14_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D15}" {$style_m3d15} align=center>
+<a href="{$linkDayM3Day15}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day15_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D16}" {$style_m3d16} align=center>
+<a href="{$linkDayM3Day16}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day16_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month3HideRow3}">
+<td style="font-weight:normal;{$NowM3D17}" {$style_m3d17} align=center>
+<a href="{$linkWeeklyM3Week3}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D18}" {$style_m3d18} align=center>
+<a href="{$linkDayM3Day18}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day18_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D19}" {$style_m3d19} align=center>
+<a href="{$linkDayM3Day19}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day19_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D20}" {$style_m3d20} align=center>
+<a href="{$linkDayM3Day20}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day20_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D21}" {$style_m3d21} align=center>
+<a href="{$linkDayM3Day21}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day21_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D22}" {$style_m3d22} align=center>
+<a href="{$linkDayM3Day22}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day22_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D23}" {$style_m3d23} align=center>
+<a href="{$linkDayM3Day23}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day23_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D24}" {$style_m3d24} align=center>
+<a href="{$linkDayM3Day24}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day24_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month3HideRow4}">
+<td style="font-weight:normal;{$NowM3D25}" {$style_m3d25} align=center>
+<a href="{$linkWeeklyM3Week4}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D26}" {$style_m3d26} align=center>
+<a href="{$linkDayM3Day26}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day26_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D27}" {$style_m3d27} align=center>
+<a href="{$linkDayM3Day27}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day27_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D28}" {$style_m3d28} align=center>
+<a href="{$linkDayM3Day28}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day28_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D29}" {$style_m3d29} align=center>
+<a href="{$linkDayM3Day29}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day29_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D30}" {$style_m3d30} align=center>
+<a href="{$linkDayM3Day30}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day30_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D31}" {$style_m3d31} align=center>
+<a href="{$linkDayM3Day31}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day31_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D32}" {$style_m3d32} align=center>
+<a href="{$linkDayM3Day32}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day32_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month3HideRow5}">
+<td style="font-weight:normal;{$NowM3D33}" {$style_m3d33} align=center>
+<a href="{$linkWeeklyM3Week5}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D34}" {$style_m3d34} align=center>
+<a href="{$linkDayM3Day34}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day34_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D35}" {$style_m3d35} align=center>
+<a href="{$linkDayM3Day35}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day35_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D36}" {$style_m3d36} align=center>
+<a href="{$linkDayM3Day36}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day36_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D37}" {$style_m3d37} align=center>
+<a href="{$linkDayM3Day37}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day37_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D38}" {$style_m3d38} align=center>
+<a href="{$linkDayM3Day38}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day38_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D39}" {$style_m3d39} align=center>
+<a href="{$linkDayM3Day39}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day39_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D40}" {$style_m3d40} align=center>
+<a href="{$linkDayM3Day40}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day40_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month3HideRow6}">
+<td style="font-weight:normal;{$NowM3D41}" {$style_m3d41} align=center>
+<a href="{$linkWeeklyM3Week6}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D42}" {$style_m3d42} align=center>
+<a href="{$linkDayM3Day42}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day42_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D43}" {$style_m3d43} align=center>
+<a href="{$linkDayM3Day43}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day43_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D44}" {$style_m3d44} align=center>
+<a href="{$linkDayM3Day44}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day44_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D45}" {$style_m3d45} align=center>
+<a href="{$linkDayM3Day45}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day45_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D46}" {$style_m3d46} align=center>
+<a href="{$linkDayM3Day46}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day46_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D47}" {$style_m3d47} align=center>
+<a href="{$linkDayM3Day47}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day47_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM3D48}" {$style_m3d48} align=center>
+<a href="{$linkDayM3Day48}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month3Day48_value}
+</a>
+</td>
+</tr>
+</table>
+</td>
+<td width=220 height=201 style="border:1px solid gray;">
+
+<table cellpadding=0 cellspacing=1 border=0 width=100% height=100%>
+<tr><td height=30 align=center style="background-color:#C5D2E5;" colspan=8>
+<b>
+<a href="{$linkMonthly4}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">{$row00MonthName4_value}</a>
+</b></td></tr>
+<tr>
+<td height=20 width=10 style="background: url('images/weekdayname.gif') repeat right top;"></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname1_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname2_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname3_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname4_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname5_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname6_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname7_value}</b></td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month4HideRow1}">
+<td style="font-weight:normal;{$NowM4D1}" {$style_m4d1} align=center>
+<a href="{$linkWeeklyM4Week1}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D2}" {$style_m4d2} align=center>
+<a href="{$linkDayM4Day2}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day2_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D3}" {$style_m4d3} align=center>
+<a href="{$linkDayM4Day3}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day3_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D4}" {$style_m4d4} align=center>
+<a href="{$linkDayM4Day4}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day4_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D5}" {$style_m4d5} align=center>
+<a href="{$linkDayM4Day5}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day5_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D6}" {$style_m4d6} align=center>
+<a href="{$linkDayM4Day6}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day6_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D7}" {$style_m4d7} align=center>
+<a href="{$linkDayM4Day7}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day7_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D8}" {$style_m4d8} align=center>
+<a href="{$linkDayM4Day8}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day8_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month4HideRow2}">
+<td style="font-weight:normal;{$NowM4D9}" {$style_m4d9} align=center>
+<a href="{$linkWeeklyM4Week2}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D10}" {$style_m4d10} align=center>
+<a href="{$linkDayM4Day10}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day10_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D11}" {$style_m4d11} align=center>
+<a href="{$linkDayM4Day11}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day11_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D12}" {$style_m4d12} align=center>
+<a href="{$linkDayM4Day12}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day12_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D13}" {$style_m4d13} align=center>
+<a href="{$linkDayM4Day13}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day13_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D14}" {$style_m4d14} align=center>
+<a href="{$linkDayM4Day14}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day14_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D15}" {$style_m4d15} align=center>
+<a href="{$linkDayM4Day15}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day15_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D16}" {$style_m4d16} align=center>
+<a href="{$linkDayM4Day16}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day16_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month4HideRow3}">
+<td style="font-weight:normal;{$NowM4D17}" {$style_m4d17} align=center>
+<a href="{$linkWeeklyM4Week3}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D18}" {$style_m4d18} align=center>
+<a href="{$linkDayM4Day18}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day18_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D19}" {$style_m4d19} align=center>
+<a href="{$linkDayM4Day19}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day19_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D20}" {$style_m4d20} align=center>
+<a href="{$linkDayM4Day20}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day20_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D21}" {$style_m4d21} align=center>
+<a href="{$linkDayM4Day21}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day21_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D22}" {$style_m4d22} align=center>
+<a href="{$linkDayM4Day22}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day22_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D23}" {$style_m4d23} align=center>
+<a href="{$linkDayM4Day23}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day23_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D24}" {$style_m4d24} align=center>
+<a href="{$linkDayM4Day24}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day24_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month4HideRow4}">
+<td style="font-weight:normal;{$NowM4D25}" {$style_m4d25} align=center>
+<a href="{$linkWeeklyM4Week4}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D26}" {$style_m4d26} align=center>
+<a href="{$linkDayM4Day26}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day26_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D27}" {$style_m4d27} align=center>
+<a href="{$linkDayM4Day27}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day27_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D28}" {$style_m4d28} align=center>
+<a href="{$linkDayM4Day28}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day28_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D29}" {$style_m4d29} align=center>
+<a href="{$linkDayM4Day29}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day29_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D30}" {$style_m4d30} align=center>
+<a href="{$linkDayM4Day30}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day30_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D31}" {$style_m4d31} align=center>
+<a href="{$linkDayM4Day31}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day31_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D32}" {$style_m4d32} align=center>
+<a href="{$linkDayM4Day32}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day32_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month4HideRow5}">
+<td style="font-weight:normal;{$NowM4D33}" {$style_m4d33} align=center>
+<a href="{$linkWeeklyM4Week5}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D34}" {$style_m4d34} align=center>
+<a href="{$linkDayM4Day34}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day34_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D35}" {$style_m4d35} align=center>
+<a href="{$linkDayM4Day35}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day35_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D36}" {$style_m4d36} align=center>
+<a href="{$linkDayM4Day36}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day36_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D37}" {$style_m4d37} align=center>
+<a href="{$linkDayM4Day37}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day37_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D38}" {$style_m4d38} align=center>
+<a href="{$linkDayM4Day38}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day38_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D39}" {$style_m4d39} align=center>
+<a href="{$linkDayM4Day39}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day39_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D40}" {$style_m4d40} align=center>
+<a href="{$linkDayM4Day40}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day40_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month4HideRow6}">
+<td style="font-weight:normal;{$NowM4D41}" {$style_m4d41} align=center>
+<a href="{$linkWeeklyM4Week6}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D42}" {$style_m4d42} align=center>
+<a href="{$linkDayM4Day42}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day42_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D43}" {$style_m4d43} align=center>
+<a href="{$linkDayM4Day43}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day43_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D44}" {$style_m4d44} align=center>
+<a href="{$linkDayM4Day44}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day44_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D45}" {$style_m4d45} align=center>
+<a href="{$linkDayM4Day45}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day45_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D46}" {$style_m4d46} align=center>
+<a href="{$linkDayM4Day46}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day46_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D47}" {$style_m4d47} align=center>
+<a href="{$linkDayM4Day47}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day47_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM4D48}" {$style_m4d48} align=center>
+<a href="{$linkDayM4Day48}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month4Day48_value}
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td width=220 height=201 style="border:1px solid gray;">
+
+<table cellpadding=0 cellspacing=1 border=0 width=100% height=100%>
+<tr><td height=30 align=center style="background-color:#C5D2E5;" colspan=8>
+<b>
+<a href="{$linkMonthly5}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">{$row00MonthName5_value}</a>
+</b></td></tr>
+<tr>
+<td height=20 width=10 style="background: url('images/weekdayname.gif') repeat right top;"></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname1_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname2_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname3_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname4_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname5_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname6_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname7_value}</b></td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month5HideRow1}">
+<td style="font-weight:normal;{$NowM5D1}" {$style_m5d1} align=center>
+<a href="{$linkWeeklyM5Week1}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D2}" {$style_m5d2} align=center>
+<a href="{$linkDayM5Day2}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day2_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D3}" {$style_m5d3} align=center>
+<a href="{$linkDayM5Day3}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day3_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D4}" {$style_m5d4} align=center>
+<a href="{$linkDayM5Day4}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day4_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D5}" {$style_m5d5} align=center>
+<a href="{$linkDayM5Day5}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day5_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D6}" {$style_m5d6} align=center>
+<a href="{$linkDayM5Day6}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day6_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D7}" {$style_m5d7} align=center>
+<a href="{$linkDayM5Day7}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day7_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D8}" {$style_m5d8} align=center>
+<a href="{$linkDayM5Day8}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day8_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month5HideRow2}">
+<td style="font-weight:normal;{$NowM5D9}" {$style_m5d9} align=center>
+<a href="{$linkWeeklyM5Week2}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D10}" {$style_m5d10} align=center>
+<a href="{$linkDayM5Day10}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day10_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D11}" {$style_m5d11} align=center>
+<a href="{$linkDayM5Day11}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day11_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D12}" {$style_m5d12} align=center>
+<a href="{$linkDayM5Day12}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day12_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D13}" {$style_m5d13} align=center>
+<a href="{$linkDayM5Day13}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day13_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D14}" {$style_m5d14} align=center>
+<a href="{$linkDayM5Day14}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day14_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D15}" {$style_m5d15} align=center>
+<a href="{$linkDayM5Day15}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day15_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D16}" {$style_m5d16} align=center>
+<a href="{$linkDayM5Day16}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day16_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month5HideRow3}">
+<td style="font-weight:normal;{$NowM5D17}" {$style_m5d17} align=center>
+<a href="{$linkWeeklyM5Week3}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D18}" {$style_m5d18} align=center>
+<a href="{$linkDayM5Day18}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day18_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D19}" {$style_m5d19} align=center>
+<a href="{$linkDayM5Day19}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day19_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D20}" {$style_m5d20} align=center>
+<a href="{$linkDayM5Day20}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day20_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D21}" {$style_m5d21} align=center>
+<a href="{$linkDayM5Day21}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day21_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D22}" {$style_m5d22} align=center>
+<a href="{$linkDayM5Day22}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day22_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D23}" {$style_m5d23} align=center>
+<a href="{$linkDayM5Day23}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day23_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D24}" {$style_m5d24} align=center>
+<a href="{$linkDayM5Day24}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day24_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month5HideRow4}">
+<td style="font-weight:normal;{$NowM5D25}" {$style_m5d25} align=center>
+<a href="{$linkWeeklyM5Week4}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D26}" {$style_m5d26} align=center>
+<a href="{$linkDayM5Day26}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day26_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D27}" {$style_m5d27} align=center>
+<a href="{$linkDayM5Day27}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day27_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D28}" {$style_m5d28} align=center>
+<a href="{$linkDayM5Day28}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day28_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D29}" {$style_m5d29} align=center>
+<a href="{$linkDayM5Day29}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day29_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D30}" {$style_m5d30} align=center>
+<a href="{$linkDayM5Day30}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day30_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D31}" {$style_m5d31} align=center>
+<a href="{$linkDayM5Day31}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day31_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D32}" {$style_m5d32} align=center>
+<a href="{$linkDayM5Day32}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day32_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month5HideRow5}">
+<td style="font-weight:normal;{$NowM5D33}" {$style_m5d33} align=center>
+<a href="{$linkWeeklyM5Week5}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D34}" {$style_m5d34} align=center>
+<a href="{$linkDayM5Day34}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day34_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D35}" {$style_m5d35} align=center>
+<a href="{$linkDayM5Day35}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day35_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D36}" {$style_m5d36} align=center>
+<a href="{$linkDayM5Day36}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day36_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D37}" {$style_m5d37} align=center>
+<a href="{$linkDayM5Day37}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day37_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D38}" {$style_m5d38} align=center>
+<a href="{$linkDayM5Day38}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day38_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D39}" {$style_m5d39} align=center>
+<a href="{$linkDayM5Day39}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day39_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D40}" {$style_m5d40} align=center>
+<a href="{$linkDayM5Day40}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day40_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month5HideRow6}">
+<td style="font-weight:normal;{$NowM5D41}" {$style_m5d41} align=center>
+<a href="{$linkWeeklyM5Week6}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D42}" {$style_m5d42} align=center>
+<a href="{$linkDayM5Day42}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day42_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D43}" {$style_m5d43} align=center>
+<a href="{$linkDayM5Day43}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day43_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D44}" {$style_m5d44} align=center>
+<a href="{$linkDayM5Day44}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day44_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D45}" {$style_m5d45} align=center>
+<a href="{$linkDayM5Day45}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day45_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D46}" {$style_m5d46} align=center>
+<a href="{$linkDayM5Day46}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day46_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D47}" {$style_m5d47} align=center>
+<a href="{$linkDayM5Day47}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day47_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM5D48}" {$style_m5d48} align=center>
+<a href="{$linkDayM5Day48}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month5Day48_value}
+</a>
+</td>
+</tr>
+</table>
+</td>
+<td width=220 height=201 style="border:1px solid gray;">
+
+<table cellpadding=0 cellspacing=1 border=0 width=100% height=100%>
+<tr><td height=30 align=center style="background-color:#C5D2E5;" colspan=8>
+<b>
+<a href="{$linkMonthly6}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">{$row00MonthName6_value}</a>
+</b></td></tr>
+<tr>
+<td height=20 width=10 style="background: url('images/weekdayname.gif') repeat right top;"></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname1_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname2_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname3_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname4_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname5_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname6_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname7_value}</b></td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month6HideRow1}">
+<td style="font-weight:normal;{$NowM6D1}" {$style_m6d1} align=center>
+<a href="{$linkWeeklyM6Week1}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D2}" {$style_m6d2} align=center>
+<a href="{$linkDayM6Day2}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day2_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D3}" {$style_m6d3} align=center>
+<a href="{$linkDayM6Day3}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day3_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D4}" {$style_m6d4} align=center>
+<a href="{$linkDayM6Day4}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day4_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D5}" {$style_m6d5} align=center>
+<a href="{$linkDayM6Day5}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day5_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D6}" {$style_m6d6} align=center>
+<a href="{$linkDayM6Day6}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day6_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D7}" {$style_m6d7} align=center>
+<a href="{$linkDayM6Day7}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day7_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D8}" {$style_m6d8} align=center>
+<a href="{$linkDayM6Day8}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day8_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month6HideRow2}">
+<td style="font-weight:normal;{$NowM6D9}" {$style_m6d9} align=center>
+<a href="{$linkWeeklyM6Week2}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D10}" {$style_m6d10} align=center>
+<a href="{$linkDayM6Day10}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day10_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D11}" {$style_m6d11} align=center>
+<a href="{$linkDayM6Day11}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day11_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D12}" {$style_m6d12} align=center>
+<a href="{$linkDayM6Day12}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day12_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D13}" {$style_m6d13} align=center>
+<a href="{$linkDayM6Day13}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day13_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D14}" {$style_m6d14} align=center>
+<a href="{$linkDayM6Day14}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day14_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D15}" {$style_m6d15} align=center>
+<a href="{$linkDayM6Day15}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day15_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D16}" {$style_m6d16} align=center>
+<a href="{$linkDayM6Day16}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day16_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month6HideRow3}">
+<td style="font-weight:normal;{$NowM6D17}" {$style_m6d17} align=center>
+<a href="{$linkWeeklyM6Week3}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D18}" {$style_m6d18} align=center>
+<a href="{$linkDayM6Day18}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day18_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D19}" {$style_m6d19} align=center>
+<a href="{$linkDayM6Day19}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day19_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D20}" {$style_m6d20} align=center>
+<a href="{$linkDayM6Day20}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day20_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D21}" {$style_m6d21} align=center>
+<a href="{$linkDayM6Day21}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day21_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D22}" {$style_m6d22} align=center>
+<a href="{$linkDayM6Day22}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day22_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D23}" {$style_m6d23} align=center>
+<a href="{$linkDayM6Day23}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day23_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D24}" {$style_m6d24} align=center>
+<a href="{$linkDayM6Day24}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day24_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month6HideRow4}">
+<td style="font-weight:normal;{$NowM6D25}" {$style_m6d25} align=center>
+<a href="{$linkWeeklyM6Week4}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D26}" {$style_m6d26} align=center>
+<a href="{$linkDayM6Day26}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day26_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D27}" {$style_m6d27} align=center>
+<a href="{$linkDayM6Day27}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day27_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D28}" {$style_m6d28} align=center>
+<a href="{$linkDayM6Day28}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day28_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D29}" {$style_m6d29} align=center>
+<a href="{$linkDayM6Day29}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day29_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D30}" {$style_m6d30} align=center>
+<a href="{$linkDayM6Day30}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day30_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D31}" {$style_m6d31} align=center>
+<a href="{$linkDayM6Day31}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day31_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D32}" {$style_m6d32} align=center>
+<a href="{$linkDayM6Day32}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day32_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month6HideRow5}">
+<td style="font-weight:normal;{$NowM6D33}" {$style_m6d33} align=center>
+<a href="{$linkWeeklyM6Week5}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D34}" {$style_m6d34} align=center>
+<a href="{$linkDayM6Day34}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day34_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D35}" {$style_m6d35} align=center>
+<a href="{$linkDayM6Day35}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day35_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D36}" {$style_m6d36} align=center>
+<a href="{$linkDayM6Day36}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day36_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D37}" {$style_m6d37} align=center>
+<a href="{$linkDayM6Day37}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day37_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D38}" {$style_m6d38} align=center>
+<a href="{$linkDayM6Day38}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day38_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D39}" {$style_m6d39} align=center>
+<a href="{$linkDayM6Day39}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day39_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D40}" {$style_m6d40} align=center>
+<a href="{$linkDayM6Day40}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day40_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month6HideRow6}">
+<td style="font-weight:normal;{$NowM6D41}" {$style_m6d41} align=center>
+<a href="{$linkWeeklyM6Week6}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D42}" {$style_m6d42} align=center>
+<a href="{$linkDayM6Day42}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day42_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D43}" {$style_m6d43} align=center>
+<a href="{$linkDayM6Day43}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day43_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D44}" {$style_m6d44} align=center>
+<a href="{$linkDayM6Day44}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day44_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D45}" {$style_m6d45} align=center>
+<a href="{$linkDayM6Day45}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day45_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D46}" {$style_m6d46} align=center>
+<a href="{$linkDayM6Day46}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day46_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D47}" {$style_m6d47} align=center>
+<a href="{$linkDayM6Day47}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day47_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM6D48}" {$style_m6d48} align=center>
+<a href="{$linkDayM6Day48}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month6Day48_value}
+</a>
+</td>
+</tr>
+</table>
+</td>
+<td width=220 height=201 style="border:1px solid gray;">
+
+<table cellpadding=0 cellspacing=1 border=0 width=100% height=100%>
+<tr><td height=30 align=center style="background-color:#C5D2E5;" colspan=8>
+<b>
+<a href="{$linkMonthly7}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">{$row00MonthName7_value}</a>
+</b></td></tr>
+<tr>
+<td height=20 width=10 style="background: url('images/weekdayname.gif') repeat right top;"></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname1_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname2_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname3_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname4_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname5_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname6_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname7_value}</b></td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month7HideRow1}">
+<td style="font-weight:normal;{$NowM7D1}" {$style_m7d1} align=center>
+<a href="{$linkWeeklyM7Week1}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D2}" {$style_m7d2} align=center>
+<a href="{$linkDayM7Day2}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day2_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D3}" {$style_m7d3} align=center>
+<a href="{$linkDayM7Day3}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day3_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D4}" {$style_m7d4} align=center>
+<a href="{$linkDayM7Day4}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day4_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D5}" {$style_m7d5} align=center>
+<a href="{$linkDayM7Day5}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day5_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D6}" {$style_m7d6} align=center>
+<a href="{$linkDayM7Day6}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day6_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D7}" {$style_m7d7} align=center>
+<a href="{$linkDayM7Day7}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day7_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D8}" {$style_m7d8} align=center>
+<a href="{$linkDayM7Day8}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day8_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month7HideRow2}">
+<td style="font-weight:normal;{$NowM7D9}" {$style_m7d9} align=center>
+<a href="{$linkWeeklyM7Week2}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D10}" {$style_m7d10} align=center>
+<a href="{$linkDayM7Day10}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day10_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D11}" {$style_m7d11} align=center>
+<a href="{$linkDayM7Day11}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day11_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D12}" {$style_m7d12} align=center>
+<a href="{$linkDayM7Day12}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day12_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D13}" {$style_m7d13} align=center>
+<a href="{$linkDayM7Day13}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day13_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D14}" {$style_m7d14} align=center>
+<a href="{$linkDayM7Day14}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day14_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D15}" {$style_m7d15} align=center>
+<a href="{$linkDayM7Day15}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day15_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D16}" {$style_m7d16} align=center>
+<a href="{$linkDayM7Day16}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day16_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month7HideRow3}">
+<td style="font-weight:normal;{$NowM7D17}" {$style_m7d17} align=center>
+<a href="{$linkWeeklyM7Week3}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D18}" {$style_m7d18} align=center>
+<a href="{$linkDayM7Day18}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day18_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D19}" {$style_m7d19} align=center>
+<a href="{$linkDayM7Day19}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day19_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D20}" {$style_m7d20} align=center>
+<a href="{$linkDayM7Day20}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day20_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D21}" {$style_m7d21} align=center>
+<a href="{$linkDayM7Day21}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day21_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D22}" {$style_m7d22} align=center>
+<a href="{$linkDayM7Day22}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day22_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D23}" {$style_m7d23} align=center>
+<a href="{$linkDayM7Day23}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day23_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D24}" {$style_m7d24} align=center>
+<a href="{$linkDayM7Day24}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day24_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month7HideRow4}">
+<td style="font-weight:normal;{$NowM7D25}" {$style_m7d25} align=center>
+<a href="{$linkWeeklyM7Week4}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D26}" {$style_m7d26} align=center>
+<a href="{$linkDayM7Day26}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day26_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D27}" {$style_m7d27} align=center>
+<a href="{$linkDayM7Day27}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day27_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D28}" {$style_m7d28} align=center>
+<a href="{$linkDayM7Day28}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day28_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D29}" {$style_m7d29} align=center>
+<a href="{$linkDayM7Day29}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day29_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D30}" {$style_m7d30} align=center>
+<a href="{$linkDayM7Day30}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day30_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D31}" {$style_m7d31} align=center>
+<a href="{$linkDayM7Day31}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day31_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D32}" {$style_m7d32} align=center>
+<a href="{$linkDayM7Day32}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day32_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month7HideRow5}">
+<td style="font-weight:normal;{$NowM7D33}" {$style_m7d33} align=center>
+<a href="{$linkWeeklyM7Week5}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D34}" {$style_m7d34} align=center>
+<a href="{$linkDayM7Day34}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day34_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D35}" {$style_m7d35} align=center>
+<a href="{$linkDayM7Day35}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day35_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D36}" {$style_m7d36} align=center>
+<a href="{$linkDayM7Day36}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day36_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D37}" {$style_m7d37} align=center>
+<a href="{$linkDayM7Day37}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day37_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D38}" {$style_m7d38} align=center>
+<a href="{$linkDayM7Day38}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day38_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D39}" {$style_m7d39} align=center>
+<a href="{$linkDayM7Day39}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day39_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D40}" {$style_m7d40} align=center>
+<a href="{$linkDayM7Day40}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day40_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month7HideRow6}">
+<td style="font-weight:normal;{$NowM7D41}" {$style_m7d41} align=center>
+<a href="{$linkWeeklyM7Week6}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D42}" {$style_m7d42} align=center>
+<a href="{$linkDayM7Day42}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day42_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D43}" {$style_m7d43} align=center>
+<a href="{$linkDayM7Day43}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day43_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D44}" {$style_m7d44} align=center>
+<a href="{$linkDayM7Day44}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day44_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D45}" {$style_m7d45} align=center>
+<a href="{$linkDayM7Day45}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day45_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D46}" {$style_m7d46} align=center>
+<a href="{$linkDayM7Day46}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day46_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D47}" {$style_m7d47} align=center>
+<a href="{$linkDayM7Day47}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day47_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM7D48}" {$style_m7d48} align=center>
+<a href="{$linkDayM7Day48}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month7Day48_value}
+</a>
+</td>
+</tr>
+</table>
+</td>
+<td width=220 height=201 style="border:1px solid gray;">
+
+<table cellpadding=0 cellspacing=1 border=0 width=100% height=100%>
+<tr><td height=30 align=center style="background-color:#C5D2E5;" colspan=8>
+<b>
+<a href="{$linkMonthly8}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">{$row00MonthName8_value}</a>
+</b></td></tr>
+<tr>
+<td height=20 width=10 style="background: url('images/weekdayname.gif') repeat right top;"></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname1_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname2_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname3_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname4_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname5_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname6_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname7_value}</b></td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month8HideRow1}">
+<td style="font-weight:normal;{$NowM8D1}" {$style_m8d1} align=center>
+<a href="{$linkWeeklyM8Week1}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D2}" {$style_m8d2} align=center>
+<a href="{$linkDayM8Day2}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day2_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D3}" {$style_m8d3} align=center>
+<a href="{$linkDayM8Day3}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day3_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D4}" {$style_m8d4} align=center>
+<a href="{$linkDayM8Day4}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day4_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D5}" {$style_m8d5} align=center>
+<a href="{$linkDayM8Day5}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day5_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D6}" {$style_m8d6} align=center>
+<a href="{$linkDayM8Day6}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day6_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D7}" {$style_m8d7} align=center>
+<a href="{$linkDayM8Day7}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day7_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D8}" {$style_m8d8} align=center>
+<a href="{$linkDayM8Day8}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day8_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month8HideRow2}">
+<td style="font-weight:normal;{$NowM8D9}" {$style_m8d9} align=center>
+<a href="{$linkWeeklyM8Week2}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D10}" {$style_m8d10} align=center>
+<a href="{$linkDayM8Day10}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day10_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D11}" {$style_m8d11} align=center>
+<a href="{$linkDayM8Day11}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day11_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D12}" {$style_m8d12} align=center>
+<a href="{$linkDayM8Day12}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day12_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D13}" {$style_m8d13} align=center>
+<a href="{$linkDayM8Day13}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day13_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D14}" {$style_m8d14} align=center>
+<a href="{$linkDayM8Day14}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day14_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D15}" {$style_m8d15} align=center>
+<a href="{$linkDayM8Day15}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day15_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D16}" {$style_m8d16} align=center>
+<a href="{$linkDayM8Day16}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day16_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month8HideRow3}">
+<td style="font-weight:normal;{$NowM8D17}" {$style_m8d17} align=center>
+<a href="{$linkWeeklyM8Week3}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D18}" {$style_m8d18} align=center>
+<a href="{$linkDayM8Day18}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day18_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D19}" {$style_m8d19} align=center>
+<a href="{$linkDayM8Day19}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day19_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D20}" {$style_m8d20} align=center>
+<a href="{$linkDayM8Day20}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day20_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D21}" {$style_m8d21} align=center>
+<a href="{$linkDayM8Day21}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day21_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D22}" {$style_m8d22} align=center>
+<a href="{$linkDayM8Day22}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day22_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D23}" {$style_m8d23} align=center>
+<a href="{$linkDayM8Day23}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day23_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D24}" {$style_m8d24} align=center>
+<a href="{$linkDayM8Day24}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day24_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month8HideRow4}">
+<td style="font-weight:normal;{$NowM8D25}" {$style_m8d25} align=center>
+<a href="{$linkWeeklyM8Week4}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D26}" {$style_m8d26} align=center>
+<a href="{$linkDayM8Day26}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day26_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D27}" {$style_m8d27} align=center>
+<a href="{$linkDayM8Day27}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day27_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D28}" {$style_m8d28} align=center>
+<a href="{$linkDayM8Day28}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day28_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D29}" {$style_m8d29} align=center>
+<a href="{$linkDayM8Day29}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day29_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D30}" {$style_m8d30} align=center>
+<a href="{$linkDayM8Day30}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day30_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D31}" {$style_m8d31} align=center>
+<a href="{$linkDayM8Day31}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day31_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D32}" {$style_m8d32} align=center>
+<a href="{$linkDayM8Day32}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day32_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month8HideRow5}">
+<td style="font-weight:normal;{$NowM8D33}" {$style_m8d33} align=center>
+<a href="{$linkWeeklyM8Week5}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D34}" {$style_m8d34} align=center>
+<a href="{$linkDayM8Day34}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day34_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D35}" {$style_m8d35} align=center>
+<a href="{$linkDayM8Day35}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day35_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D36}" {$style_m8d36} align=center>
+<a href="{$linkDayM8Day36}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day36_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D37}" {$style_m8d37} align=center>
+<a href="{$linkDayM8Day37}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day37_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D38}" {$style_m8d38} align=center>
+<a href="{$linkDayM8Day38}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day38_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D39}" {$style_m8d39} align=center>
+<a href="{$linkDayM8Day39}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day39_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D40}" {$style_m8d40} align=center>
+<a href="{$linkDayM8Day40}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day40_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month8HideRow6}">
+<td style="font-weight:normal;{$NowM8D41}" {$style_m8d41} align=center>
+<a href="{$linkWeeklyM8Week6}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D42}" {$style_m8d42} align=center>
+<a href="{$linkDayM8Day42}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day42_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D43}" {$style_m8d43} align=center>
+<a href="{$linkDayM8Day43}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day43_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D44}" {$style_m8d44} align=center>
+<a href="{$linkDayM8Day44}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day44_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D45}" {$style_m8d45} align=center>
+<a href="{$linkDayM8Day45}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day45_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D46}" {$style_m8d46} align=center>
+<a href="{$linkDayM8Day46}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day46_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D47}" {$style_m8d47} align=center>
+<a href="{$linkDayM8Day47}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day47_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM8D48}" {$style_m8d48} align=center>
+<a href="{$linkDayM8Day48}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month8Day48_value}
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td width=220 height=201 style="border:1px solid gray;">
+
+<table cellpadding=0 cellspacing=1 border=0 width=100% height=100%>
+<tr><td height=30 align=center style="background-color:#C5D2E5;" colspan=8>
+<b>
+<a href="{$linkMonthly9}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">{$row00MonthName9_value}</a>
+</b></td></tr>
+<tr>
+<td height=20 width=10 style="background: url('images/weekdayname.gif') repeat right top;"></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname1_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname2_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname3_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname4_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname5_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname6_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname7_value}</b></td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month9HideRow1}">
+<td style="font-weight:normal;{$NowM9D1}" {$style_m9d1} align=center>
+<a href="{$linkWeeklyM9Week1}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D2}" {$style_m9d2} align=center>
+<a href="{$linkDayM9Day2}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day2_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D3}" {$style_m9d3} align=center>
+<a href="{$linkDayM9Day3}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day3_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D4}" {$style_m9d4} align=center>
+<a href="{$linkDayM9Day4}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day4_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D5}" {$style_m9d5} align=center>
+<a href="{$linkDayM9Day5}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day5_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D6}" {$style_m9d6} align=center>
+<a href="{$linkDayM9Day6}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day6_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D7}" {$style_m9d7} align=center>
+<a href="{$linkDayM9Day7}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day7_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D8}" {$style_m9d8} align=center>
+<a href="{$linkDayM9Day8}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day8_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month9HideRow2}">
+<td style="font-weight:normal;{$NowM9D9}" {$style_m9d9} align=center>
+<a href="{$linkWeeklyM9Week2}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D10}" {$style_m9d10} align=center>
+<a href="{$linkDayM9Day10}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day10_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D11}" {$style_m9d11} align=center>
+<a href="{$linkDayM9Day11}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day11_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D12}" {$style_m9d12} align=center>
+<a href="{$linkDayM9Day12}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day12_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D13}" {$style_m9d13} align=center>
+<a href="{$linkDayM9Day13}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day13_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D14}" {$style_m9d14} align=center>
+<a href="{$linkDayM9Day14}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day14_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D15}" {$style_m9d15} align=center>
+<a href="{$linkDayM9Day15}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day15_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D16}" {$style_m9d16} align=center>
+<a href="{$linkDayM9Day16}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day16_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month9HideRow3}">
+<td style="font-weight:normal;{$NowM9D17}" {$style_m9d17} align=center>
+<a href="{$linkWeeklyM9Week3}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D18}" {$style_m9d18} align=center>
+<a href="{$linkDayM9Day18}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day18_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D19}" {$style_m9d19} align=center>
+<a href="{$linkDayM9Day19}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day19_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D20}" {$style_m9d20} align=center>
+<a href="{$linkDayM9Day20}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day20_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D21}" {$style_m9d21} align=center>
+<a href="{$linkDayM9Day21}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day21_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D22}" {$style_m9d22} align=center>
+<a href="{$linkDayM9Day22}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day22_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D23}" {$style_m9d23} align=center>
+<a href="{$linkDayM9Day23}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day23_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D24}" {$style_m9d24} align=center>
+<a href="{$linkDayM9Day24}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day24_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month9HideRow4}">
+<td style="font-weight:normal;{$NowM9D25}" {$style_m9d25} align=center>
+<a href="{$linkWeeklyM9Week4}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D26}" {$style_m9d26} align=center>
+<a href="{$linkDayM9Day26}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day26_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D27}" {$style_m9d27} align=center>
+<a href="{$linkDayM9Day27}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day27_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D28}" {$style_m9d28} align=center>
+<a href="{$linkDayM9Day28}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day28_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D29}" {$style_m9d29} align=center>
+<a href="{$linkDayM9Day29}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day29_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D30}" {$style_m9d30} align=center>
+<a href="{$linkDayM9Day30}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day30_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D31}" {$style_m9d31} align=center>
+<a href="{$linkDayM9Day31}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day31_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D32}" {$style_m9d32} align=center>
+<a href="{$linkDayM9Day32}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day32_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month9HideRow5}">
+<td style="font-weight:normal;{$NowM9D33}" {$style_m9d33} align=center>
+<a href="{$linkWeeklyM9Week5}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D34}" {$style_m9d34} align=center>
+<a href="{$linkDayM9Day34}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day34_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D35}" {$style_m9d35} align=center>
+<a href="{$linkDayM9Day35}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day35_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D36}" {$style_m9d36} align=center>
+<a href="{$linkDayM9Day36}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day36_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D37}" {$style_m9d37} align=center>
+<a href="{$linkDayM9Day37}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day37_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D38}" {$style_m9d38} align=center>
+<a href="{$linkDayM9Day38}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day38_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D39}" {$style_m9d39} align=center>
+<a href="{$linkDayM9Day39}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day39_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D40}" {$style_m9d40} align=center>
+<a href="{$linkDayM9Day40}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day40_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month9HideRow6}">
+<td style="font-weight:normal;{$NowM9D41}" {$style_m9d41} align=center>
+<a href="{$linkWeeklyM9Week6}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D42}" {$style_m9d42} align=center>
+<a href="{$linkDayM9Day42}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day42_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D43}" {$style_m9d43} align=center>
+<a href="{$linkDayM9Day43}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day43_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D44}" {$style_m9d44} align=center>
+<a href="{$linkDayM9Day44}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day44_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D45}" {$style_m9d45} align=center>
+<a href="{$linkDayM9Day45}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day45_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D46}" {$style_m9d46} align=center>
+<a href="{$linkDayM9Day46}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day46_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D47}" {$style_m9d47} align=center>
+<a href="{$linkDayM9Day47}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day47_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM9D48}" {$style_m9d48} align=center>
+<a href="{$linkDayM9Day48}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month9Day48_value}
+</a>
+</td>
+</tr>
+</table>
+</td>
+<td width=220 height=201 style="border:1px solid gray;">
+
+<table cellpadding=0 cellspacing=1 border=0 width=100% height=100%>
+<tr><td height=30 align=center style="background-color:#C5D2E5;" colspan=8>
+<b>
+<a href="{$linkMonthly10}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">{$row00MonthName10_value}</a>
+</b></td></tr>
+<tr>
+<td height=20 width=10 style="background: url('images/weekdayname.gif') repeat right top;"></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname1_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname2_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname3_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname4_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname5_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname6_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname7_value}</b></td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month10HideRow1}">
+<td style="font-weight:normal;{$NowM10D1}" {$style_m10d1} align=center>
+<a href="{$linkWeeklyM10Week1}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D2}" {$style_m10d2} align=center>
+<a href="{$linkDayM10Day2}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day2_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D3}" {$style_m10d3} align=center>
+<a href="{$linkDayM10Day3}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day3_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D4}" {$style_m10d4} align=center>
+<a href="{$linkDayM10Day4}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day4_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D5}" {$style_m10d5} align=center>
+<a href="{$linkDayM10Day5}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day5_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D6}" {$style_m10d6} align=center>
+<a href="{$linkDayM10Day6}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day6_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D7}" {$style_m10d7} align=center>
+<a href="{$linkDayM10Day7}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day7_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D8}" {$style_m10d8} align=center>
+<a href="{$linkDayM10Day8}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day8_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month10HideRow2}">
+<td style="font-weight:normal;{$NowM10D9}" {$style_m10d9} align=center>
+<a href="{$linkWeeklyM10Week2}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D10}" {$style_m10d10} align=center>
+<a href="{$linkDayM10Day10}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day10_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D11}" {$style_m10d11} align=center>
+<a href="{$linkDayM10Day11}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day11_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D12}" {$style_m10d12} align=center>
+<a href="{$linkDayM10Day12}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day12_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D13}" {$style_m10d13} align=center>
+<a href="{$linkDayM10Day13}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day13_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D14}" {$style_m10d14} align=center>
+<a href="{$linkDayM10Day14}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day14_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D15}" {$style_m10d15} align=center>
+<a href="{$linkDayM10Day15}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day15_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D16}" {$style_m10d16} align=center>
+<a href="{$linkDayM10Day16}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day16_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month10HideRow3}">
+<td style="font-weight:normal;{$NowM10D17}" {$style_m10d17} align=center>
+<a href="{$linkWeeklyM10Week3}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D18}" {$style_m10d18} align=center>
+<a href="{$linkDayM10Day18}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day18_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D19}" {$style_m10d19} align=center>
+<a href="{$linkDayM10Day19}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day19_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D20}" {$style_m10d20} align=center>
+<a href="{$linkDayM10Day20}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day20_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D21}" {$style_m10d21} align=center>
+<a href="{$linkDayM10Day21}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day21_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D22}" {$style_m10d22} align=center>
+<a href="{$linkDayM10Day22}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day22_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D23}" {$style_m10d23} align=center>
+<a href="{$linkDayM10Day23}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day23_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D24}" {$style_m10d24} align=center>
+<a href="{$linkDayM10Day24}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day24_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month10HideRow4}">
+<td style="font-weight:normal;{$NowM10D25}" {$style_m10d25} align=center>
+<a href="{$linkWeeklyM10Week4}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D26}" {$style_m10d26} align=center>
+<a href="{$linkDayM10Day26}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day26_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D27}" {$style_m10d27} align=center>
+<a href="{$linkDayM10Day27}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day27_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D28}" {$style_m10d28} align=center>
+<a href="{$linkDayM10Day28}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day28_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D29}" {$style_m10d29} align=center>
+<a href="{$linkDayM10Day29}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day29_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D30}" {$style_m10d30} align=center>
+<a href="{$linkDayM10Day30}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day30_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D31}" {$style_m10d31} align=center>
+<a href="{$linkDayM10Day31}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day31_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D32}" {$style_m10d32} align=center>
+<a href="{$linkDayM10Day32}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day32_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month10HideRow5}">
+<td style="font-weight:normal;{$NowM10D33}" {$style_m10d33} align=center>
+<a href="{$linkWeeklyM10Week5}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D34}" {$style_m10d34} align=center>
+<a href="{$linkDayM10Day34}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day34_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D35}" {$style_m10d35} align=center>
+<a href="{$linkDayM10Day35}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day35_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D36}" {$style_m10d36} align=center>
+<a href="{$linkDayM10Day36}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day36_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D37}" {$style_m10d37} align=center>
+<a href="{$linkDayM10Day37}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day37_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D38}" {$style_m10d38} align=center>
+<a href="{$linkDayM10Day38}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day38_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D39}" {$style_m10d39} align=center>
+<a href="{$linkDayM10Day39}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day39_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D40}" {$style_m10d40} align=center>
+<a href="{$linkDayM10Day40}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day40_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month10HideRow6}">
+<td style="font-weight:normal;{$NowM10D41}" {$style_m10d41} align=center>
+<a href="{$linkWeeklyM10Week6}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D42}" {$style_m10d42} align=center>
+<a href="{$linkDayM10Day42}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day42_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D43}" {$style_m10d43} align=center>
+<a href="{$linkDayM10Day43}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day43_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D44}" {$style_m10d44} align=center>
+<a href="{$linkDayM10Day44}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day44_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D45}" {$style_m10d45} align=center>
+<a href="{$linkDayM10Day45}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day45_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D46}" {$style_m10d46} align=center>
+<a href="{$linkDayM10Day46}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day46_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D47}" {$style_m10d47} align=center>
+<a href="{$linkDayM10Day47}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day47_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM10D48}" {$style_m10d48} align=center>
+<a href="{$linkDayM10Day48}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month10Day48_value}
+</a>
+</td>
+</tr>
+</table>
+</td>
+<td width=220 height=201 style="border:1px solid gray;">
+
+<table cellpadding=0 cellspacing=1 border=0 width=100% height=100%>
+<tr><td height=30 align=center style="background-color:#C5D2E5;" colspan=8>
+<b>
+<a href="{$linkMonthly11}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">{$row00MonthName11_value}</a>
+</b></td></tr>
+<tr>
+<td height=20 width=10 style="background: url('images/weekdayname.gif') repeat right top;"></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname1_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname2_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname3_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname4_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname5_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname6_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname7_value}</b></td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month11HideRow1}">
+<td style="font-weight:normal;{$NowM11D1}" {$style_m11d1} align=center>
+<a href="{$linkWeeklyM11Week1}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D2}" {$style_m11d2} align=center>
+<a href="{$linkDayM11Day2}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day2_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D3}" {$style_m11d3} align=center>
+<a href="{$linkDayM11Day3}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day3_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D4}" {$style_m11d4} align=center>
+<a href="{$linkDayM11Day4}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day4_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D5}" {$style_m11d5} align=center>
+<a href="{$linkDayM11Day5}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day5_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D6}" {$style_m11d6} align=center>
+<a href="{$linkDayM11Day6}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day6_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D7}" {$style_m11d7} align=center>
+<a href="{$linkDayM11Day7}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day7_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D8}" {$style_m11d8} align=center>
+<a href="{$linkDayM11Day8}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day8_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month11HideRow2}">
+<td style="font-weight:normal;{$NowM11D9}" {$style_m11d9} align=center>
+<a href="{$linkWeeklyM11Week2}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D10}" {$style_m11d10} align=center>
+<a href="{$linkDayM11Day10}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day10_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D11}" {$style_m11d11} align=center>
+<a href="{$linkDayM11Day11}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day11_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D12}" {$style_m11d12} align=center>
+<a href="{$linkDayM11Day12}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day12_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D13}" {$style_m11d13} align=center>
+<a href="{$linkDayM11Day13}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day13_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D14}" {$style_m11d14} align=center>
+<a href="{$linkDayM11Day14}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day14_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D15}" {$style_m11d15} align=center>
+<a href="{$linkDayM11Day15}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day15_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D16}" {$style_m11d16} align=center>
+<a href="{$linkDayM11Day16}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day16_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month11HideRow3}">
+<td style="font-weight:normal;{$NowM11D17}" {$style_m11d17} align=center>
+<a href="{$linkWeeklyM11Week3}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D18}" {$style_m11d18} align=center>
+<a href="{$linkDayM11Day18}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day18_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D19}" {$style_m11d19} align=center>
+<a href="{$linkDayM11Day19}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day19_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D20}" {$style_m11d20} align=center>
+<a href="{$linkDayM11Day20}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day20_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D21}" {$style_m11d21} align=center>
+<a href="{$linkDayM11Day21}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day21_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D22}" {$style_m11d22} align=center>
+<a href="{$linkDayM11Day22}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day22_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D23}" {$style_m11d23} align=center>
+<a href="{$linkDayM11Day23}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day23_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D24}" {$style_m11d24} align=center>
+<a href="{$linkDayM11Day24}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day24_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month11HideRow4}">
+<td style="font-weight:normal;{$NowM11D25}" {$style_m11d25} align=center>
+<a href="{$linkWeeklyM11Week4}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D26}" {$style_m11d26} align=center>
+<a href="{$linkDayM11Day26}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day26_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D27}" {$style_m11d27} align=center>
+<a href="{$linkDayM11Day27}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day27_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D28}" {$style_m11d28} align=center>
+<a href="{$linkDayM11Day28}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day28_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D29}" {$style_m11d29} align=center>
+<a href="{$linkDayM11Day29}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day29_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D30}" {$style_m11d30} align=center>
+<a href="{$linkDayM11Day30}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day30_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D31}" {$style_m11d31} align=center>
+<a href="{$linkDayM11Day31}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day31_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D32}" {$style_m11d32} align=center>
+<a href="{$linkDayM11Day32}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day32_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month11HideRow5}">
+<td style="font-weight:normal;{$NowM11D33}" {$style_m11d33} align=center>
+<a href="{$linkWeeklyM11Week5}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D34}" {$style_m11d34} align=center>
+<a href="{$linkDayM11Day34}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day34_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D35}" {$style_m11d35} align=center>
+<a href="{$linkDayM11Day35}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day35_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D36}" {$style_m11d36} align=center>
+<a href="{$linkDayM11Day36}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day36_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D37}" {$style_m11d37} align=center>
+<a href="{$linkDayM11Day37}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day37_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D38}" {$style_m11d38} align=center>
+<a href="{$linkDayM11Day38}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day38_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D39}" {$style_m11d39} align=center>
+<a href="{$linkDayM11Day39}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day39_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D40}" {$style_m11d40} align=center>
+<a href="{$linkDayM11Day40}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day40_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month11HideRow6}">
+<td style="font-weight:normal;{$NowM11D41}" {$style_m11d41} align=center>
+<a href="{$linkWeeklyM11Week6}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D42}" {$style_m11d42} align=center>
+<a href="{$linkDayM11Day42}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day42_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D43}" {$style_m11d43} align=center>
+<a href="{$linkDayM11Day43}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day43_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D44}" {$style_m11d44} align=center>
+<a href="{$linkDayM11Day44}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day44_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D45}" {$style_m11d45} align=center>
+<a href="{$linkDayM11Day45}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day45_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D46}" {$style_m11d46} align=center>
+<a href="{$linkDayM11Day46}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day46_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D47}" {$style_m11d47} align=center>
+<a href="{$linkDayM11Day47}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day47_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM11D48}" {$style_m11d48} align=center>
+<a href="{$linkDayM11Day48}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month11Day48_value}
+</a>
+</td>
+</tr>
+</table>
+</td>
+<td width=220 height=201 style="border:1px solid gray;">
+
+<table cellpadding=0 cellspacing=1 border=0 width=100% height=100%>
+<tr><td height=30 align=center style="background-color:#C5D2E5;" colspan=8>
+<b>
+<a href="{$linkMonthly12}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">{$row00MonthName12_value}</a>
+</b></td></tr>
+<tr>
+<td height=20 width=10 style="background: url('images/weekdayname.gif') repeat right top;"></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname1_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname2_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname3_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname4_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname5_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname6_value}</b></td>
+<td height=20 width=30 style="background: url('images/weekdayname.gif') repeat right top;" align=center><b>{$row00sdname7_value}</b></td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month12HideRow1}">
+<td style="font-weight:normal;{$NowM12D1}" {$style_m12d1} align=center>
+<a href="{$linkWeeklyM12Week1}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D2}" {$style_m12d2} align=center>
+<a href="{$linkDayM12Day2}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day2_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D3}" {$style_m12d3} align=center>
+<a href="{$linkDayM12Day3}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day3_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D4}" {$style_m12d4} align=center>
+<a href="{$linkDayM12Day4}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day4_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D5}" {$style_m12d5} align=center>
+<a href="{$linkDayM12Day5}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day5_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D6}" {$style_m12d6} align=center>
+<a href="{$linkDayM12Day6}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day6_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D7}" {$style_m12d7} align=center>
+<a href="{$linkDayM12Day7}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day7_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D8}" {$style_m12d8} align=center>
+<a href="{$linkDayM12Day8}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day8_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month12HideRow2}">
+<td style="font-weight:normal;{$NowM12D9}" {$style_m12d9} align=center>
+<a href="{$linkWeeklyM12Week2}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D10}" {$style_m12d10} align=center>
+<a href="{$linkDayM12Day10}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day10_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D11}" {$style_m12d11} align=center>
+<a href="{$linkDayM12Day11}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day11_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D12}" {$style_m12d12} align=center>
+<a href="{$linkDayM12Day12}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day12_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D13}" {$style_m12d13} align=center>
+<a href="{$linkDayM12Day13}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day13_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D14}" {$style_m12d14} align=center>
+<a href="{$linkDayM12Day14}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day14_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D15}" {$style_m12d15} align=center>
+<a href="{$linkDayM12Day15}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day15_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D16}" {$style_m12d16} align=center>
+<a href="{$linkDayM12Day16}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day16_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month12HideRow3}">
+<td style="font-weight:normal;{$NowM12D17}" {$style_m12d17} align=center>
+<a href="{$linkWeeklyM12Week3}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D18}" {$style_m12d18} align=center>
+<a href="{$linkDayM12Day18}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day18_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D19}" {$style_m12d19} align=center>
+<a href="{$linkDayM12Day19}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day19_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D20}" {$style_m12d20} align=center>
+<a href="{$linkDayM12Day20}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day20_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D21}" {$style_m12d21} align=center>
+<a href="{$linkDayM12Day21}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day21_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D22}" {$style_m12d22} align=center>
+<a href="{$linkDayM12Day22}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day22_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D23}" {$style_m12d23} align=center>
+<a href="{$linkDayM12Day23}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day23_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D24}" {$style_m12d24} align=center>
+<a href="{$linkDayM12Day24}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day24_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month12HideRow4}">
+<td style="font-weight:normal;{$NowM12D25}" {$style_m12d25} align=center>
+<a href="{$linkWeeklyM12Week4}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D26}" {$style_m12d26} align=center>
+<a href="{$linkDayM12Day26}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day26_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D27}" {$style_m12d27} align=center>
+<a href="{$linkDayM12Day27}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day27_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D28}" {$style_m12d28} align=center>
+<a href="{$linkDayM12Day28}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day28_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D29}" {$style_m12d29} align=center>
+<a href="{$linkDayM12Day29}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day29_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D30}" {$style_m12d30} align=center>
+<a href="{$linkDayM12Day30}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day30_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D31}" {$style_m12d31} align=center>
+<a href="{$linkDayM12Day31}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day31_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D32}" {$style_m12d32} align=center>
+<a href="{$linkDayM12Day32}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day32_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month12HideRow5}">
+<td style="font-weight:normal;{$NowM12D33}" {$style_m12d33} align=center>
+<a href="{$linkWeeklyM12Week5}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D34}" {$style_m12d34} align=center>
+<a href="{$linkDayM12Day34}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day34_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D35}" {$style_m12d35} align=center>
+<a href="{$linkDayM12Day35}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day35_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D36}" {$style_m12d36} align=center>
+<a href="{$linkDayM12Day36}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day36_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D37}" {$style_m12d37} align=center>
+<a href="{$linkDayM12Day37}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day37_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D38}" {$style_m12d38} align=center>
+<a href="{$linkDayM12Day38}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day38_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D39}" {$style_m12d39} align=center>
+<a href="{$linkDayM12Day39}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day39_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D40}" {$style_m12d40} align=center>
+<a href="{$linkDayM12Day40}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day40_value}
+</a>
+</td>
+</tr>
+<tr style="background-color=#D1DBE7;{$Month12HideRow6}">
+<td style="font-weight:normal;{$NowM12D41}" {$style_m12d41} align=center>
+<a href="{$linkWeeklyM12Week6}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 14px;">
+>
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D42}" {$style_m12d42} align=center>
+<a href="{$linkDayM12Day42}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day42_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D43}" {$style_m12d43} align=center>
+<a href="{$linkDayM12Day43}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day43_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D44}" {$style_m12d44} align=center>
+<a href="{$linkDayM12Day44}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day44_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D45}" {$style_m12d45} align=center>
+<a href="{$linkDayM12Day45}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day45_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D46}" {$style_m12d46} align=center>
+<a href="{$linkDayM12Day46}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day46_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D47}" {$style_m12d47} align=center>
+<a href="{$linkDayM12Day47}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day47_value}
+</a>
+</td>
+<td style="font-weight:normal;{$NowM12D48}" {$style_m12d48} align=center>
+<a href="{$linkDayM12Day48}" style="font-family: Verdana, Arial, Helvetica, sans serif;font-size: 12px;">
+{$row00Month12Day48_value}
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+</tr></td></table>
+
+{doevent name="ListOnLoad"}
+</form>
+{include_if_exists file="include/footer.php"}
+{$linkdata}
+</body>
+</html>
+

@@ -1,0 +1,538 @@
+﻿<html>
+<head>
+    <title>ApPHP Calendar :: Getting Started</title>    
+</head>
+<style>
+    BODY { padding:10px 20px 10px 20px; font-family: "Lucida Sans Unicode"; font-size: 14px; }
+    pre{ font-size: 12px; display: block; background-color:#f3f3f3; border:1px solid #dadada; padding:5px; word-wrap: break-word;}
+    .comments { color:green; font-weight:normal; }
+    .code { color:darkblue; font-weight:bold; }
+</style>
+<body>    
+
+<!-- last update 25.05.2014 -->
+<div class="box">
+<h1>Getting Started with ApPHP Calendar (for version 3.0.0 or above)</h1>
+<div class="holder">
+<div class="frame-box">
+
+    <div class="blocks-holder blocks-subholder">
+    <div class="block-long">
+    <div class="text-box">
+
+        <ul style="padding-left:1px;list-style:none;font-size:14px;">
+            <li><span>1.</span> <a href="GettingStarted.html#Common_Notices"><span>Common Notices</span></a>
+                <ul style="list-style:none;">
+                    <li><span>1.1</span> <a href="GettingStarted.html#Syntax."><span>Syntax.</span></a></li>
+                    <li><span>1.2</span> <a href="GettingStarted.html#Common_notes."><span>Common notes.</span></a></li>                            
+                </ul>
+            </li>
+            <li><span>2.</span> <a href="GettingStarted.html#GettingStarted"><span>Getting Started</span></a>
+                <ul style="list-style:none;">
+                    <li><span>2.1</span> <a href="GettingStarted.html#Step_1._Creating_and_Calling."><span>Step 1. Creating &amp; Calling.</span></a> </li>
+                    <li><span>2.2</span> <a href="GettingStarted.html#Step_2._General_Settings."><span>Step 2. General Settings.</span></a> </li>
+                    <li><span>2.3</span> <a href="GettingStarted.html#Step_3._Events_Categories_Settings."><span>Step 3. Events & Categories Settings.</span></a> </li>
+                    <li><span>2.4</span> <a href="GettingStarted.html#Step_4._Participants_Settings."><span>Step 4. Participants Settings.</span></a> </li>
+                    <li><span>2.5</span> <a href="GettingStarted.html#Step_5._Time_Settings_and_Formatting."><span>Step 5. Time Settings and Formatting.</span></a> </li>                            
+                    <li><span>2.6</span> <a href="GettingStarted.html#Step_6._Visual_Settings."><span>Step 6. Visual Settings.</span></a> </li>
+                    <li><span>2.7</span> <a href="GettingStarted.html#Step_7._Drawing_Calendar."><span>Step 7. Drawing Calendar.</span></a> </li>
+                </ul>
+            </li>
+            <li><span>3.</span> <a href="GettingStarted.html#Non_Documented"><span>Non Documented</span></a>
+                <ul style="list-style:none;">
+                    <li><span>3.1</span> <a href="GettingStarted.html#Properties"><span>Properties.</span></a> </li>
+                </ul>
+            </li>
+        </ul>
+        <br>
+        
+
+        <a name=Common_Notices></a>
+        <h3 class="sub-title"><b>Common Notices</b></h3>
+        <a name=Syntax.></a>
+        <h4><b>Syntax.</b></h4>
+        <hr>
+        <p>We use </p>
+        <p><b>##</b> for comments<br /><b>//</b> for lines, that must be uncommented<br /><b>///</b> for lines, that may be uncommented (optional)<br /></p>
+        <p><br /></p>
+        
+        <a name=Common_notes.></a>    
+        <h4><b>Common notes.</b></h4>
+        <hr>
+        <p><span style=color:darkred>&#8226; <b>Please, use a <i>$debug_mode = true;</i> before you say "Why Nothing Works&nbsp;?!" </b><br /></span></p>
+        <p><span style=color:darkred>&#8226; <b>Starting with version 2.0.0 only PHP5 is supported! </b><br /></span></p>
+        <p><span style=color:darkred>&#8226; <b>Do not put ApPHP Calendar code into another HTML Form: &lt;form&gt;...&lt;/form&gt; </b><br /></span></p>
+        <p><br /><br /></p>
+            
+        
+        <a name=GettingStarted></a>
+        <h3 class="sub-title"><b>Getting Started</b></h3>
+        <p>(for version 2.0.0 or above) </p>
+        
+        <a name=Step_1._Creating_and_Calling.></a>
+        <h4><b>Step 1. Creating &amp; Calling.</b></h4>
+        <hr>
+        <p>Define a relative (virtual) path to ApPHP Calendar folder. <br />
+        For example: '', 'calendar/' or '../calendar/'</p>
+    
+<pre>
+<span class="comments">// include calendar class and other files
+// Ex.: '', 'calendar/' or '../calendar/'</span><span class="code"><B>
+define('CALENDAR_DIR', '');                     
+require_once(CALENDAR_DIR.'inc/connection.inc.php');
+require_once(CALENDAR_DIR.'calendar.class.php');</B></span>        
+</pre>
+        
+        <p>Now we can create new instance of Calendar object</p>
+<pre>
+<span class="comments">## *** create calendar object
+## *** 2 optional parameters: $calendar_type ('small' or 'normal') and $prefix
+## *** Ex.: Calendar('normal', 'abc_');</span>
+<span class="code"><B>$objCalendar = new Calendar();</B></span>        
+</pre>
+<br />        
+    
+    
+    <a name=Step_2._General_Settings.></a>
+    <h4><b>Step 2. General Settings.</b></h4>
+    <hr>
+
+    <p><b><u>Submission Settings & Debug Mode</u></b></p>
+
+    <p>In this section you have to define a method for data submission type (PostBack type).
+    You may write 'get' or 'post' (recommended).</p>    
+<pre>
+<span class="comments">## *** set PostBack method: 'get' or 'post'</span>
+<span class="code">$objCalendar->SetPostBackMethod('post');</span>
+</pre>    
+    
+    <p>This method defines whether to run Calendar in Debug Mode or not.</p>
+<pre>
+<span class="comments">## *** show debug info - false|true</span>
+<span class="code">$objCalendar->Debug(false);</span>
+</pre>    
+
+    <p><b><u>Passing Parameters</u></b></p>
+    <p>
+        To save http request parameters between calls of calendar (for ex.: index?page=products&cat=events etc.)
+        you have to pass them as array into SaveHttpRequestVars() method and Calendar will
+        store them.
+    </p>
+<pre>
+<span class="comments">$http_request_vars = array('param1', 'param2')</span>
+<span class="code">$objCalendar->SaveHttpRequestVars($http_request_vars);</span>
+</pre>    
+
+
+    <p><b><u>Cache Settings</u></b></p>
+    
+    <p>Cache gives possibility to improve work of the script and reduce execution time</p>
+<pre>
+<span class="comments">## *** define caching parameters:</span>
+<span class="comments">## *** 1st - allow caching or not, 2nd - caching lifetime in minutes</span>
+<span class="comments">## *** default cache folder: tmp/cache/</span>
+<span class="code">$objCalendar->SetCachingParameters(false, 15);</span>
+</pre>    
+
+    <p>If you want to delete all cache, you may do it by calling following method:</p>
+<pre>
+<span class="comments">## *** delete all pages in cache</span>
+<span class="code">$objCalendar->DeleteCache();</span>
+</pre>
+
+
+    <p><b><u>Languages</u></b></p>
+    
+    <p>ApPHP Calendar is Multy-Language control, so you can easy switch interface language
+    of your calendar.</p>
+<pre>
+<span class="comments">## *** set interface language (default - English)</span>
+<span class="comments">## *** (en) - English  (es) - Spanish     (de) - German  (fr) - French</span>  
+<span class="comments">## *** (it) - Italian  (pt) - Portuguese  (he) - Hebrew  (nl) - Netherlands</span>
+<span class="code">$objCalendar->SetInterfaceLang('en');</span>
+</pre>
+
+
+    <p><b><u>Week Settings</u></b></p>
+
+    <p>This group of methods related to the weeks settings of calendar</p>
+    <p>You may define whether to use long or short names of week day name.</p>
+<pre>
+<span class="comments">## *** set week day name length - 'short' or 'long'</span>
+<span class="code">$objCalendar->SetWeekDayNameLength('long');</span>
+</pre>
+
+    <p>Next method defines first day of week: from Sunday (default) to Saturday.</p>
+<pre>
+<span class="comments">## *** set a start day of the week: from 1 (Sunday) to 7 (Saturday)</span>
+<span class="code">$objCalendar->SetWeekStartedDay('1');</span>
+</pre>
+
+    <p>If you want to disable certain day of week - uncomment this section and pass into
+    SetDisabledDay() method a number of such week day (or some days).</p>
+<pre>
+<span class="comments">## *** disable certain days of the week: from 1 (Sunday) to 7 (Saturday). <br>Ex.: 1,2 or 7</span>
+<span class="code">$objCalendar->SetDisabledDays(7);</span>
+</pre>    
+
+    <p>Show a week number of year: display on not week number at the left side of
+       calendar in Yearly and Monthly View</p>
+<pre>
+<span class="comments">## *** define showing a week number of year</span>
+<span class="code">$objCalendar->ShowWeekNumberOfYear(true);</span>
+</pre>
+<br />
+
+
+   
+    
+    <a name=Step_3._Events_Categories_Settings.></a>
+    <h4><b>Step 3. Events & Categories Settings.</b></h4>
+    <hr>
+    
+    <p><b><u>Events Actions & Operations</u></b></p>
+
+    <p>Allow multiple occurrences for events in the same time slot</p>
+<pre>
+<span class="comments">## *** false|true - default</span>
+<span class="code">$objCalendar->SetEventsMultipleOccurrences(true);</span>
+</pre>
+
+    <p>This method defines whether editing of events in the Past is allowed or not.</p>
+<pre>
+<span class="comments">## *** allow editing events in the past</span>
+<span class="code">$objCalendar->EditingEventsInPast(false);</span>
+</pre>    
+    <p>This method defines whether deleting of events in the Past is allowed or not.</p>
+<pre>
+<span class="comments">## *** allow deleting of events in the past</span>
+<span class="code">$objCalendar->DeletingEventsInPast(false);</span>
+</pre>    
+
+    <p>Block deleting events before certain period of time</p>
+<pre>
+<span class="comments">## *** in hours</span>
+<span class="code">$objCalendar->BlockEventsDeletingBefore(24);</span>
+</pre>    
+
+    <p>You may allow carrying out events operations: adding, editing or deleting of existing etc.</p>   
+<pre>
+<span class="comments">## *** set (allow) calendar events operations</span>
+<span class="code">$objCalendar->SetEventsOperations(array(
+   'add'=>true,
+   'edit'=>true,
+   'details'=>true,
+   'delete'=>true,
+   'delete_by_range'=>true,
+   'manage'=>true,
+));</span>
+</pre>    
+    
+    
+    <p><b><u>Categories Actions & Operations</u></b></p>    
+
+    <p>You may allow operations with categories: adding new category,
+    editing or deleting existing category etc.</p>
+<pre>
+<span class="comments">## *** set (allow) using categories</span>
+<span class="code">$objCalendar->AllowCategories(true);</span>
+<span class="comments">## *** allow only defined categories by ID (parameter must be a numeric value)</span>
+<span class="code">$objCalendar->SetCategoryID(0);</span>
+<span class="comments">## *** set (allow) calendar categories operations</span>
+<span class="code">$objCalendar->SetCategoriesOperations(array(
+   'add'=>true, 
+   'edit'=>true,
+   'details'=>true,
+   'delete'=>true,
+   'manage'=>true,
+   'allow_colors'=>true,
+   'show_filter'=>true
+));</span>
+</pre>    
+<br />    
+
+    <p><b><u>Locations Actions & Operations</u></b></p>    
+
+    <p>You may allow operations with locations: adding new location,
+    editing or deleting existing location etc.</p>
+<pre>
+<span class="comments">## *** set (allow) using locations</span>
+<span class="code">$objCalendar->AllowLocations(true);</span>
+<span class="comments">## *** set (allow) calendar locations operations</span>
+<span class="code">$objCalendar->SetLocationsOperations(array(
+   'add'=>true, 
+   'edit'=>true,
+   'details'=>true,
+   'delete'=>true,
+   'manage'=>true,
+   'show_filter'=>true
+));</span>
+</pre>    
+<br />    
+    
+    
+    
+    <a name=Step_4._Participants_Settings.></a>
+    <h4><b>Step 4. Participants Settings.</b></h4>
+    <hr>
+    
+    <p><b><u>Participants Settings</u></b></p>
+    
+    <p>This method allows participant to work with his own events. Calendar will show only events for certain participants</p>    
+<pre>
+<span class="comments">## *** set participant ID (the value must be numeric)</span>
+<span class="code">$participant_id = 0;</span>
+<span class="code">$objCalendar->SetParticipantID($participant_id);</span>
+</pre>    
+
+    <p>This method allows creating and assigning participants to events</p>    
+<pre>
+<span class="comments">## *** set (allow) calendar participants operations</span>
+<span class="code">$objCalendar->AllowParticipants(true);</span>
+</pre>    
+
+    <p>You may allow operations with participants: add, edit, delete etc.</p>
+<pre>
+<span class="comments">## *** set (allow) calendar categories operations</span>
+<span class="code">$objCalendar->SetParticipantsOperations(array(
+   'add'=>true,
+   'edit'=>true,
+   'details'=>true,
+   'delete'=>true,
+   'manage'=>true,
+   'assign_to_events'=>true
+));</span>
+</pre>    
+<br />
+
+
+    
+    <a name=Step_5._Time_Settings_and_Formatting.></a>
+    <h4><b>Step 5. Time Settings and Formatting.</b></h4>
+    <hr>
+
+    <p><b><u>TimeZone Settings</u></b></p>
+    
+    <p>Set timezone for your calendar. Full list of supported Timezones can be found here:
+    http://us3.php.net/manual/en/timezones.php)</p>
+<pre>
+<span class="comments">## *** set timezone</span>
+<span class="code">$objCalendar->SetTimeZone('America/Los_Angeles');</span>
+</pre>
+
+    <p>This method returns timezone, defined in Calendar</p>
+<pre>
+<span class="comments">## *** get current timezone</span>
+<span class="code">echo $objCalendar->GetCurrentTimeZone();</span>
+</pre>
+
+   <p><b><u>Time Format & Settings</u></b></p>
+   
+    <p>ApPHP Calendar gives you possibility to display time in different formats: 24 hours or AP/PM.</p>
+<pre>
+<span class="comments">## *** define time format - 24|AM/PM</span>
+<span class="code">$objCalendar->SetTimeFormat('24');</span>
+</pre>
+
+    <p>You may define certain timeframe by using SetAllowedHours() method.</p>
+<pre>
+<span class="comments">## *** define allowed hours frame (from, to). Possible values: 0...24</span>
+<span class="code">$objCalendar->SetAllowedHours(0, 24);</span>
+</pre>
+
+    <p>This method defines a size of time slot. Possible values: 10 min., 15 min., 30 min., 45 min., 60 min. or 120 min (60 min - default)</p>
+<pre>
+<span class="comments">## *** define time slot - 10|15|30|45|60 minutes</span>
+<span class="code">SetTimeSlot('60');</span>
+</pre>
+
+    <p>You may define showing of time for some views</p>
+<pre>
+<span class="comments">## *** set showing times in Daily, Weekly and List views</span>
+<span class="code">$objCalendar->ShowTime('true');</span>
+</pre>
+<br />
+
+
+    
+    <a name=Step_6._Visual_Settings.></a>
+    <h4><b>Step 6. Visual Settings.</b></h4>
+    <hr>
+
+    <p><b><u>Calendar Views</u></b></p>
+    
+<pre>
+<span class="comments">## *** set (allow) calendar Views</span>
+<span class="code">$objCalendar->SetCalendarViews(array(
+   'daily'=>true,
+   'weekly'=>true,
+   'monthly'=>true,
+   'monthly_double'=>true,
+   'yearly'=>true,
+   'list_view'=>true
+));</span>
+</pre>   
+
+    <p>Set default calendar view. Possible values: 'daily', 'weekly', 'monthly', 'yearly' or 'list_view';
+       'monthly' is default.</p>
+<pre>
+<span class="comments">## *** set default calendar view </span>
+<span class="comments">## *** 'daily'|'weekly'|'monthly'|'yearly'|'list_view'
+<span class="comments">## *** 'monthly_small'|'monthly_double'</span>
+<span class="code">$objCalendar->SetDefaultView('monthly');</span>
+</pre>
+
+    <p>You may define links for small monthly view</p>
+<pre>
+<span class="comments">## *** Set action link for monthly small view - file2.php or ../file3.php etc.</span>
+<span class="code">$objCalendar->SetMonthlySmallLinks('');</span>
+</pre>
+   
+    
+    <p><b><u>Calendar Actions</u></b></p>
+    
+<pre>
+<span class="comments">## *** set (allow) calendar Views</span>
+<span class="comments">## *** default exporting folder: tmp/export/</span>
+<span class="code">$objCalendar->SetCalendarActions(array(
+   'statistics'=>true,
+   'exporting'=>true,
+   'printing'=>true
+));</span>
+</pre>
+
+<pre>
+<span class="comments">## *** set (allow) calendar export types</span>
+<span class="code">$objCalendar->SetExportTypes(array(
+   'csv'=>true,
+   'xml'=>true,
+   'ics'=>true
+));</span>
+</pre>
+
+
+    <p>Calendar supports embedded CSS styles: 'green', 'brown', 'blue' or your own style. Select appropriate style to suit your needs.</p>
+<pre>
+<span class="comments">## *** set CSS style: 'green'|'brown'|'blue' - default</span>
+<span class="code">$objCalendar->SetCssStyle('blue');</span>
+</pre>
+
+    <p>Using of WYSIWYG editor.</p>
+<pre>
+<span class="comments">## *** specify using of WYSIWYG editor</span>
+<span class="code">$objCalendar->AllowWYSIWYG(true);</span>
+</pre>  
+
+    <p>Calendar width and height.</p>
+<pre>
+<span class="comments">## *** set calendar width and height</span>
+<span class="code">$objCalendar->SetCalendarDimensions('800px', '500px');</span>
+</pre>  
+    
+    <p>Define view type of events for Monthly, Weekly and Daily views. 
+       The 'inline' means show all events in calendar cell, 'tooltip' means show them in tooltip.</p>
+<pre>
+<span class="comments">## *** set type of displaying for events</span>
+<span class="comments">## *** possible values for daily   - 'inline'|'block'</span>
+<span class="comments">## *** possible values for weekly  - 'inline'|'tooltip'</span>
+<span class="comments">## *** possible values for monthly - 'inline'|'list'|'tooltip'</span>
+<span class="code">$objCalendar->SetEventsDisplayType(array(
+   'daily'=>'block',
+   'weekly'=>'tooltip',
+   'monthly'=>'tooltip'
+));</span>
+</pre>
+    
+    <p>If you want to set special color for Sunday, you can do it with following method.</p>
+<pre>
+<span class="comments">## *** set Sunday color - true|false</span>
+<span class="code">$objCalendar->SetSundayColor(true);</span>
+</pre>
+        
+    <p>This method allows to display text for calendar caption.</p>
+<pre>
+<span class="comments">## *** set calendar caption</span>
+<span class="code">$objCalendar->SetCaption('ApPHP Calendar v'.Calendar::Version());</span>
+</pre>        
+    
+
+    
+    <a name=Step_7._Drawing_Calendar.></a>
+    <h4><b>Step 7. Drawing Calendar.</b></h4>
+    <hr>
+
+        <p>Now you can draw calendar on the screen.</p>
+<pre>
+<span class="comments">## *** drawing calendar</span>
+<span class="code"><B>$objCalendar->Show();</B></span>        
+</pre>
+    <p><br /><br /></p>
+    
+    
+    <a name=Non_Documented></a>
+    <h3 class="sub-title"><b>Non Documented</b></h3>
+
+    <a name=Properties></a>
+    <h4><b>Properties.</b></h4>
+    <hr>
+
+
+    <p>[Private] Disable hours before selected time in dropdown box in Add New Event popup.</p>
+<pre><span class="code"><B>private $disableEarlierHours = 'false';</B></span></pre>
+
+    <p>[Private] Defines whether to hide (not display) empty slots in Weekly View or not.</p>
+<pre><span class="code"><B>private $hideWeekEmptySlots = false;</B></span></pre>
+
+    <p>[Private] Defines whether to allow working with event parts (slots).</p>
+<pre><span class="code"><B>private $isEventPartsAllowed = false;</B></span></pre>
+
+    <p>[Private] Defines how to save data with session variables or cookie ('session' or 'cookie').</p>
+<pre><span class="code"><B>private $dataSaveType = 'session';</B></span></pre>
+
+    <p>[Private] Used to separate events for GROUP_CONCAT() function in SELECT SQL.</p>
+<pre><span class="code"><B>private $separator = '$$';</B></span></pre>
+
+    <p>[Private] Defines a view type of Views Changer ('dropdownlist' or 'tabs').</p>
+<pre><span class="code"><B>private $viewChangerType = 'dropdownlist';</B></span></pre>
+
+    <p>[Private] Specifies whether to allow automatically created anchor to the top of calendar (true or false - default).</p>
+<pre><span class="code"><B>private $isAnchorAllowed = false;</B></span></pre>
+
+    <p>[Private] Specifies calendar layout direction ('rtl' or 'ltr' - default).</p>
+<pre><span class="code"><B>private $direction = 'ltr';</B></span></pre>
+
+    <p>[Private] Used to define calendar date format ('yyyy/mm/dd', 'dd/mm/yyyy' or 'mm/dd/yyyy'(default)).</p>
+<pre><span class="code"><B>private $dateFormat = 'dd/mm/yyyy';</B></span></pre>
+
+    <p>[Private] Used to force deletion of category events when category is removing (true or false - default).</p>
+<pre><span class="code"><B>private $removeCategoryEvents = false;</B></span></pre>
+
+    <p>[Private] Specifies target for event links: _new, _blank, _parent, _self etc.</p>
+<pre><span class="code"><B>private $eventsLinkTarget = '';</B></span></pre>
+
+    <p>[Private] Specifies whether to allow creating events with the same name.</p>
+<pre><span class="code"><B>private $allowEventsWithSameName = false;</B></span></pre>
+
+    <p>[Private] Used to highlight selected day.</p>
+<pre><span class="code"><B>private $highlightSelectedDay = false;</B></span></pre>
+
+    <p>[Private] Used to show/hide empty time slots.</p>
+<pre><span class="code"><B>private $showEmptyTimeSlots = false;</B></span></pre>
+
+    <p>[Private] Used to allow color for Saturday.</p>
+<pre><span class="code"><B>private $saturdayColor = false;</B></span></pre>
+
+    
+	</div>
+    </div>
+    </div>
+
+    <div class="frame-box-holder"></div>		
+		
+</div>
+</div>
+</div>
+    
+
+</body>
+</html>

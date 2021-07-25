@@ -1,0 +1,8 @@
+.no_print {
+    DISPLAY: none! important;
+    width:0px;
+}
+
+#content-right{
+    padding: 0px 0px 0px 5px; width: 100%;
+}

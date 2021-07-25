@@ -1,0 +1,541 @@
+
+#calendar_wrapper{
+	font-family: Verdana,Arial,sans-serif; 
+	font-size: 12px;
+	background-color:#ffffff;
+	padding-bottom:5px;
+}
+
+/* --- LINKS ----------------- */
+#calendar_wrapper a               { color:#0A93CC; text-decoration:none; font-weight:normal; }
+#calendar_wrapper a:link          { color:#0A93CC; text-decoration:none; }
+#calendar_wrapper a:hover         { color:#000000; text-decoration:underline; }
+#calendar_wrapper a:visited       { color:#0A93CC; text-decoration:none; }
+#calendar_wrapper a:visited:hover { color:#000000; text-decoration:underline; }
+#calendar_wrapper a.tab_active    { font-weight:normal; color:#065779; text-decoration:underline; }
+#calendar_wrapper a.tab_active:hover { color:#000000; text-decoration:underline; }
+
+IMG.cal_print	 				{ margin:0px 5px -3px 1px; }
+IMG.cal_export	 			    { margin:0px 5px -3px 1px; }
+
+.cal_move 					    { cursor:move; }
+.cal_msg_error                  { color:#a60000; font-weight:bold; }
+.cal_msg_success                { color:#00a200; font-weight:bold; }
+.cal_yes						{ color:#009200; }
+.cal_no							{ color:#960000; }
+.cal_bold                       { font-weight:bold; }
+.cal_left                       { text-align:left; }
+.cal_right                      { text-align:right; }
+.cal_gray                       { color:#777777; }
+.cal_star                       { color:#a30000; font-weight:bold; }
+.cal_dleft                      { padding-right:5px; } 
+.cal_dright                     { padding-left:5px; } 
+
+#calendar_wrapper .form_button{
+    background: url('images/buttons.png') repeat scroll left -34px transparent;
+    border: 1px solid #CCC;
+    text-shadow: 0px -1px #FFF;
+    box-shadow: 0px 1px 5px #EAEAEA;
+    color: #606060;
+    padding:2px 5px;
+    cursor: pointer;
+}
+#calendar_wrapper .form_button:hover{
+	background: #EAEAEA;
+	color: #555555;
+	text-decoration: none;
+	background-image: none;
+}
+
+#calendar_wrapper select{
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:2px;
+    -moz-border-radius:2px;
+    border-radius:2px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: none;
+    background: #f9f9f9;
+    color:#888;
+    border:1px solid #ccc;
+    outline:none;
+    display: inline-block;
+} 
+
+
+/* WEEKLY CALENDAR */
+/** ------------------------------------------------------------------------ **/
+#calendar_wrapper .td_w,
+#calendar_wrapper .td_sunday_w,
+#calendar_wrapper .td_saturday_w,
+#calendar_wrapper .td_actday_w      { width:14%; text-align:right; vertical-align:top; padding:1px; padding-left:3px; padding-top:3px; }
+#calendar_wrapper .td_actday_w 		{ background-color:#ffffee; border:1px solid #c5c5c5; color:#555; font-weight:bold; }
+#calendar_wrapper .td_header        { background-color:#a9cbdc; padding-left:3px; text-align:left; -moz-border-radius:1px; -webkit-border-radius:1px; border-radius:1px; font-weight:bold; }
+#calendar_wrapper .td_w 			{
+    
+    border:1px solid #c5c5c5; color:#555; font-weight:bold;
+    
+    background: -moz-linear-gradient(center top , #fefefe 0%, #efefef 99%) repeat scroll 0% 0% transparent;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefefe), color-stop(99%,#efefef));
+	background: -webkit-linear-gradient(top, #fefefe 0%,#efefef 99%);
+	background: -o-linear-gradient(top, #fefefe 0%,#efefef 99%);
+	background: -ms-linear-gradient(top, #fefefe 0%,#efefef 99%);
+	background: linear-gradient(top, #fefefe 0%,#efefef 99%);
+   	background-color: #f2f2f2;
+
+    -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; 
+}
+#calendar_wrapper .td_sunday_w 		{ background-color:#d9e8f2; border:1px solid #c5c5c5; color:#333; font-weight:bold; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; }
+#calendar_wrapper .td_saturday_w    { background-color:#d9e8f2; border:1px solid #c5c5c5; color:#333; font-weight:bold; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; }
+#calendar_wrapper .week_navigation  	{
+    width:100%;
+    background: url('images/white-title.png') repeat scroll 0% 0% transparent;
+    border: 1px solid #CCC;
+    padding: 0px 5px;
+    margin:0;
+    margin-bottom:-2px;
+}
+
+
+/* MONTHLY CALENDAR */
+/** ------------------------------------------------------------------------ **/
+#calendar_wrapper .td,
+#calendar_wrapper .td_empty,
+#calendar_wrapper .td_actday,
+#calendar_wrapper .td_selday,
+#calendar_wrapper .td_sunday,
+#calendar_wrapper .td_saturday{
+	width:14%;
+	border: 1px solid #C5C5C5;
+ 
+ 	-moz-box-shadow: inset 1px 1px 0px #FFFFFF;
+	-webkit-box-shadow: inset 1px 1px 0px #FFFFFF;
+	-o-box-shadow: inset 1px 1px 0px #FFFFFF;
+	box-shadow: inset 1px 1px 0px #FFFFFF;
+ 
+    vertical-align: top;
+    color: #6A6A6A;
+
+	background: -moz-linear-gradient(top, #f0f0f0 0%, #e3e2e2 99%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f0f0f0), color-stop(99%,#e3e2e2));
+	background: -webkit-linear-gradient(top, #f0f0f0 0%,#e3e2e2 99%);
+	background: -o-linear-gradient(top, #f0f0f0 0%,#e3e2e2 99%);
+	background: -ms-linear-gradient(top, #f0f0f0 0%,#e3e2e2 99%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#e3e2e2',GradientType=0 );
+	background: linear-gradient(top, #f0f0f0 0%,#e3e2e2 99%);
+    
+    text-align: left;	
+	padding:3px; 
+	padding-left:5px;
+	padding-top:5px;
+
+    margin: 5px;
+    font-weight: normal;
+}
+
+
+#calendar_wrapper .month td a{
+    text-decoration: none;
+    color: inherit;
+    font-weight: normal;    
+}
+
+#calendar_wrapper .month td a.md_link{ font-size: 14px; }
+#calendar_wrapper .month td a.mw_link{ font-size: 14px; }
+
+#calendar_wrapper .td:hover,
+#calendar_wrapper .td_empty:hover,
+#calendar_wrapper .td_selday:hover,
+#calendar_wrapper .td_sunday:hover,
+#calendar_wrapper .td_saturday:hover{
+	background: #EFEFEF;
+	color: #FFFFFF;
+	-moz-text-shadow: 0px 1px #FFFFFF;
+	-webkit-text-shadow: 0px 1px #FFFFFF;
+	-o-text-shadow: 0px 1px #FFFFFF;
+	text-shadow: 0px 1px #FFFFFF;
+	color: #000;
+}
+
+#calendar_wrapper .td_actday:hover{
+    box-shadow: 1px 1px 3px #515251 inset;
+    text-shadow: 0px 1px #336F9C;
+    color: #FFF;
+    background: -moz-linear-gradient(center top , #337BB2 0%, #43A6CE 100%) repeat scroll 0% 0% transparent;    
+}
+
+#calendar_wrapper .month,
+#calendar_wrapper .double_month,
+#calendar_wrapper .week{ 
+    width: 100%;
+    text-align: left;
+    vertical-align: top;
+    border-collapse: collapse;
+    margin-right: 0px;
+}
+
+#calendar_wrapper .week tr th { padding:2px 0px; }
+
+#calendar_wrapper .tr_days   		{ height:32px; background-color:#f1f1f1; }
+#calendar_wrapper .tr				{ }
+#calendar_wrapper .td 				{ border:1px solid #C5C5C5; color:#555; background-color:#ffffff; }
+#calendar_wrapper .td_wn		    { border:1px solid #ddd; color:#555; background-color:#f1f1f1; width:4%; text-align:center; vertical-align:top; padding-top:5px; font-weight:bold; }
+#calendar_wrapper .td_wn:hover      { color:#000;}		    
+#calendar_wrapper .td_empty,
+#calendar_wrapper .td_empty:hover 	{ color: #6A6A6A; border:1px solid #dfdfdf; background: none repeat scroll 0% 0% transparent; box-shadow: none; }
+#calendar_wrapper .td_actday 		{
+    box-shadow: 1px 1px 1px #515251 inset;
+    text-shadow: 0px 1px #336F9C;
+    color: #FFF;
+    background: -moz-linear-gradient(center top , #337BB2 0%, #43A6CE 100%) repeat scroll 0% 0% transparent;
+
+	background: -webkit-gradient(linear, center top, center bottom, color-stop(0%,#337BB2), color-stop(99%,#43A6CE));
+    background: -webkit-linear-gradient(top, #337BB2 0%,#43A6CE 99%);
+	background: -o-linear-gradient(top, #337BB2 0%,#43A6CE 99%);
+	background: -ms-linear-gradient(top, #337BB2 0%,#43A6CE 99%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#337BB2', endColorstr='#43A6CE',GradientType=0 );
+	background: linear-gradient(top, #337BB2 0%,#43A6CE 99%);
+}
+
+#calendar_wrapper .td_selday 		{ background-color:#ffffef; border:1px solid #ddd; color:#555; font-weight:bold; }
+#calendar_wrapper .td_sunday,
+#calendar_wrapper .td_saturday      { 
+
+	background: -moz-linear-gradient(top, #eaeaea 0%, #e3e2e2 99%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eaeaea), color-stop(99%,#e3e2e2));
+	background: -webkit-linear-gradient(top, #eaeaea 0%,#e3e2e2 99%);
+	background: -o-linear-gradient(top, #eaeaea 0%,#e3e2e2 99%);
+	background: -ms-linear-gradient(top, #eaeaea 0%,#e3e2e2 99%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeaea', endColorstr='#e3e2e2',GradientType=0 );
+	background: linear-gradient(top, #eaeaea 0%,#e3e2e2 99%);
+
+}
+#calendar_wrapper .th 				{
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    border-right: 1px solid #C7C7C7;
+    border-width: medium 1px 1px;
+    border-style: none solid solid;
+    border-color: -moz-use-text-color #C7C7C7 #C7C7C7;
+    border-bottom: 1px solid #ccc;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border-image: none;
+    background: -moz-linear-gradient(center top , #FAFAFA 0%, #EAEAE9 99%) repeat scroll 0% 0% transparent;
+	background: -webkit-linear-gradient(top, #f0f0f0 50%,#e3e2e2 99%);
+	background: -o-linear-gradient(top, #f0f0f0 0%,#e3e2e2 99%);
+	background: -ms-linear-gradient(top, #f0f0f0 0%,#e3e2e2 99%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#e3e2e2',GradientType=0 );
+	background: linear-gradient(top, #f0f0f0 0%,#e3e2e2 99%);
+    height: 28px;
+    color: #6D6D6D;        
+}
+#calendar_wrapper .th_wn		       { border:1px solid #ddd; height:24px; text-align:center; align:left; font-weight:bold; padding-top:3px; padding-bottom:3px; padding:5px; color:#fff; }
+#calendar_wrapper .events_list_tooltip { font-size:11px; font-weight:normal; cursor:help; }
+#calendar_wrapper .events_list_inline  { font-size:11px; font-weight:normal; text-align:left; }
+#calendar_wrapper .events_list_inline a:hover { text-decoration:none; }
+
+
+/* NAVIGATION BAR */
+#calendar_wrapper .month .th_navbar {
+    /*border:0px solid #f00; padding:0px;*/
+    background: url('images/white-title.png') repeat scroll 0% 0% transparent;
+    border:1px solid #ccc;
+    padding:0px 5px;
+}
+#calendar_wrapper .table_navbar   	{
+    /*   color:#000;*/
+    /**/
+    width:100%;
+    height:34px;
+    color: #2C2C2C;
+    text-shadow: 0px 1px #FFF;
+    /*font-weight: bold;*/
+    
+}
+#calendar_wrapper .tr_navbar   		{ width:36%; text-align:center; }
+#calendar_wrapper .tr_navbar a.a_prev {
+    background-image: url(images/prev.png);
+    height:18px;
+    width:18px;
+    text-indent: -9999px;
+    display:inline-block;
+    margin:0 2px;
+    margin-top:1px;
+}
+#calendar_wrapper .tr_navbar .a_next {
+    background-image: url(images/next.png);
+    height:18px;
+    width:18px;
+    text-indent: -9999px;
+    display:inline-block;
+    margin:0 2px;
+    margin-top:1px;
+}
+#calendar_wrapper .tr_navbar_left 	{ width:33%; padding-left:1px; text-align:left; }
+#calendar_wrapper .tr_navbar_left #jump_month	{ width:90px; }
+#calendar_wrapper .tr_navbar_right 	{ width:31%; padding-right:1px; text-align:right; color:#999 }
+
+#calendar_wrapper .double_month .tr_days { border-top:1px solid #ccc; }
+#calendar_wrapper .double_month .table_navbar tr:first-child {
+    background: url('images/white-title.png') repeat scroll 0% 0% transparent;
+    border:1px solid #ccc;
+}
+#calendar_wrapper .double_month .table_navbar tr:first-child th {
+    padding:4px 4px 3px 4px;
+    border-top:1px solid #ccc;
+    border-bottom:1px solid #ccc;
+}
+#calendar_wrapper .double_month .table_navbar tr:first-child th:first-child {
+    border-left:1px solid #ccc;
+}
+#calendar_wrapper .double_month .table_navbar tr:first-child th:last-child {
+    border-right:1px solid #ccc;
+}
+
+/* MONTHLY LIST VIEW CALENDAR */
+/** ------------------------------------------------------------------------ **/
+#calendar_wrapper .lv_lcolumn 			{ adding-left:0px; vertical-align:top; text-align:left; }
+#calendar_wrapper .lv_lcolumn a         { background-color:#f1f1f1; display: inline-block; width:100px; padding:4px; margin-top:3px; }
+#calendar_wrapper .lv_rcolumn 			{ text-align:left; }
+#calendar_wrapper .lv_separator 		{ width:100px; height:0px; }
+#calendar_wrapper .lv_rcolumn .events_list_inline  { background-color:#f1f1f1; padding:4px; margin-top:3px; }
+
+
+/** YEAR */
+#calendar_wrapper .year_container   { width:99%; margin-top:8px; margin-bottom:8px; border:0px solid #ccc; border-collapse:collapse; }
+#calendar_wrapper .year_container .th_navbar {
+    /*border:0px solid #f00; padding:0px;*/
+    background: url('images/white-title.png') repeat scroll 0% 0% transparent;
+    border:1px solid #ccc;
+    padding:0px 5px;
+}
+
+
+#calendar_wrapper .month_small	    { width:97%; border:1px solid #ffffff; margin:2px 6px 10px 3px; border-collapse:collapse; }
+#calendar_wrapper .tr_small_days    { }
+#calendar_wrapper .tr_small         { }
+#calendar_wrapper .td_small{
+	width:14%;
+	border: 1px solid #C5C5C5;
+ 
+ 	-moz-box-shadow: inset 1px 1px 0px #FFFFFF;
+	-webkit-box-shadow: inset 1px 1px 0px #FFFFFF;
+	-o-box-shadow: inset 1px 1px 0px #FFFFFF;
+	box-shadow: inset 1px 1px 0px #FFFFFF;
+ 
+    vertical-align: top;
+    color: #6A6A6A;
+
+	background: -moz-linear-gradient(top, #f0f0f0 0%, #e3e2e2 99%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f0f0f0), color-stop(99%,#e3e2e2));
+	background: -webkit-linear-gradient(top, #f0f0f0 0%,#e3e2e2 99%);
+	background: -o-linear-gradient(top, #f0f0f0 0%,#e3e2e2 99%);
+	background: -ms-linear-gradient(top, #f0f0f0 0%,#e3e2e2 99%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#e3e2e2',GradientType=0 );
+	background: linear-gradient(top, #f0f0f0 0%,#e3e2e2 99%);
+    
+    text-align: left;	
+	padding:3px; 
+	padding-left:5px;
+	padding-top:5px;
+
+    margin: 5px;
+    font-weight: normal;
+}
+
+#calendar_wrapper .td_small:hover{
+	background: #EFEFEF;
+	color: #FFFFFF;
+	-moz-text-shadow: 0px 1px #FFFFFF;
+	-webkit-text-shadow: 0px 1px #FFFFFF;
+	-o-text-shadow: 0px 1px #FFFFFF;
+	text-shadow: 0px 1px #FFFFFF;
+	color: #000;
+}
+
+
+#calendar_wrapper .td_small_empty,
+#calendar_wrapper .td_small_empty:hover 	{ color: #6A6A6A; border:1px solid #dfdfdf; background: none repeat scroll 0% 0% transparent; box-shadow: none; }
+
+#calendar_wrapper .td_small_full 	{
+    color:#555;
+    background-color:#ffcc99;
+    border:1px solid #ccc;
+    padding: 5px 3px 3px 5px;
+}
+#calendar_wrapper .legend_block     { display:block; width:16px; height:16px; float:left; margin:1px 1px 1px 1px; }
+#calendar_wrapper .legend_text      { display:block; height:16px; float:left; margin:1px 3px 1px 4px; }
+#calendar_wrapper .legend_f_block   { display:block; height:16px; float:left; margin:1px 3px 1px 3px; }
+#calendar_wrapper .legend_l_block   { display:block; width:16px; height:16px; float:left; margin:1px 3px 1px 3px; }
+#calendar_wrapper .e0 				{ background-color:#ffdca9; }
+#calendar_wrapper .e1 				{ background-color:#ffcc99; }
+#calendar_wrapper .e2 				{ background-color:#efbc89; }
+#calendar_wrapper .e3 			    { background-color:#dfac79; }
+#calendar_wrapper .e4 			    { background-color:#cf9c69; }
+#calendar_wrapper .e5 			    { background-color:#bf8c59; }
+#calendar_wrapper .e6 			    { background-color:#b38251; }
+#calendar_wrapper .e7 			    { background-color:#ad7a47; }
+#calendar_wrapper .e8 			    { background-color:#9f6c39; }
+#calendar_wrapper .e9 			    { background-color:#936231; }
+#calendar_wrapper .e10 			    { background-color:#885522; }
+
+#calendar_wrapper .td_small_actday  { color:#0357a5; background-color:#ffffcc; padding: 5px 3px 3px 5px; }
+#calendar_wrapper .td_small_selday  { background-color:#ffffef; border:1px solid #ffffff; color:#555; font-weight:bold; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; }
+#calendar_wrapper .th_small         {
+    text-align:center; padding-top:1px; padding-bottom:1px; padding:2px; color:#000000;
+    
+    border: 1px solid #C7C7C7;
+    border-top: 1px solid #ccc;
+
+    border-image: none;
+    background: -moz-linear-gradient(center top , #FAFAFA 0%, #EAEAE9 99%) repeat scroll 0% 0% transparent;
+	background: -webkit-linear-gradient(top, #f0f0f0 50%,#e3e2e2 99%);
+	background: -o-linear-gradient(top, #f0f0f0 0%,#e3e2e2 99%);
+	background: -ms-linear-gradient(top, #f0f0f0 0%,#e3e2e2 99%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#e3e2e2',GradientType=0 );
+	background: linear-gradient(top, #f0f0f0 0%,#e3e2e2 99%);
+    
+    }
+/*#calendar_wrapper .th_small_wn      { text-align:center; font-weight:bold; padding-top:1px; padding-bottom:1px; padding:2px; color:#fff; }
+*/
+#calendar_wrapper .td_small_wn 	    { border:1px solid #ddd; color:#555; background-color:#f1f1f1; width:4%; text-align:center; vertical-align:top; padding:5px 2px; font-weight:bold; }
+#calendar_wrapper .td_small_wn a    { color:inherit; }
+#calendar_wrapper .td_small_wn:hover { color:#000; }
+#calendar_wrapper .th_small_wn		    { border:1px solid #ddd; color:#555; background-color:#f1f1f1; width:4%; text-align:center; vertical-align:top; padding-top:5px; font-weight:bold; }
+#calendar_wrapper .th_small_wn:hover      { color:#000; }		    
+
+
+/*.event_day_block            { text-align:left; width:130px; height:22px; display: inline-block; background-color:#f4f4f4; border:1px solid #aaa; position:absolute; padding:0px 3px 0px 3px; margin-top:-2px; margin-bottom:0px; border-radius:3px; }
+.event_day_block:hover      { background-color:#ededff; border:1px solid #ababee; }
+*/
+
+#calendar_header  				{ width:100%; margin:0 auto; border:0px; margin-bottom:5px;}
+#calendar_header .caption_left 	{ text-align:left; color:#999; }
+#calendar_header .caption_right { text-align:right; color:#999; }
+#calendar_header .caption_center{ text-align:center; }
+#calendar_header .caption 		{ text-align:center; width:34%; font-size: 16px; padding-bottom:10px;}
+#calendar_header .types_changer { text-align:right; font-size: 12px; font-weight:normal; }
+
+IMG.cal_icons                { margin:0px 1px -2px 1px; }
+IMG.cal_print	 			 { margin:0px 5px -2px 1px; }
+IMG.cal_export	 			 { margin:0px 5px -2px 1px; }
+
+/* DEBUG */
+/** ------------------------------------------------------------------------ **/
+.debug_sql					{ font-family: Arial, Verdana, Tahoma; font-size: 12px; color:#000086; }
+.debug_error				{ font-family: Arial, Verdana, Tahoma; font-size: 12px; color:#860000; }
+.debug_warning				{ font-family: Arial, Verdana, Tahoma; font-size: 12px; color:#c19100; }
+.debug_post					{ font-family: Arial, Verdana, Tahoma; font-size: 12px; color:#008600; }
+.debug_get					{ font-family: Arial, Verdana, Tahoma; font-size: 12px; color:#008600; }
+.debug_session				{ font-family: Arial, Verdana, Tahoma; font-size: 12px; color:#008600; }
+.debug_cookie				{ font-family: Arial, Verdana, Tahoma; font-size: 12px; color:#008600; }
+.debug_info					{ font-family: Arial, Verdana, Tahoma; font-size: 12px; color:#222222; margin:10px auto; text-align:left; padding-left:20px; }
+
+/* EVENT FORM CONTAINER */
+/** ------------------------------------------------------------------------ **/
+#divAddEvent				{ border:1px solid #bcbcbc; background-color:#ffffff; position:absolute; left:200px; top:100px; width:420px; display:none; }
+#divAddEvent table 			{ width:418px; border:0px; vertical-align:middle; }
+#divAddEvent table select   { margin:0px; }
+#divAddEvent textarea       { max-width: 275px;}
+#divAddEvent .header    	{ width:100%; background-color:#4c9ed9; padding:0 2px; color:#ffffff; -moz-text-shadow: 0px 1px #336699; -webkit-text-shadow: 0px 1px #336699; -o-text-shadow: 0px 1px #336699; text-shadow: 0px 1px #336699; }
+#divAddEvent .header a  	{ color:#ffffff; }
+#divAddEvent #divAddEvent_Header { }
+#divAddEvent #divAddEvent_Content { }
+#divAddEvent #divAddEvent_Content .cal_left { padding-left:3px;}
+#divAddEvent #event_name { width: 240px; }
+#divAddEvent #sel_category_name { width: 246px; }
+#divAddEvent #sel_event_name { width: 246px; }
+#divAddEvent #sel_location_name { width: 246px; }
+
+#divEditEvent				{ border:1px solid #bcbcbc; background-color:#ffffff; position:absolute; left:200px; top:100px; width:420px; display:none; }
+#divEditEvent table 		{ width:418px; border:0px; vertical-align:middle; }
+#divEditEvent textarea      { max-width: 280px; }
+#divEditEvent .header    	{ width:100%; background-color:#4c9ed9; padding:0 2px; color:#ffffff; -moz-text-shadow: 0px 1px #336699; -webkit-text-shadow: 0px 1px #336699; -o-text-shadow: 0px 1px #336699; text-shadow: 0px 1px #336699; }
+#divEditEvent .header a  	{ color:#ffffff; }
+#divEditEvent #divEditEvent_Header { }
+#divEditEvent #divEditEvent_Content { }
+#divEditEvent #divEditEvent_Content .cal_left { padding-left:3px; }
+#divEditEvent #divEditEvent_Content .cal_right { padding-right:2px; }
+
+
+/* MESSAGES */
+/** ------------------------------------------------------------------------ **/
+.message_box_success    		{ background-image:url(../../images/sign_sussess.gif); background-repeat:no-repeat; background-position:7px; text-align:left; vertical-align:middle; display:block; font-size:12px; width:99%; margin:6px 0px 0px 0px; padding:12px 0px 12px 5px; background-color:#dff0d8; border:1px solid #d6e9c6; color:#468847; }
+.message_box_error  			{ background-image:url(../../images/sign_error.gif); background-repeat:no-repeat; background-position:7px; text-align:left; vertical-align:middle; display:block; font-size:12px; width:99%; margin:6px 0px 0px 0px; padding:12px 0px 12px 0px; background-color:#f6e5e5; border:1px solid #eed3d7; color:#b94a48; }
+.message_box_important       	{ background-image:url(../../images/sign_important.gif); background-repeat:no-repeat; background-position:7px; text-align:left; vertical-align:middle; display:block; font-size:12px; width:99%; margin:6px 0px 0px 0px; padding:12px 0px 12px 5px; background-color:#fcf8e3; border:1px solid #fbeed5; color:#c09853; }
+.message_content                { margin:0 30px; font-weight:normal; }
+
+.cal_fieldset					{ width:98%; padding:3px; margin:10px 0px 0px 0px; }
+.cal_legend						{ padding:0px 0px 0px 5px; text-align:left; font-size:12px; }
+.fieldset_content				{ width:99%; margin:15px 3px 10px 3px; }
+
+/* styling for Chrome only */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .cal_fieldset { margin-top:20px; }
+    .cal_legend	{ float:left; margin:-13px 5px 5px 5px; background:#fff; }    
+}
+
+/* MENU LEGEND TABS */
+/** ------------------------------------------------------------------------ **/
+LEGEND SPAN { display:block; background-color:#fefefe; float:left; padding:2px 5px; margin-right:5px; border:1px solid #cfcfcf; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px; }
+/* styling for Chrome only */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    LEGEND SPAN {
+        padding:3px 5px;
+    }
+}
+LEGEND SPAN:hover { border:1px solid #afafaf; }
+LEGEND SPAN.single { border:1px solid #cfcfcf; background-color:#f2f3f4; float:none; }
+LEGEND SPAN.single:hover { border:1px solid #cfcfcf; background-color:#f2f3f4; float:none; }
+LEGEND SPAN A:hover { text-decoration:none; color:#065779; }
+LEGEND SPAN.active { background-color:#dedede; color:#065779; border:1px solid #cfcfcf; }
+#calendar_wrapper LEGEND SPAN a:link { text-decoration:none;  }
+#calendar_wrapper LEGEND SPAN.active a:link { text-decoration:none;  }
+
+/* --- OVERLIB STYLING ----------------------------------------------------- **/
+TABLE.overlib_tbl, TABLE.overlib_tbl_wh { font-size:11px; font-family:Arial,Verdana,Tahoma; }
+TABLE.overlib_tbl  { -moz-border-radius:1px; -webkit-border-radius:1px; border-radius:1px; }
+TABLE.overlib_tbl_wh  { -moz-border-radius:1px; -webkit-border-radius:1px; border-radius:1px; }
+
+    
+/* DAILY CALENDAR */
+/** ------------------------------------------------------------------------ **/
+#calendar_wrapper .day  			{ width:99%; border:0px solid #ccc; padding:0px; border-collapse:collapse; margin:8px auto; }
+#calendar_wrapper .day_navigation  	{ width:99%;
+
+
+    background: url('images/white-title.png') repeat scroll 0% 0% transparent;
+    border: 1px solid #CCC;
+    padding: 0px 5px;
+
+}
+#calendar_wrapper .td_acthour_d_h   { background-color:#ffffcc; border:1px solid #ccc; padding:1px; padding-right:3px; text-align:right; font-weight:bold; }
+#calendar_wrapper .td_acthour_d     { background-color:#ffffcc; border:1px solid #ccc; padding:1px; padding-left:5px; text-align:left; line-height: 15px; }
+#calendar_wrapper .td_d_h           { background-color:#f1f2f3; border:1px solid #ccc; padding:1px; padding-right:3px; text-align:right; width:54px; font-weight:bold; line-height: 15px; }
+#calendar_wrapper .td_d             { background-color:#ffffff; border:1px solid #ccc; padding:1px; padding-left:5px; text-align:left; line-height: 15px; }
+    
+/* EVENT WRAPPER */
+/** ------------------------------------------------------------------------ **/
+.event_wrapper				{ display:block;height:14px; }
+.event_wrapper IMG			{ visibility:hidden; position:relative;margin-right:2px;left:72px;cursor:pointer; }
+.event_wrapper:hover		{ }
+.event_wrapper:hover IMG	{ visibility:visible; }
+.event_wrapper LABEL		{ margin-left:-21px; }
+.event_day_block            { text-align:left; width:135px; height:22px; display: inline-block; background-color:#f4f4f4; border:1px solid #bbb; position:absolute; padding:0px 3px 0px 3px; margin-top:-2px; margin-bottom:0px; border-radius:1px; }
+.event_day_block:hover      { background-color:#f1f1f1; border:1px solid #aaa; }
+.event_day_block .edb_title  { display:block; line-height:18px; }
+.event_day_block .edb_content { border-top:1px solid #dedede; }
+
+/* --- COLOR BOXES --------------------------------------------------------- **/
+.color_box { border:1px solid #cecece;width:13px;height:13px; }
+.color_box_dll { border:1px solid #cecece;width:23px;height:23px; }
+
+/* --- RECORDS MANAGEMENT -------------------------------------------------- **/
+table.tbl_management tr:nth-child(2n+1) td { background-color:#ffffff; }
+table.tbl_management tr:hover td { background-color:#efefef; }
+

@@ -1,0 +1,74 @@
+<html>
+<head>
+<title>Register</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+</head>
+<body  leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+{include_if_exists file="include/header.php"}
+<form method="POST" action="login.php" name="loginform">
+<input type="Hidden" name=username value="{$username}">
+<input type="Hidden" name=password value="{$password}">
+</form>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="99%">
+  <tr>
+    <td valign="center" align="middle"> 
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td  valign="top" align="right"> 
+                  <table width="300" border="0" cellspacing="4" cellpadding="4" align="center">
+                    <tr> 
+                      <td>&nbsp;</td>
+                    </tr>
+                  </table>
+                  <table width= border="0" cellspacing="0" cellpadding="0" align="center">
+                  <tr><td>
+                  <b class="xtop"><b class="xb1"></b><b class="xb2"></b><b class="xb3"></b><b class="xb4"></b></b>
+                  <div class="xboxcontent" align=center>
+                  
+                  <table width="300" border="0" cellspacing="0" cellpadding="4" align="center" >
+                    <tr> 
+                      <td align=middle class=success>
+							 <b><font size=+1>Register</font></b></td>
+                    </tr>
+                    <tr> 
+                      <td valign="top">
+                        <DIV align=center> 
+                        <table width="200" border=0 align="center">
+                          <tbody>
+						  <tr height=10><td colspan=2>&nbsp;</td></tr>
+                          <tr> 
+                            <td colspan=2 align=middle> 
+                              Registration successful!<br>
+							  <a href="login.php" onclick="loginform.submit(); return false;" >Proceed to login page</a>
+                            </td>
+                          </tr>
+
+                          </tbody> 
+                        </table></DIV>
+                      </td>
+                    </tr>
+                  </table>
+                  </div>
+                <b class="xbottom"><b class="xb4"></b><b class="xb3"></b><b class="xb2"></b><b class="xb1"></b></b>
+                </td></tr>
+                </table>
+                <p>&nbsp;</p></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+{include_if_exists file="include/footer.php"}
+</body>
+</html>

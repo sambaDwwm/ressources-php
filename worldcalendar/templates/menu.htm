@@ -1,0 +1,115 @@
+<html>
+<head>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+</head>
+<body>
+{include_if_exists file="include/header.php"}
+<br>
+
+<TABLE CELLPADDING=0 CELLSPACING=0 align=center border=0>
+<tr><td>
+
+<div class="xboxcontentb">
+<table cellpadding=0 cellspacing=0 border=0 width=400px>
+<tr><td>
+<table cellpadding=0 cellspacing=0 border=0 width=100%>
+<tr>
+<td class=upeditmenu_left width=5px height=36px></td>
+<td class=upeditmenu_center align=center style="padding:5px">
+
+Logged as&nbsp;<b><font color=#FCFAEA>{$username}</font></b>&nbsp;&nbsp;&nbsp;&nbsp;
+<span class=buttonborder><input class=button type=button value="Log out" onclick="window.location.href='login.php?a=logout'"></span>
+                   
+</td>
+<td class=upeditmenu_right width=5px height=36px></td>
+</tr>
+</table>
+</td></tr>
+
+<tr><td style="padding:10px" class=borderedit>
+<b class="xtop"><b class="xb1"></b><b class="xb2"></b><b class="xb3"></b><b class="xb4"></b></b>
+<div class="xboxcontent" align=center>
+<table border=0>
+{if $allow_calendar}
+<tr><td>
+<a href="calendar_list.php" class="menuhref">
+Calendar</a>
+</td></tr>
+{/if}
+{if $allow_daily}
+<tr><td>
+<a href="daily_list.php" class="menuhref">
+Daily</a>
+</td></tr>
+{/if}
+{if $allow_monthly}
+<tr><td>
+<a href="monthly_list.php" class="menuhref">
+Monthly</a>
+</td></tr>
+{/if}
+{if $allow_weekly}
+<tr><td>
+<a href="weekly_list.php" class="menuhref">
+Weekly</a>
+</td></tr>
+{/if}
+{if $allow_yearly}
+<tr><td>
+<a href="yearly_list.php" class="menuhref">
+Yearly</a>
+</td></tr>
+{/if}
+{if $allow_customer}
+<tr><td>
+<a href="customer_list.php" class="menuhref">
+Customers</a>
+</td></tr>
+{/if}
+{if $allow_category}
+<tr><td>
+<a href="category_list.php" class="menuhref">
+Tasks</a>
+</td></tr>
+{/if}
+{if $allow_Copy_of_calendar}
+<tr><td>
+<a href="Copy_of_calendar_list.php" class="menuhref">
+edit calendar</a>
+</td></tr>
+{/if}
+{if $allow_customer_statistics}
+<tr><td>
+<a href="customer_statistics_list.php" class="menuhref">
+customer statistics</a>
+</td></tr>
+{/if}
+{if $allow_task_statistics}
+<tr><td>
+<a href="task_statistics_list.php" class="menuhref">
+task statistics</a>
+</td></tr>
+{/if}
+{if $allow_users}
+<tr><td>
+<a href="users_list.php" class="menuhref">
+Users</a>
+</td></tr>
+{/if}
+{if $allow_howto}
+<tr><td>
+<a href="howto_list.php" class="menuhref">
+How to (FAQ)</a>
+</td></tr>
+{/if}
+</table>
+</div>
+<b class="xbottom"><b class="xb4"></b><b class="xb3"></b><b class="xb2"></b><b class="xb1"></b></b>
+</td></tr></table>
+</div>
+<b class="xbottom"><b class="xb4b4"></b><b class="xb3b4"></b><b class="xb2b4"></b><b class="xb1b4"></b></b>
+</td></tr>
+</table>
+{include_if_exists file="include/footer.php"}
+</body>
+</html>

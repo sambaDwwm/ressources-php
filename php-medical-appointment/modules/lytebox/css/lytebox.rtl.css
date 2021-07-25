@@ -1,0 +1,9 @@
+#lbDetails { width: 75%; float: right; text-align: right; }
+#lbDetails a, #lbDetails span { font-size: 12px; }
+#lbNumberDisplay { float: right; }
+#lbNavDisplay { float: right; direction: rtl; }
+#lbClose { float: left; }
+#lbPlay { float: left; }
+#lbPause { float: left; margin-left:5px; }
+#lbNext { right: auto; left: 0;  float: left; }
+#lbPrev { left: auto; right:0; float: right; }

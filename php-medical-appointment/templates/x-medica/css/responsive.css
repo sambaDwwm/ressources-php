@@ -1,0 +1,141 @@
+/* Common style
+------------------------------------------------ */
+.row                { width: 1140px; max-width: 100%; min-width: 747px; margin: 0 auto; }
+.row .row           { width: auto; max-width: none; min-width: 0; margin: 0 -10px; }
+.row .column,
+.row .columns       { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+.container          { margin: 0px auto; max-width: 960px; padding: 0px 10px; }
+.container.wrapper  { margin: 0px auto; max-width: 980px; padding: 0px; }
+
+.column, .columns   { float: left; min-height: 1px; padding: 0 10px; position: relative; margin-bottom: 35px; }
+
+.row .one           { width: 8.333%; }
+.row .two           { width: 16.667%; }
+.row .three         { width: 25%; }
+.row .four          { width: 33.333%; }
+.row .five          { width: 41.667%; }
+.row .six           { width: 50%; }
+.row .seven         { width: 58.333%; }
+.row .eight         { width: 66.667%; }
+.row .nine          { width: 75%; padding:10px 20px; }
+.row .ten           { width: 83.333%; }
+.row .eleven        { width: 91.667%; }
+.row .twelve        { width: 100%; }
+
+object, embed       { max-width: 100%; }
+
+/* Custom style
+------------------------------------------------ */
+.responsive-menu-wrapper { display: none; }
+
+/* Mobile size
+------------------------------------------------ */
+@media only screen and (max-width: 950px) {
+    table.tblSideBlock select { max-width:155px; }
+    table.tblSideBlock input[type="text"],
+    table.tblSideBlock input[type="password"] { max-width:145px; }
+    TABLE.tblDoctorMap IMG { max-width:400px; }
+    IFRAME { max-width: 520px; }
+
+    TABLE.doctors_result,
+    TABLE.doctors_result TD,
+    TABLE.doctors_result TD A { font-size: 12px; }    
+    TABLE.doctors_result TD.th_left { width:140px }
+    TABLE.doctors_result TD.th_right { width:425px }
+    TABLE.doctors_result .th_week_day { width:60px; max-width:60px; font-size: 10px; }
+    TABLE.doctors_result .td_week_day { width:60px; max-width:60px; }
+    TABLE.doctors_result .doctor_profile { width:140px; }
+
+}
+
+@media only screen and (max-width: 767px) {
+	body                        { -webkit-text-size-adjust: none; -ms-text-size-adjust: none; width: 100%; min-width: 0; margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0; }
+	.container                  { margin: 0px auto; max-width: 420px; padding: 0px 10px; }
+	.container.wrapper          { margin: 0px auto; max-width: 440px; padding: 0px; }	
+	.row                        { width: auto; min-width: 0; margin-left: 0; margin-right: 0; }
+    .row .column,
+    .row .columns               { width: 100%; float: none; }
+	.column:last-child,
+    .columns:last-child         { float: none; }
+	[class*="column"] + [class*="column"]:last-child { float: none; }
+	.column:before,
+    .columns:before,
+    .column:after, 
+    .columns:after              { content: ""; display: table; }
+	.column:after,
+    .columns:after              { clear: both; }
+
+    table.tblSideBlock select   { max-width:210px; }
+    table.tblSideBlock input[type="text"],
+    table.tblSideBlock input[type="password"] { max-width:210px; }
+    DIV.slideshow-caption 	    { font-size:11px; }
+
+	div.top-navigation-left li:last-child { margin-right: 0px; }
+    div.top-navigation-left     { text-align:center; margin:0 auto; float: none; }    
+    div.top-navigation-right    { text-align:center; margin:0 auto; float: none; }
+    
+    #menu-top-menu              { margin:0 auto; float: none; width:190px; }
+    
+    #languages-wrap             { text-align: center; float: none; color:#fff; margin: 0 auto; }
+    #languages-wrap .lang_name  { text-align: center; float: none; }
+    #languages-wrap .flags      { float: right;}
+
+    div.footer-menu-wrapper     { text-align: center; margin-top:5px; }
+    div.social-icon-wrapper     { text-align: center; margin-top:5px; }	
+	div.header-wrapper          { height: auto; }
+	div.content-wrapper         { margin-top: 0px !important; }
+	div.logo-wrapper            { text-align:center; float: none !important; padding-top:10px; padding-bottom:30px; line-height:30px; }
+    div.logo-wrapper img        { margin:0px 10px 0 10px; }
+    div.logo-wrapper .slogan    { margin:0 auto; }
+	div.logo-right-text         { float: none !important; text-align: center !important; padding-bottom: 30px; padding-top: 0px; }
+	
+	div.content-wrapper         { overflow: hidden; }
+	div.top-search-form         { clear: both; margin-top:10px;  }	
+	div.navigation-wrapper      { display: none; }
+	div.navigation-gimmick      { display: none; }
+	div.responsive-menu-wrapper { display: block; margin-top: 20px; } 	
+	div.copyright-left,
+    div.copyright-right         { float: none; text-align: center; }
+    
+    #frmContactUs input[type=text] { width:270px; }
+    #frmContactUs textarea      { width:270px; max-width: 320px; }
+    #frmContactUs TABLE TABLE   { width:200px; }
+    #frmContactUs TABLE TABLE IMG#captcha_image { width:70px; height:40px; }
+    
+    TABLE TR TD { padding-right:4px; }
+    
+    #birth_date__nc_year, #birth_date__nc_month, #birth_date__nc_day {
+        margin: 0px 2px 0px 0px;
+    }
+    
+    TABLE.tblDoctorMap IMG { max-width: 280px; }
+    
+    IFRAME { max-width: 400px; }
+    
+    UL.appointment_navigation   { font-size:12px; }
+    UL.appointment_navigation LI { padding:1px 4px; margin-right:5px; }
+    UL.appointment_navigation LI.active { padding:1px 4px; margin-right:5px; }
+
+
+    TABLE.doctors_result,
+    TABLE.doctors_result TD,
+    TABLE.doctors_result TD A { font-size: 12px; }    
+
+    TABLE.doctors_result TD.th_left { width:0px; display: none; }
+    TABLE.doctors_result TD.th_right { }
+
+    TABLE.doctors_result .th_week_day { width:45px; max-width:45px; font-size:11px; }
+    TABLE.doctors_result .td_week_day { width:45px; max-width:45px; font-size:11px; padding:0 2px;}
+    TABLE.doctors_result .go_prev { position: absolute; top:-10px; }
+    TABLE.doctors_result .go_next { position: absolute; top:-7px; }
+
+    TABLE.doctors_result .td_week_day a { font-size: 12px; }
+    TABLE.doctors_result .doctor_profile { width:390px; margin-left:15px; }
+    TABLE.doctors_result .doctor_profile IMG { width:70px;  }
+
+    TEXTAREA.mgrid_textarea {
+        width: 270px;
+        max-width: 270px;
+        margin-right:10px;
+    }
+}

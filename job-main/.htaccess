@@ -1,0 +1,9 @@
+#On active la réécriture d'URL
+RewriteEngine On
+
+#On ajoute une nouvelle regle pour passer de l'url
+#  localhost/.../nomController/nomMethode
+#à localhost/.../index.php?page=nomController/nomMethode
+
+
+RewriteRule ^([a-zA-Z0-9\-\_\/]*)$ index.php?page=$1

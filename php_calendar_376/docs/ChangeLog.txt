@@ -1,0 +1,320 @@
+======================================================================================
+- Version 3.7.6 [2.02.2021]
+======================================================================================
+ 1. Bug: [fixed] SQL errors
+
+
+======================================================================================
+- Version 3.7.5 [12.05.2014]
+======================================================================================
+ 1. Feature: [added] possibility to changes event category from Daily View popup
+ 2. Feature: [added] possibility to use PDO extension instead of "mysql_" functions
+ 3. Feature: [added] possibility to show/hide filtering dropdown box for categories
+ 4. Feature: [added] possibility to define exporting types via API
+ 5. Feature: [added] possibility to define time block size 10 minutes
+ 6. Feature: [added] possibility to define locations via public API
+ 7. Feature: [added] non-documented property $saturdayColor that allows to highlight Saturday
+ 8. Feature: [added] possibility to define selected category with SetCategoryID() method
+ 9. Feature: [added] non-documented property $showEmptyTimeSlots that allows to hide empty slots in Weekly View
+10. Feature: [added] added possibility to view occurrences for particular event
+ 
+ 1. Feature: [improved] minor changes in adding events procedure 
+ 2. Feature: [improved] email notification text places in separate template file
+ 3. Feature: [improved] all javascript functions is incorporated into the separate class
+ 4. Feature: [improved] minor changes in events management pages styling
+
+ 1. Bug: [fixed] wrong displaying of AM/PM time format
+ 2. Bug: [fixed] wrong displaying of event blocks in Daily View when change zoom level in browser
+ 3. Bug: [fixed] display error on using new line character in event description
+ 4. Bug: [fixed] email notification was sent one time only for multiple event occurrences
+ 5. Bug: [fixed] wrong displaying events in case of overflow or underflow of calendar hours
+
+
+======================================================================================
+- Version 3.6.9 [08.04.2014]
+======================================================================================
+ 1. Feature: [added] possibility to add URL to events
+ 2. Feature: [added] non-documented property $eventsLinkTarget that specifies events link target
+ 3. Feature: [added] translation into Hebrew. Special thanks for Eli Agron!
+ 4. Feature: [added] non-documented property $allowEventsWithSameName that allows to create events with the same name 
+ 5. Feature: [added] token for submission forms
+ 6. Feature: [added] RTL support for WYSIWYG editor
+ 7. Feature: [added] added text "unformat" option for WYSIWYG editor
+ 8. Feature: [added] non-documented property $highlightSelectedDay that allows to highlight selected day
+ 
+ 1. Feature: [improved] participants management - blocked possibility to insert participants with the same emails
+ 2. Feature: [improved] examples styling
+ 3. Feature: [improved] minor changes in debug output
+ 4. Feature: [improved] openWYSIWYG replaced with TinyEditor
+ 
+ 1. Bug: [fixed] wrong drawing time blocks for Daily View when SetAllowedHours() is used
+ 2. Bug: [fixed] empty value issue in __decode_text() function in calendar.js file
+ 3. Bug: [fixed] in processing two or more calendars on one page
+ 4. Bug: [fixed] in GetWeekNumberInMonth()
+ 5. Bug: [fixed] showing "undefined" popup for events with empty descripion
+ 6. Bug: [fixed] doesn't work 'delete'=>false in SetParticipantsOperations()
+ 7. Bug: [fixed] <legend> tag alignment in Chrome browser
+ 8. Bug: [fixed] in closing popup dialogs
+ 9. Bug: [fixed] not stays on selected tab when defined $viewChangerType = 'tabs';   
+
+
+======================================================================================
+- Version 3.5.7 [23.05.2012]
+======================================================================================
+ 1. Feature: [added] possibility to define whether to allow assigning participants to events: "assign_to_events"=>true
+ 2. Feature: [added] non-documented property $this->isAnchorAllowed = true|false;, used to allow working with anchor 
+ 2. Feature: [added] non-documented property $this->removeCategoryEvents = true|false;, used to force deletion of category events when category is removing
+ 3. Feature: [added] non-documented property $this->dateFormat = 'mm/dd/yyyy';, used to define date format
+ 4. Feature: [added] possibility to define whether to allow deleting events in the past: DeletingEventsInPast(true);
+ 5. Feature: [added] possibility to export calendar events with 3 formats: CSV, XML or iCAL
+ 6. Feature: [added] non-documented property $this->direction = 'ltr|rtl';, used to specify calendar text direction
+ 7. Feature: [added] non-documented property $this->allowLocations = true|false;, used to allow additional categorization by location
+
+ 1. Feature: [improved] optimized drawing of tooltips for all type of views
+ 2. Feature: [improved] security access to exporting files
+ 3. Feature: [improved] exporting feature - list of events changed into list of events occurrences
+ 4. Feature: [improved] time slots - added possibility to define duration = 120 min
+ 5. Feature: [improved] all place-holders for templates redone as case-insensitive
+ 6. Feature: [improved] description field for events and categories made optional
+ 
+ 1. Bug: [fixed] wrong drawing LEGEND tags in Chrome
+ 2. Bug: [fixed] wrong drawing of view changer if only one view type is defined
+ 3. Bug: [fixed] in SetCalendarViews() method
+ 4. Bug: [fixed] in GetDayForMonth() method in detecting max days in february for leap years
+ 5. Bug: [fixed] in drawing events with the same name in Daily View
+ 6. Bug: [fixed] duplicate sending emails in SendNotifications()
+ 7. Bug: [fixed] in including language files when 2 calendar objects were created on the same page
+ 
+
+======================================================================================
+- Version 3.4.3 [18.04.2012]
+======================================================================================
+ 1. Feature: [added] new language - Portug�s (pt) - special thanks to Roberto Nogueira
+ 2. Feature: [added] non-documented property $this->viewChangerType = 'dropdownlist|tabs';
+
+ 1. Feature: [improved] translation for some languages
+ 2. Feature: [improved] minor changes in calendar styles
+ 3. Feature: [improved] minor changes on daily "Add New Event" popup window
+ 4. Feature: [improved] date representation in List View - added week day abbreviation
+ 5. Feature: [improved] validation for text length of event description
+ 6. Feature: [improved] WYSIWYG icons set - added image icon
+ 7. Feature: [improved] exporting feature - export files are placed in tmp/export/ directory
+ 8. Feature: [improved] security check procedures against CSRF attacks
+ 9. Feature: [improved] SetCategoriesSettings/SetParticipantsSettings methods were replaced with SetCategoriesOperations/SetParticipantsOperations
+ 
+ 1. Bug: [fixed] error on adding events with the same name for different participants
+ 2. Bug: [fixed] always shows "blue" style while adding new style
+ 3. Bug: [fixed] wrong names of months in Montly2x View
+
+
+======================================================================================
+- Version 3.3.8 [11.05.2011]
+======================================================================================
+ 1. Feature: [added] selecting of actual day in List View
+ 2. Feature: [added] possibility to export events from selected period of time in .CSV format
+ 3. Feature: [added] possibility to store images in description of event, by using tag <img> via WYSIWYG
+ 4. Feature: [added] days coloring in Yearly View, depending on the number of events
+ 5. Feature: [added] floating tooltips instead of standard for events in all views
+ 6. Feature: [added] new type of daily events view - "block"
+ 7. Feature: [added] possibility to send email notifications for participants assigned to events with SendNotifications()
+ 8. Feature: [added] non-documented property "participantDataSaveType" that specifies a mathod of saving participant's data: session or cookie
+ 9. Feature: [added] possibility to define new type of repeated events: Weekly or Monthly
+ 
+ 1. Feature: [improved] functionality of SetMonthlySmallLinks() method
+ 2. Feature: [improved] retrieving sub-string for non-english text
+ 3. Feature: [improved] language translation procedure
+ 4. Feature: [improved] possibility to participants to only work with their events by using SetParticipantID() method
+
+ 1. Bug: [fixed] in displaying events containing apostrophes in name or description  
+ 2. Bug: [fixed] in navigation from Yearly View to Montly View, when current day is greater than 28
+ 3. Bug: [fixed] in drawing datetime for event in Edit Event popup
+ 4. Bug: [fixed] quotes problems in events name and description
+ 5. Bug: [fixed] loosing of selected page on sorting columns in Events/Categories/Participants Management
+ 6. Bug: [fixed] error on deleting events occurrences
+ 7. Bug: [fixed] in drawing tooltip for Monthly View when categories colors was disabled
+ 8. Bug: [fixed] F5 re-submission issue for inserting of new events
+ 
+
+======================================================================================
+- Version 3.2.5 [10.04.2011]
+======================================================================================
+ 1. Feature: [added] possibility to add events repeatedly via Events -> Add Event -> Add occurrences for this event [Repeatedly] 
+ 2. Feature: [added] translation into Italian. Special thanks for Damir Grgic!
+ 3. Feature: [added] new graph type for statistics - Area Chart
+ 4. Feature: [added] new calendar view - "monthly_double"
+ 5. Feature: [added] added possibility to view uncategorized events from Change Category dropdown box
+ 6. Feature: [added] possibility to disable more the one day via SetDisabledDays() method
+
+ 1. Feature: [improved] all styles, addedd rounded corners for some elements (works in FireFox, Chrome, Safari)
+ 2. Feature: [improved] date validation functions
+ 3. Feature: [improved] javascript code re-written with jQuery() instead of $() to prevent overlapping
+ 4. Feature: [improved] minor changes in HTML templates and CSS styles
+ 5. Feature: [improved] secure AJAX call functionality
+ 6. Feature: [improved] sorting functionality for Manage Events, Categories and Participants
+ 7. Feature: [improved] check for uniqueness of event name - from now allowed events with the same name in different categories
+ 8. Feature: [improved] List View - days converted into links to Daily View
+ 9. Feature: [improved] caching functionality
+
+ 1. Bug: [fixed] javascript error on Weekly View with click_x variable
+ 2. Bug: [fixed] wrong week number on Montly and Yearly Views
+ 3. Bug: [fixed] in caching Montly View - wrong day saved
+ 4. Bug: [fixed] loosing selected day while changing category
+ 5. Bug: [fixed] on attempt to spread events on slots, where such event already exists
+
+
+======================================================================================
+- Version 3.1.0 [19.03.2011]
+======================================================================================
+ 1. Bug: [fixed] SQL error on updating event via Daily view
+ 2. Bug: [fixed] with displaying edit icon for milti-slot events in Daily View
+ 3. Bug: [fixed] with disabling edit icon in Daily View, when edit = false
+ 4. Bug: [fixed] with saving new line character in event name and description
+ 5. Bug: [fixed] missed last hour in time dropdown calendar
+ 6. Bug: [fixed] wrong events displaying for Weekly and Montly tooltip display type
+ 7. Bug: [fixed] in displaying event names with apostrophes for Weekl;y and Montly Views
+ 8. Bug: [fixed] displaying delete icon for Weekly View, even if deleting operation disallowed
+ 9. Bug: [fixed] with group_concat_max_len and splitting cells in Monthly View
+10. Bug: [fixed] on installation with magic_quotes_gpc turned 'On'
+
+
+======================================================================================
+- Version 3.0.6 [02.08.2010]
+======================================================================================
+ 1. Feature: [added] possibility to add events repeatedly via Events -> Add Event -> Add occurrences for this event [Repeatedly] 
+ 2. Feature: [added] possibility to delete events by date range via Events -> Delete By Range
+ 3. Feature: [added] possibility to assign participants to events
+ 4. Feature: [added] non-documented property: isEventPartsAllowed, that allows to work with separate parts of event
+ 5. Feature: [added] possibility to edit event occurrences from Daily and Weekly Views
+
+ 6. Feature: [improved] debug mode output information
+
+ 7. Bug: [fixed] last day of month was not shown in List View
+
+
+======================================================================================
+- Version 3.0.5 [31.07.2010]
+======================================================================================
+ 1. Feature: [added] possibility to define multiple occurrences for events: SetEventsMultipleOccurrences(true) 
+ 2. Feature: [added] possibility to block deleting events in the past: BlockEventsDeletingBefore(hours) 
+ 3. Feature: [added] possibility to define duration time for event categories
+ 4. Feature: [added] displaying busy days (days with 1 event at least) in Yearly View
+ 5. Feature: [added] added possibility to sort Events an Categories on Events and Categories Management pages
+ 6. Feature: [added] possibility to turn On/Off showing times in Daily, Weekly and List views
+ 7. Feature: [added] non-documented property: "separator", that used to separate events in SELECT SQL
+ 8. Feature: [added] possibility to filter events in Monthly/Yearly view by category
+ 9. Feature: [added] possibility to show small calendar by defining of SetDefaultView("monthly_small")
+
+ 1. Feature: [improved] method for receiving query string parameters
+ 2. Feature: [improved] fixed maxlength for event name - 70 and category name - 50 chars.
+ 3. Feature: [improved] categories with duration smaller than current time slot - are not shown on dropdown box
+ 4. Feature: [improved] events statistics and printing options moved from events to calendar operations
+ 5. Feature: [improved] protection against vulnerability attacks
+ 6. Feature: [improved] opening Add Event popup depending on mouse click coordinates
+
+ 1. Bug: [fixed] in SetTimeZone() method
+ 2. Bug: [fixed] in Monthly view displaying wrong number of events for day cell
+ 3. Bug: [fixed] GROUP_CONCAT() maximal length
+ 4. Bug: [fixed] in Yearly view displaying wrong number of week
+ 5. Bug: [fixed] in Daly View when try to move focus on disabled event name field
+
+
+======================================================================================
+- Version 3.0.4 [20.03.2010]
+======================================================================================
+ 1. Feature: [added] possibility to work with events, related to certain participant by using SetParticipantID() method    
+ 2. Feature: [added] possibility to define (allow) Calendar Views: Daily, Weekly etc. by using SetCalendarViews() method
+ 3. Feature: [added] new operation type: "printing" (defined in SetOperations() method)
+ 4. Feature: [added] new CSS style - "brown"
+ 5. Feature: [added] new language - (de) German - suggested by Roland Stuber
+ 6. Feature: [added] possibility to limit the daily time "from" "to" by SetAllowedHours(7, 19) method
+ 7. Feature: [added] scrolling on events overflow for Monthly View cells
+ 8. Feature: [added] possibility to disable a certain day of week by using SetDisabledDay() method
+ 9. Feature: [added] possibility to save http request variables between calendar's sessions by using SaveHttpRequestVars() method
+10. Feature: [added] new type of displaying events for Monthly View - "list"
+
+ 1. Feature: [improved] linking to calendar.class.php (using predefined constant - CALENDAR_DIR)
+ 2. Feature: [improved] tooltip displaying for Weekly view (now it shows event description, not name)
+ 3. Feature: [improved] minor changes in CSS styles
+ 4. Feature: [improved] minor improvements in Debug Mode
+ 5. Feature: [improved] minor improvements in Statistics Module
+
+ 1. Bug: [fixed] in GetMonthlyDayEvents() method - runtime error
+ 2. Bug: [fixed] wrong events counting on Statistics page
+ 3. Bug: [fixed] in drawing Time 15min/30min time blocks
+ 4. Bug: [fixed] double event occurency inserting in the same period of time
+ 5. Bug: [fixed] working with titles of events, that contains apostrophes
+ 6. Bug: [fixed] in Statistics Module while drawing events, that have names with apostrophes 
+ 7. Bug: [fixed] Weekly View didn't open from Sunday
+ 8. Bug: [fixed] in function of calculation days in month 
+ 9. Bug: [fixed] with collation for database connection
+
+
+======================================================================================
+- Version 3.0.3 [06.02.2010]
+======================================================================================
+ 1. Feature: [added] possibility to display Events in Monthly/Weekly View ("inline" or "tooltip"):
+                    SetEventsDisplayType(array("monthly"=>"tooltip", "weekly"=>"tooltip"))
+ 2. Feature: [added] possibility to view Event Details on Manage Events page (link Details)
+ 3. Feature: [added] possibility to define Viewer access rights to operations: SetOperations(array())
+ 4. Feature: [added] tooltips for events (in events list) Montly view
+ 5. Feature: [added] possibility to view statistics of 10 top events: Statistics Menu 
+ 6. Feature: [added] possibility to block/unblock events in past by $objCalendar->EditingEventsInPast(false);
+ 7. Feature: [added] possibility to define time block size: 15/30/60 minutes with $objCalendar->SetTimeBlock("30");    
+     
+ 1. Feature: [improved] debug module functionality - added more info for SQL statements
+ 2. Feature: [improved] in Add/Edit events form validation (set focus on handled fields)
+ 3. Feature: [improved] SetColorToSunday() - drawing Sunday colored
+ 4. Feature: [improved] Manage Events page - added paging for events (default 20 events/page)
+ 5. Feature: [improved] added check for uniqueness of event's name on Add Event page
+ 6. Feature: [improved] time (from-to) defualt selection in Add Event form (now it selects current time block)
+ 
+ 1. Bug: [fixed] minor syntax errors in DrawEventForm() and Show() methods
+ 2. Bug: [fixed] in Cancel button action for Edit Event Form
+ 3. Bug: [fixed] displaying wrong week day name for Week view
+ 4. Bug: [fixed] in Daily View navigation at the right side: 26th January | 09th February
+
+
+======================================================================================
+- Version 3.0.2 [27.11.2009]
+======================================================================================
+ 1. Feature: [added] possibility to manage Events: Add/Edit and Delete
+ 2. Feature: [added] possibility to add new event or select from the existing
+ 3. Feature: [added] possibility to define displaying time format: 24 or AM/PM
+ 4. Feature: [added] multi-lingual support - possibility of translation  to other languages
+ 
+ 1. Feature: [improved] minor changes in CSS styles 
+ 2. Feature: [improved] added possibility to set color for Sunday: SetSundayColor(true)
+ 3. Feature: [improved] added possibility to add events from Weekly View
+
+ 1. Bug: [fixed] displaying wrong week day in Weekly View
+ 2. Bug: [fixed] displaying wrong weekly link in Monthly View
+ 3. Bug: [fixed] in Weekly View navigation links
+ 4. Bug: [fixed] in displaying date info fir Weekly View (Month Year - Month Year)
+ 5. Bug: [fixed] in displaying error info debug for Debug Mode
+
+
+======================================================================================
+- Version 3.0.1 [17.10.2009]
+======================================================================================
+ 1. Feature: [added] possibility to drag Add Event form <div>
+ 2. Feature: [added] HTML template for Add Event form
+ 3. Feature: [added] smart caching of pages for better performance
+
+ 1. Feature: [improved] autofocus on first enabled field in Add Event form
+ 2. Feature: [improved] minor changes in design of Add Event form and calendar styles
+
+
+======================================================================================
+- Version 2.0.1 [05.10.2009]
+======================================================================================
+
+ 1. Feature: [added] possibility to define default view by SetDefaultView()
+ 2. Feature: [added] possibility to show number of week by ShowWeekNumberOfYear()
+ 3. Feature: [added] possibility to change form submission type - "get"/"post" (default)
+ 4. Feature: [added] possibility to show debug info by Debug(true)
+ 5. Feature: [added] navigation to Daily View
+ 6. Feature: [added] new CSS template - "green"
+ 7. Feature: [added] possibility to add and delete events from database
+
+ 1. Bug: [fixed] wrong displaying of actual day in Yearly View
+

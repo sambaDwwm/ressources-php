@@ -1,0 +1,2207 @@
+<html>
+<head>
+<title>Monthly</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+
+</head>
+<script>
+{literal}
+var uagent    = navigator.userAgent.toLowerCase();
+var is_safari = ( (uagent.indexOf('safari') != -1) || (navigator.vendor == "Apple Computer, Inc.") );
+var is_opera  = (uagent.indexOf('opera') != -1);
+var is_webtv  = (uagent.indexOf('webtv') != -1); 
+var ua_vers   = parseInt(navigator.appVersion); 
+var is_win    =  ( (uagent.indexOf("win") != -1) || (uagent.indexOf("16bit") !=- 1) ); 
+var is_ie     = ( (uagent.indexOf('msie') != -1) && (!is_opera) && (!is_safari) && (!is_webtv) ); 
+var mclick=0;
+var xpos;
+var ypos;
+var offx;
+var offy;
+function move_mouse()
+{
+    if(mclick==1)
+    {
+        ypos=event.y+document.body.scrollTop;
+	xpos=event.x+document.body.scrollLeft;
+	if(xpos-offx>0 && ypos-offy>0 && document.getElementById('addnew').offsetWidth+xpos-offx<document.body.clientWidth && document.getElementById('addnew').offsetHeight+ypos-offy<document.body.clientHeight)
+	{
+	    document.getElementById('addnew').style.left=xpos-offx;
+  	    document.getElementById('addnew').style.top=ypos-offy;
+	}
+    }
+}
+function move_mouse_M(ev)
+{
+    if(mclick==1)
+    {
+	ypos=ev.clientY;
+	xpos=ev.clientX;
+	if(xpos-offx>0 && ypos-offy>0 && document.getElementById('addnew').offsetWidth+xpos-offx<window.innerWidth && document.getElementById('addnew').offsetHeight+ypos-offy<window.innerHeight)
+	{
+	    document.getElementById('addnew').style.left=xpos-offx;
+	    document.getElementById('addnew').style.top=ypos-offy;
+	}
+    }
+    return true;
+}
+{/literal}
+</script>
+<body topmargin=5 {$onload} onselectstart="if(mclick==1)return false;else return true;" onmousemove="if(is_ie)move_mouse();else move_mouse_M(event);" onmouseup="mclick=0;">
+{$includes}
+
+<script language="JavaScript" src="include/calendar.js"></script>
+
+<script language="JavaScript" type="text/javascript" src="include/inlineedit.js"></script>
+
+{include_if_exists file="include/header.php"}
+{doevent name="ListOnLoad"}
+<form name="frmSearch" method="GET" action="calendar_list.php">
+<input type="Hidden" name="a" value="search">
+<input type="Hidden" name="value" value="1">
+<input type="Hidden" name="SearchFor" value="">
+<input type="Hidden" name="SearchOption" value="">
+<input type="Hidden" name="SearchField" value="">
+</form>
+<table width=99% align=center border=0 cellpadding=0 cellspacing=0><tr><td>
+
+<table class="navigation" cellspacing="0" cellpadding="0" width=100% border=0 height=36>
+<tr>
+<td class=logged_left width=5></td>
+<td align=left class=logged valign=middle style="padding-top:2">
+<span style="white-space:nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font style="FONT-FAMILY: Verdana, Arial;">Logged as</font>&nbsp;<b>{$userid}</b>&nbsp;
+
+{if $userid=="Guest"}
+<span class=buttonborder><input type=button class=button value="Login" onClick="window.location.href='login.php?a=logout';"></span>
+{else}
+<span class=buttonborder><input type=button class=button value="Log out" onClick="window.location.href='login.php?a=logout';"></span>
+{/if}
+
+</span>
+<td align=right class=logged valign=middle style="padding-top:2">&nbsp;
+<span style="white-space:nowrap">
+
+{if $rowsfound}
+
+ {if $allow_export} 
+&nbsp;&nbsp;&nbsp;
+<span class=buttonborder><input type=button class=button value="Export results" onClick="window.open('monthly_export.php','wExport');return false;"></span>
+ {/if} 
+
+ {if $allow_export} 
+&nbsp;&nbsp;&nbsp;
+<span class=buttonborder><input type=button class=button value="Printer-friendly version" onClick="window.open('monthly_print.php','wPrint');return false;"></span>
+ {/if} 
+
+{/if}
+
+<!--language-->
+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</td>
+<td class=logged_right width=5></td>
+</tr>
+</table>
+
+<br>
+<table class="body2" cellspacing="0" cellpadding="0" border=0>
+<tr>
+{if $allow_calendar}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="calendar_list.php">Calendar</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_daily}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="daily_list.php">Daily</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_monthly}
+		<td width=5px><img src="include/img/but_left_1.gif" border=0></td>
+	<td class="td_border_menu_gif">
+	<a width=5px class="menu_db" href="monthly_list.php">Monthly</a>
+	</td>
+	<td><img src="include/img/but_right_1.gif" border=0></td>
+{/if}
+{if $allow_weekly}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="weekly_list.php">Weekly</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_yearly}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="yearly_list.php">Yearly</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_customer}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="customer_list.php">Customers</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_category}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="category_list.php">Tasks</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_Copy_of_calendar}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="Copy_of_calendar_list.php">edit calendar</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_customer_statistics}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="customer_statistics_list.php">customer statistics</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_task_statistics}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="task_statistics_list.php">task statistics</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_users}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="users_list.php">Users</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_howto}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="howto_list.php">How to (FAQ)</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+</tr></table>
+
+
+
+<table class="main_table_border_P" cellspacing="0" cellpadding="0" width=100% border=0>
+<tr>
+<td width=100% height=10px colspan=2></td>
+<td class=up_right2 width=5px height=10px>&nbsp;</td>
+</tr>
+
+<tr>
+<td class=navigat_left width=5px height=15px>&nbsp;</td>
+<td class=navigat width=100%>&nbsp;</td>
+<td class=navigat_right width=5px>&nbsp;</td>
+</tr>
+</table>
+
+ {if $allow_search} 
+<tr><td colspan=2>
+<!-- delete form -->
+&nbsp;{doevent name="Monthly_Next_Prev"}<br>
+
+<form method="POST" action="monthly_list.php" name="frmAdmin">
+	<input type=hidden id="a" name="a" value="delete">
+
+<table align="center" width="100%" border="0" cellpadding=0 cellspacing=1>
+<tr><td width="2%" style="background: url('images/weekdayname.gif') repeat right top;" height=20></td>
+<td style="background: url('images/weekdayname.gif') repeat right top;" width="14%" align=center valign=middle><b>{$row00sdname1}</b></td>
+<td style="background: url('images/weekdayname.gif') repeat right top;" width="14%" align=center valign=middle><b>{$row00sdname2}</b></td>
+<td style="background: url('images/weekdayname.gif') repeat right top;" width="14%" align=center valign=middle><b>{$row00sdname3}</b></td>
+<td style="background: url('images/weekdayname.gif') repeat right top;" width="14%" align=center valign=middle><b>{$row00sdname4}</b></td>
+<td style="background: url('images/weekdayname.gif') repeat right top;" width="14%" align=center valign=middle><b>{$row00sdname5}</b></td>
+<td style="background: url('images/weekdayname.gif') repeat right top;" width="14%" align=center valign=middle><b>{$row00sdname6}</b></td>
+<td style="background: url('images/weekdayname.gif') repeat right top;" width="14%" align=center valign=middle><b>{$row00sdname7}</b></td>
+</tr>
+<tr>
+<td align=center width="2%" {$row001WeekDays_value}>
+{if $row001Date_value!="" || $row007Date_value!=""}
+{if $row001Date_value!=""}
+	<a href="weekly_list.php?{$row00Dateadd1_value}">
+{else}
+	<a href="weekly_list.php?{$row00Dateadd7_value}">
+{/if}
+<b>>></b></a>{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row001Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row001Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM1_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick1_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd1_value}">
+<b>{$row001Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row001Date_value}" 
+ class=shade 
+>
+{$row001Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row001Date_value}" {$row00more1_value}>
+<a href="daily_list.php?{$row00Dateadd1_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row001Date_value}">{$row00count1_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row001Date_value} name=kol{$row001Date_value} value={$row001KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row002Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row002Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM2_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick2_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd2_value}">
+<b>{$row002Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row002Date_value}" 
+ class=shade 
+>
+{$row002Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row002Date_value}" {$row00more2_value}>
+<a href="daily_list.php?{$row00Dateadd2_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row002Date_value}">{$row00count2_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row002Date_value} name=kol{$row002Date_value} value={$row002KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row003Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row003Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM3_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick3_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd3_value}">
+<b>{$row003Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row003Date_value}" 
+ class=shade 
+>
+{$row003Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row003Date_value}" {$row00more3_value}>
+<a href="daily_list.php?{$row00Dateadd3_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row003Date_value}">{$row00count3_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row003Date_value} name=kol{$row003Date_value} value={$row003KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row004Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row004Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM4_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick4_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd4_value}">
+<b>{$row004Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row004Date_value}" 
+ class=shade 
+>
+{$row004Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row004Date_value}" {$row00more4_value}>
+<a href="daily_list.php?{$row00Dateadd4_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row004Date_value}">{$row00count4_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row004Date_value} name=kol{$row004Date_value} value={$row004KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row005Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row005Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM5_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick5_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd5_value}">
+<b>{$row005Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row005Date_value}" 
+ class=shade 
+>
+{$row005Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row005Date_value}" {$row00more5_value}>
+<a href="daily_list.php?{$row00Dateadd5_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row005Date_value}">{$row00count5_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row005Date_value} name=kol{$row005Date_value} value={$row005KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row006Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row006Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM6_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick6_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd6_value}">
+<b>{$row006Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row006Date_value}" 
+ class=blackshade
+>
+{$row006Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=blackshade style="font-weight:normal;font-size:9px">
+<span id="more{$row006Date_value}" {$row00more6_value}>
+<a href="daily_list.php?{$row00Dateadd6_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row006Date_value}">{$row00count6_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row006Date_value} name=kol{$row006Date_value} value={$row006KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row007Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row007Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM7_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick7_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd7_value}">
+<b>{$row007Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row007Date_value}" 
+ class=blackshade
+>
+{$row007Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=blackshade style="font-weight:normal;font-size:9px">
+<span id="more{$row007Date_value}" {$row00more7_value}>
+<a href="daily_list.php?{$row00Dateadd7_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row007Date_value}">{$row00count7_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row007Date_value} name=kol{$row007Date_value} value={$row007KolStr_value}>
+{/if}
+</td>
+</tr>
+<tr>
+<td align=center width="2%" {$row002WeekDays_value}>
+{if $row008Date_value!="" || $row0014Date_value!=""}
+{if $row008Date_value!=""}
+	<a href="weekly_list.php?{$row00Dateadd8_value}">
+{else}
+	<a href="weekly_list.php?{$row00Dateadd14_value}">
+{/if}
+<b>>></b></a>{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row008Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row008Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM8_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick8_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd8_value}">
+<b>{$row008Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row008Date_value}" 
+ class=shade 
+>
+{$row008Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row008Date_value}" {$row00more8_value}>
+<a href="daily_list.php?{$row00Dateadd8_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row008Date_value}">{$row00count8_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row008Date_value} name=kol{$row008Date_value} value={$row008KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row009Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row009Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM9_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick9_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd9_value}">
+<b>{$row009Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row009Date_value}" 
+ class=shade 
+>
+{$row009Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row009Date_value}" {$row00more9_value}>
+<a href="daily_list.php?{$row00Dateadd9_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row009Date_value}">{$row00count9_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row009Date_value} name=kol{$row009Date_value} value={$row009KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0010Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0010Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM10_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick10_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd10_value}">
+<b>{$row0010Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0010Date_value}" 
+ class=shade 
+>
+{$row0010Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row0010Date_value}" {$row00more10_value}>
+<a href="daily_list.php?{$row00Dateadd10_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0010Date_value}">{$row00count10_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0010Date_value} name=kol{$row0010Date_value} value={$row0010KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0011Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0011Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM11_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick11_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd11_value}">
+<b>{$row0011Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0011Date_value}" 
+ class=shade 
+>
+{$row0011Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row0011Date_value}" {$row00more11_value}>
+<a href="daily_list.php?{$row00Dateadd11_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0011Date_value}">{$row00count11_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0011Date_value} name=kol{$row0011Date_value} value={$row0011KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0012Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0012Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM12_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick12_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd12_value}">
+<b>{$row0012Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0012Date_value}" 
+ class=shade 
+>
+{$row0012Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row0012Date_value}" {$row00more12_value}>
+<a href="daily_list.php?{$row00Dateadd12_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0012Date_value}">{$row00count12_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0012Date_value} name=kol{$row0012Date_value} value={$row0012KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0013Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0013Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM13_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick13_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd13_value}">
+<b>{$row0013Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0013Date_value}" 
+ class=blackshade
+>
+{$row0013Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=blackshade style="font-weight:normal;font-size:9px">
+<span id="more{$row0013Date_value}" {$row00more13_value}>
+<a href="daily_list.php?{$row00Dateadd13_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0013Date_value}">{$row00count13_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0013Date_value} name=kol{$row0013Date_value} value={$row0013KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0014Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0014Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM14_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick14_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd14_value}">
+<b>{$row0014Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0014Date_value}" 
+ class=blackshade
+>
+{$row0014Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=blackshade style="font-weight:normal;font-size:9px">
+<span id="more{$row0014Date_value}" {$row00more14_value}>
+<a href="daily_list.php?{$row00Dateadd14_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0014Date_value}">{$row00count14_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0014Date_value} name=kol{$row0014Date_value} value={$row0014KolStr_value}>
+{/if}
+</td>
+</tr>
+<tr>
+<td align=center width="2%" {$row003WeekDays_value}>
+{if $row0015Date_value!="" || $row0021Date_value!=""}
+{if $row0015Date_value!=""}
+	<a href="weekly_list.php?{$row00Dateadd15_value}">
+{else}
+	<a href="weekly_list.php?{$row00Dateadd21_value}">
+{/if}
+<b>>></b></a>{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0015Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0015Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM15_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick15_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd15_value}">
+<b>{$row0015Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0015Date_value}" 
+ class=shade 
+>
+{$row0015Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row0015Date_value}" {$row00more15_value}>
+<a href="daily_list.php?{$row00Dateadd15_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0015Date_value}">{$row00count15_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0015Date_value} name=kol{$row0015Date_value} value={$row0015KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0016Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0016Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM16_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick16_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd16_value}">
+<b>{$row0016Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0016Date_value}" 
+ class=shade 
+>
+{$row0016Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row0016Date_value}" {$row00more16_value}>
+<a href="daily_list.php?{$row00Dateadd16_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0016Date_value}">{$row00count16_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0016Date_value} name=kol{$row0016Date_value} value={$row0016KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0017Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0017Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM17_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick17_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd17_value}">
+<b>{$row0017Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0017Date_value}" 
+ class=shade 
+>
+{$row0017Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row0017Date_value}" {$row00more17_value}>
+<a href="daily_list.php?{$row00Dateadd17_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0017Date_value}">{$row00count17_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0017Date_value} name=kol{$row0017Date_value} value={$row0017KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0018Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0018Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM18_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick18_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd18_value}">
+<b>{$row0018Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0018Date_value}" 
+ class=shade 
+>
+{$row0018Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row0018Date_value}" {$row00more18_value}>
+<a href="daily_list.php?{$row00Dateadd18_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0018Date_value}">{$row00count18_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0018Date_value} name=kol{$row0018Date_value} value={$row0018KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0019Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0019Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM19_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick19_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd19_value}">
+<b>{$row0019Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0019Date_value}" 
+ class=shade 
+>
+{$row0019Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row0019Date_value}" {$row00more19_value}>
+<a href="daily_list.php?{$row00Dateadd19_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0019Date_value}">{$row00count19_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0019Date_value} name=kol{$row0019Date_value} value={$row0019KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0020Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0020Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM20_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick20_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd20_value}">
+<b>{$row0020Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0020Date_value}" 
+ class=blackshade
+>
+{$row0020Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=blackshade style="font-weight:normal;font-size:9px">
+<span id="more{$row0020Date_value}" {$row00more20_value}>
+<a href="daily_list.php?{$row00Dateadd20_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0020Date_value}">{$row00count20_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0020Date_value} name=kol{$row0020Date_value} value={$row0020KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0021Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0021Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM21_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick21_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd21_value}">
+<b>{$row0021Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0021Date_value}" 
+ class=blackshade
+>
+{$row0021Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=blackshade style="font-weight:normal;font-size:9px">
+<span id="more{$row0021Date_value}" {$row00more21_value}>
+<a href="daily_list.php?{$row00Dateadd21_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0021Date_value}">{$row00count21_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0021Date_value} name=kol{$row0021Date_value} value={$row0021KolStr_value}>
+{/if}
+</td>
+</tr>
+<tr>
+<td align=center width="2%" {$row004WeekDays_value}>
+{if $row0022Date_value!="" || $row0028Date_value!=""}
+{if $row0022Date_value!=""}
+	<a href="weekly_list.php?{$row00Dateadd22_value}">
+{else}
+	<a href="weekly_list.php?{$row00Dateadd28_value}">
+{/if}
+<b>>></b></a>{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0022Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0022Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM22_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick22_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd22_value}">
+<b>{$row0022Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0022Date_value}" 
+ class=shade 
+>
+{$row0022Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row0022Date_value}" {$row00more22_value}>
+<a href="daily_list.php?{$row00Dateadd22_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0022Date_value}">{$row00count22_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0022Date_value} name=kol{$row0022Date_value} value={$row0022KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0023Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0023Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM23_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick23_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd23_value}">
+<b>{$row0023Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0023Date_value}" 
+ class=shade 
+>
+{$row0023Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row0023Date_value}" {$row00more23_value}>
+<a href="daily_list.php?{$row00Dateadd23_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0023Date_value}">{$row00count23_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0023Date_value} name=kol{$row0023Date_value} value={$row0023KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0024Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0024Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM24_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick24_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd24_value}">
+<b>{$row0024Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0024Date_value}" 
+ class=shade 
+>
+{$row0024Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row0024Date_value}" {$row00more24_value}>
+<a href="daily_list.php?{$row00Dateadd24_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0024Date_value}">{$row00count24_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0024Date_value} name=kol{$row0024Date_value} value={$row0024KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0025Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0025Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM25_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick25_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd25_value}">
+<b>{$row0025Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0025Date_value}" 
+ class=shade 
+>
+{$row0025Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row0025Date_value}" {$row00more25_value}>
+<a href="daily_list.php?{$row00Dateadd25_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0025Date_value}">{$row00count25_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0025Date_value} name=kol{$row0025Date_value} value={$row0025KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0026Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0026Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM26_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick26_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd26_value}">
+<b>{$row0026Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0026Date_value}" 
+ class=shade 
+>
+{$row0026Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row0026Date_value}" {$row00more26_value}>
+<a href="daily_list.php?{$row00Dateadd26_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0026Date_value}">{$row00count26_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0026Date_value} name=kol{$row0026Date_value} value={$row0026KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0027Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0027Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM27_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick27_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd27_value}">
+<b>{$row0027Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0027Date_value}" 
+ class=blackshade
+>
+{$row0027Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=blackshade style="font-weight:normal;font-size:9px">
+<span id="more{$row0027Date_value}" {$row00more27_value}>
+<a href="daily_list.php?{$row00Dateadd27_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0027Date_value}">{$row00count27_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0027Date_value} name=kol{$row0027Date_value} value={$row0027KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0028Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0028Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM28_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick28_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd28_value}">
+<b>{$row0028Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0028Date_value}" 
+ class=blackshade
+>
+{$row0028Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=blackshade style="font-weight:normal;font-size:9px">
+<span id="more{$row0028Date_value}" {$row00more28_value}>
+<a href="daily_list.php?{$row00Dateadd28_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0028Date_value}">{$row00count28_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0028Date_value} name=kol{$row0028Date_value} value={$row0028KolStr_value}>
+{/if}
+</td>
+</tr>
+<tr>
+<td align=center width="2%" {$row005WeekDays_value}>
+{if $row0029Date_value!="" || $row0035Date_value!=""}
+{if $row0029Date_value!=""}
+	<a href="weekly_list.php?{$row00Dateadd29_value}">
+{else}
+	<a href="weekly_list.php?{$row00Dateadd35_value}">
+{/if}
+<b>>></b></a>{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0029Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0029Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM29_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick29_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd29_value}">
+<b>{$row0029Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0029Date_value}" 
+ class=shade 
+>
+{$row0029Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row0029Date_value}" {$row00more29_value}>
+<a href="daily_list.php?{$row00Dateadd29_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0029Date_value}">{$row00count29_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0029Date_value} name=kol{$row0029Date_value} value={$row0029KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0030Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0030Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM30_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick30_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd30_value}">
+<b>{$row0030Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0030Date_value}" 
+ class=shade 
+>
+{$row0030Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row0030Date_value}" {$row00more30_value}>
+<a href="daily_list.php?{$row00Dateadd30_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0030Date_value}">{$row00count30_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0030Date_value} name=kol{$row0030Date_value} value={$row0030KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0031Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0031Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM31_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick31_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd31_value}">
+<b>{$row0031Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0031Date_value}" 
+ class=shade 
+>
+{$row0031Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row0031Date_value}" {$row00more31_value}>
+<a href="daily_list.php?{$row00Dateadd31_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0031Date_value}">{$row00count31_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0031Date_value} name=kol{$row0031Date_value} value={$row0031KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0032Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0032Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM32_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick32_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd32_value}">
+<b>{$row0032Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0032Date_value}" 
+ class=shade 
+>
+{$row0032Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row0032Date_value}" {$row00more32_value}>
+<a href="daily_list.php?{$row00Dateadd32_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0032Date_value}">{$row00count32_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0032Date_value} name=kol{$row0032Date_value} value={$row0032KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0033Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0033Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM33_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick33_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd33_value}">
+<b>{$row0033Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0033Date_value}" 
+ class=shade 
+>
+{$row0033Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row0033Date_value}" {$row00more33_value}>
+<a href="daily_list.php?{$row00Dateadd33_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0033Date_value}">{$row00count33_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0033Date_value} name=kol{$row0033Date_value} value={$row0033KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0034Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0034Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM34_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick34_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd34_value}">
+<b>{$row0034Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0034Date_value}" 
+ class=blackshade
+>
+{$row0034Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=blackshade style="font-weight:normal;font-size:9px">
+<span id="more{$row0034Date_value}" {$row00more34_value}>
+<a href="daily_list.php?{$row00Dateadd34_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0034Date_value}">{$row00count34_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0034Date_value} name=kol{$row0034Date_value} value={$row0034KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0035Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0035Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM35_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick35_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd35_value}">
+<b>{$row0035Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0035Date_value}" 
+ class=blackshade
+>
+{$row0035Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=blackshade style="font-weight:normal;font-size:9px">
+<span id="more{$row0035Date_value}" {$row00more35_value}>
+<a href="daily_list.php?{$row00Dateadd35_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0035Date_value}">{$row00count35_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0035Date_value} name=kol{$row0035Date_value} value={$row0035KolStr_value}>
+{/if}
+</td>
+</tr>
+<tr>
+<td align=center width="2%" {$row006WeekDays_value}>
+{if $row0036Date_value!="" || $row0042Date_value!=""}
+{if $row0036Date_value!=""}
+	<a href="weekly_list.php?{$row00Dateadd36_value}">
+{else}
+	<a href="weekly_list.php?{$row00Dateadd42_value}">
+{/if}
+<b>>></b></a>{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0036Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0036Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM36_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick36_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd36_value}">
+<b>{$row0036Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0036Date_value}" 
+ class=shade 
+>
+{$row0036Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row0036Date_value}" {$row00more36_value}>
+<a href="daily_list.php?{$row00Dateadd36_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0036Date_value}">{$row00count36_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0036Date_value} name=kol{$row0036Date_value} value={$row0036KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0037Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0037Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM37_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick37_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd37_value}">
+<b>{$row0037Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0037Date_value}" 
+ class=shade 
+>
+{$row0037Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row0037Date_value}" {$row00more37_value}>
+<a href="daily_list.php?{$row00Dateadd37_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0037Date_value}">{$row00count37_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0037Date_value} name=kol{$row0037Date_value} value={$row0037KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0038Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0038Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM38_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick38_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd38_value}">
+<b>{$row0038Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0038Date_value}" 
+ class=shade 
+>
+{$row0038Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row0038Date_value}" {$row00more38_value}>
+<a href="daily_list.php?{$row00Dateadd38_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0038Date_value}">{$row00count38_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0038Date_value} name=kol{$row0038Date_value} value={$row0038KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0039Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0039Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM39_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick39_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd39_value}">
+<b>{$row0039Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0039Date_value}" 
+ class=shade 
+>
+{$row0039Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row0039Date_value}" {$row00more39_value}>
+<a href="daily_list.php?{$row00Dateadd39_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0039Date_value}">{$row00count39_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0039Date_value} name=kol{$row0039Date_value} value={$row0039KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0040Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0040Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM40_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick40_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd40_value}">
+<b>{$row0040Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0040Date_value}" 
+ class=shade 
+>
+{$row0040Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=shade  style="font-weight:normal;font-size:9px">
+<span id="more{$row0040Date_value}" {$row00more40_value}>
+<a href="daily_list.php?{$row00Dateadd40_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0040Date_value}">{$row00count40_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0040Date_value} name=kol{$row0040Date_value} value={$row0040KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0041Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0041Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM41_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick41_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd41_value}">
+<b>{$row0041Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0041Date_value}" 
+ class=blackshade
+>
+{$row0041Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=blackshade style="font-weight:normal;font-size:9px">
+<span id="more{$row0041Date_value}" {$row00more41_value}>
+<a href="daily_list.php?{$row00Dateadd41_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0041Date_value}">{$row00count41_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0041Date_value} name=kol{$row0041Date_value} value={$row0041KolStr_value}>
+{/if}
+</td>
+<td width="14%" style="background-color:#C5D2E5">
+{if $row0042Date_value!=""}
+<table height=150 width=100% cellpadding=1 cellspacing=0 {$row0042Now_value} border=0>
+<tr><td  height=20 valign=middle align=right style="background-color:#D1DBE7">
+<table width=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+ {if $allow_add} 
+ <!-- Add new record -->
+<td align=left {$row00AddHideM42_value}>
+&nbsp;&nbsp;<a href="" {$row00AddOnclick42_value} disptype="control1">Add new</a>
+</td>
+ {/if} 
+<td align=right>
+<a href="daily_list.php?{$row00Dateadd42_value}">
+<b>{$row0042Date_value}</b>
+</a>
+</td></tr></table>
+</td></tr>
+<tr><td align=left valign=top width="14%" id="add{$row0042Date_value}" 
+ class=blackshade
+>
+{$row0042Day_value}
+</td></tr>
+<tr><td height=10 align=right  class=blackshade style="font-weight:normal;font-size:9px">
+<span id="more{$row0042Date_value}" {$row00more42_value}>
+<a href="daily_list.php?{$row00Dateadd42_value}">
+More...</a>
+&nbsp;
+(Totals:<span id="count{$row0042Date_value}">{$row00count42_value}</span>)
+</span>
+&nbsp;
+</td></tr>
+</table>
+<input type=hidden id=kol{$row0042Date_value} name=kol{$row0042Date_value} value={$row0042KolStr_value}>
+{/if}
+</td>
+</tr>
+</td>
+</tr>
+<tr height=30><td colspan=1>&nbsp;</td></tr><tr>
+</table>
+<br>
+</td>
+</tr>
+ {/if}  
+
+{if $maxpages>1 || $message!=""}
+{if $message!=""}
+</table>
+{/if}
+<tr><td align=center>
+<b class="xtop"><b class="xb1"></b><b class="xb2"></b><b class="xb3"></b><b class="xb4"></b></b>
+<div class="xboxcontent">
+<table cellpadding=0 cellspacing=0 border=0 width=99% align=center>
+{if $rowsfound}
+<tr>
+<td align="center">{$pagination}</td>
+</tr>
+{/if} 
+<tr name=notfound_message>
+<td align="center" valign=middle>
+</td>
+</tr>
+</table>
+</div>
+<b class="xbottom"><b class="xb4"></b><b class="xb3"></b><b class="xb2"></b><b class="xb1"></b></b>
+</td></tr>
+{/if}
+</table>
+</td></tr></table>
+</td></tr></table>
+</td></tr></table>
+</td></tr></table>
+</form>
+
+{include_if_exists file="include/footer.php"}
+{$linkdata}
+{$Monthly_Array}
+<div style="display:none;position:absolute;" id=addnew>
+<table width=100% height=100% border=0 cellpadding=0 cellspacing=0>
+<tr>
+<td id=addnew1 style="background-color:white;"></td>
+<td>
+    <table cellpadding=0 cellspacing=0 border=0 width=6px height=100%>
+	<tr><td height=6px width=6px></td></tr>
+	<tr><td style="background:url(images/shadow_up_right.gif);-moz-opacity:0.4;filter: alpha(opacity=40);" width=6px height=6px></td></tr>
+	<tr><td style="background:url(images/shadow_right.gif) repeat;-moz-opacity:0.4;filter: alpha(opacity=40);" width=6px></td></tr>
+    </table>
+</td>
+</tr>
+<tr>
+<td width=100%>
+    <table cellpadding=0 cellspacing=0 border=0 height=6px width=100%>
+	<tr><td width=6px height=6px></td>
+   	<td style="background:url(images/shadow_down_left.gif);-moz-opacity:0.4;filter: alpha(opacity=40);" height=6px width=6px></td>
+	<td style="background:url(images/shadow_down.gif) repeat;-moz-opacity:0.4;filter: alpha(opacity=40);" height=6px width=98%></td></tr>
+    </table>
+</td>
+<td style="background:url(images/shadow_down_right.gif);-moz-opacity:0.4;filter: alpha(opacity=40);" height=6px width=6px>
+</td>
+</tr>
+</table>
+</div>
+{$iframe}
+</body>
+</html>
+
+{literal}
+<script>
+function add_div(d,m,y)
+{
+$.get("daily_add.php",
+	{
+	rndval: Math.random(),
+	wind: 'monthly',
+	days: d,
+	mon: m,
+	yr: y
+	},
+	function(xml)
+	{
+	if(xml.indexOf('<form method="POST" action="login.php" id=form1 name=form1>')>=0)
+	{
+		window.location.href='login.php?a=logout';
+	}
+	else
+	{
+	if(is_ie)
+	{
+	    height=document.body.clientHeight;
+	    width=document.body.clientWidth;
+	}
+	else
+	{
+	    height=window.innerHeight;
+	    width=window.innerWidth;
+	}
+	width = (width-520)/2;
+	height = (height-500)/2;
+	document.getElementById('addnew').style.width=520;
+	document.getElementById('addnew').style.left=width;
+	document.getElementById('addnew').style.top=height;
+	document.getElementById("addnew1").innerHTML=xml;
+	document.editform.monthvalue_DateField.options[0] = null;
+	document.editform.dayvalue_DateField.options[0] = null;
+	document.editform.yearvalue_DateField.options[0] = null;
+	document.editform.monthvalue_EndDate.options[0] = null;
+	document.editform.dayvalue_EndDate.options[0] = null;
+	document.editform.yearvalue_EndDate.options[0] = null;
+	document.editform.value_Period.options[0] = null;
+	var sDate=new Date();
+	for(i=0;i<document.editform.yearvalue_DateField.length;i++)
+	{
+		if(document.editform.yearvalue_DateField[0].value<sDate.getFullYear())
+			document.editform.yearvalue_DateField.options[0] = null;
+	}
+	for(i=0;i<document.editform.yearvalue_EndDate.length;i++)
+	{
+		if(document.editform.yearvalue_EndDate[0].value<sDate.getFullYear())
+			document.editform.yearvalue_EndDate.options[0] = null;
+	}
+	document.getElementById('addnew').style.display="";
+	document.getElementById('addnew1').style.border="1px solid gray";
+	document.editform.value_Theme.focus();
+
+	document.forms.editform.value_Category.onchange=function()
+	{
+		if(a[document.forms.editform.value_Category.options[document.forms.editform.value_Category.selectedIndex].value]==undefined)
+			document.getElementById('bgc').style.backgroundColor='white';
+		else
+			document.getElementById('bgc').style.backgroundColor=a[document.forms.editform.value_Category.options[document.forms.editform.value_Category.selectedIndex].value];
+	
+	}
+
+	document.getElementById("EndDate").style.display='none';
+	document.getElementById("Period").style.display='none';
+
+	document.forms.editform.value_DayEvent.onclick=function()
+	{
+	    if(document.forms.editform.value_DayEvent.checked)
+    	    {
+		document.forms.editform.value_TimeField.disabled=true;
+		document.forms.editform.value_EndTime.disabled=true;
+		document.forms.editform.value_TimeField.value="08:00 AM";
+		document.forms.editform.value_EndTime.value="08:00 PM";
+	    }
+	    else
+	    {
+		document.forms.editform.value_TimeField.disabled=false;
+		document.forms.editform.value_EndTime.disabled=false;
+	    }
+	}
+	document.forms.editform.value_Recurrence.onclick=function()
+	{
+	    if(!document.forms.editform.value_Recurrence.checked)
+	    {
+		document.getElementById("EndDate").style.display='none';
+		document.getElementById("Period").style.display='none';
+   	    } 
+  	    else
+	    {
+		document.getElementById("EndDate").style.display='';
+		document.getElementById("Period").style.display='';
+ 	    }
+	}
+	}
+	}
+);
+}
+function view_div(d,m,y,id)
+{
+$.get("daily_view.php",
+	{
+	rndval: Math.random(),
+	wind: 'monthly',
+	days: d,
+	mon: m,
+	yr: y,
+	editid1: id
+	},
+	function(xml)
+	{
+	if(is_ie)
+	{
+	    height=document.body.clientHeight;
+	    width=document.body.clientWidth;
+	}
+	else
+	{
+	    height=window.innerHeight;
+	    width=window.innerWidth;
+	}
+	width = (width-450)/2;
+	height = (height-350)/2;
+	document.getElementById('addnew').style.width=450;
+	document.getElementById('addnew').style.left=width;
+	document.getElementById('addnew').style.top=height;
+	document.getElementById("addnew1").innerHTML=xml;
+	document.getElementById('addnew').style.display="";
+	document.getElementById('addnew1').style.border="1px solid gray";
+	}
+);
+}
+function edit_div(d,m,y,id)
+{
+$.get("daily_edit.php",
+	{
+	rndval: Math.random(),
+	wind: 'monthly',
+	days: d,
+	mon: m,
+	yr: y,
+	editid1: id
+	},
+	function(xml)
+	{
+	if(xml.indexOf('<form method="POST" action="login.php" id=form1 name=form1>')>=0)
+	{
+		window.location.href='login.php?a=logout';
+	}
+	else
+	{
+	if(is_ie)
+	{
+	    height=document.body.clientHeight;
+	    width=document.body.clientWidth;
+	}
+	else
+	{
+	    height=window.innerHeight;
+	    width=window.innerWidth;
+	}
+	width = (width-550)/2;
+	height = (height-500)/2;
+	document.getElementById('addnew').style.width=550;
+	document.getElementById('addnew').style.left=width;
+	document.getElementById('addnew').style.top=height;
+	document.getElementById("addnew1").innerHTML=xml;
+	document.editform.monthvalue_DateField.options[0] = null;
+	document.editform.dayvalue_DateField.options[0] = null;
+	document.editform.yearvalue_DateField.options[0] = null;
+	document.editform.monthvalue_EndDate.options[0] = null;
+	document.editform.dayvalue_EndDate.options[0] = null;
+	document.editform.yearvalue_EndDate.options[0] = null;
+	document.editform.value_Period.options[0] = null;
+	var sDate=new Date();
+	for(i=0;i<document.editform.yearvalue_DateField.length;i++)
+	{
+		if(document.editform.yearvalue_DateField[0].value<sDate.getFullYear())
+			document.editform.yearvalue_DateField.options[0] = null;
+	}
+	for(i=0;i<document.editform.yearvalue_EndDate.length;i++)
+	{
+		if(document.editform.yearvalue_EndDate[0].value<sDate.getFullYear())
+			document.editform.yearvalue_EndDate.options[0] = null;
+	}
+	document.getElementById('addnew').style.display="";
+	document.getElementById('addnew1').style.border="1px solid gray";
+	document.editform.value_Theme.focus();
+
+if(document.forms.editform.value_DayEvent.checked)
+{
+	document.forms.editform.value_TimeField.disabled=true;
+	document.forms.editform.value_EndTime.disabled=true;
+	document.forms.editform.value_TimeField.value="08:00 AM";
+	document.forms.editform.value_EndTime.value="08:00 PM";
+}
+else
+{
+	document.forms.editform.value_TimeField.disabled=false;
+	document.forms.editform.value_EndTime.disabled=false;
+}
+	if(!document.forms.editform.value_Recurrence.checked)
+	    {
+		document.getElementById("EndDate").style.display='none';
+		document.getElementById("Period").style.display='none';
+   	    } 
+  	    else
+	    {
+		document.getElementById("EndDate").style.display='';
+		document.getElementById("Period").style.display='';
+ 	    }
+
+document.forms.editform.value_DayEvent.onclick=function()
+{
+if(document.forms.editform.value_DayEvent.checked)
+{
+	document.forms.editform.value_TimeField.disabled=true;
+	document.forms.editform.value_EndTime.disabled=true;
+	document.forms.editform.value_TimeField.value="08:00 AM";
+	document.forms.editform.value_EndTime.value="08:00 PM";
+
+}
+else
+{
+	document.forms.editform.value_TimeField.disabled=false;
+	document.forms.editform.value_EndTime.disabled=false;
+}
+}
+document.forms.editform.value_Recurrence.onclick=function()
+{
+    if(!document.forms.editform.value_Recurrence.checked)
+    {
+	document.getElementById("EndDate").style.display='none';
+	document.getElementById("Period").style.display='none';
+    } 
+    else
+    {
+	document.getElementById("EndDate").style.display='';
+	document.getElementById("Period").style.display='';
+    }
+}
+document.forms.editform.value_Category.onchange=function()
+{
+	if(a[document.forms.editform.value_Category.options[document.forms.editform.value_Category.selectedIndex].value]==undefined)
+		document.getElementById('bgc').style.backgroundColor='white';
+	else
+		document.getElementById('bgc').style.backgroundColor=a[document.forms.editform.value_Category.options[document.forms.editform.value_Category.selectedIndex].value];
+	
+}
+}
+}
+);
+}
+function SetDatevalue_DateField()
+{
+    if ($('select[@name=monthvalue_DateField]').get(0).value!='' && $('select[@name=dayvalue_DateField]').get(0).value!='' && $('select[@name=yearvalue_DateField]').get(0).value!='')
+    {
+        $('input[@name=value_DateField]').get(0).value= ''+$('select[@name=yearvalue_DateField]').get(0).value + '-' + $('select[@name=monthvalue_DateField]').get(0).value + '-' + $('select[@name=dayvalue_DateField]').get(0).value; 
+        $('input[@name=tsvalue_DateField]').get(0).value='' + $('select[@name=dayvalue_DateField]').get(0).value+'-'+$('select[@name=monthvalue_DateField]').get(0).value+'-'+$('select[@name=yearvalue_DateField]').get(0).value; 
+    } 
+    else 
+    { 
+        $('input[@name=tsvalue_DateField]').get(0).value= '1-10-2007'; 
+        $('input[@name=value_DateField]').get(0).value= '';
+    }
+} 
+function updatevalue_DateField(newDate)
+{
+    var dt_datetime; 
+    var curdate = new Date(); 
+    dt_datetime = newDate;
+    $('input[@name=value_DateField]').get(0).value =  dt_datetime.getFullYear() + '-' + (dt_datetime.getMonth()+1) + '-' + dt_datetime.getDate();
+    $('select[@name=dayvalue_DateField]').get(0).selectedIndex = dt_datetime.getDate();
+    $('select[@name=monthvalue_DateField]').get(0).selectedIndex = dt_datetime.getMonth()+1;
+    for(i=0; i<$('select[@name=yearvalue_DateField]').get(0).options.length;i++)
+        if($('select[@name=yearvalue_DateField]').get(0).options[i].value==dt_datetime.getFullYear())
+        {
+            $('select[@name=yearvalue_DateField]').get(0).selectedIndex=i; 
+            break;
+        }
+    $('input[@name=tsvalue_DateField]').get(0).value = dt_datetime.getDate() + '-' + (dt_datetime.getMonth()+1) + '-' + dt_datetime.getFullYear();
+}
+function SetDatevalue_EndDate()
+{
+    if ($('select[@name=monthvalue_EndDate]').get(0).value!='' && $('select[@name=dayvalue_EndDate]').get(0).value!='' && $('select[@name=yearvalue_EndDate]').get(0).value!='')
+    {
+        $('input[@name=value_EndDate]').get(0).value= ''+$('select[@name=yearvalue_EndDate]').get(0).value + '-' + $('select[@name=monthvalue_EndDate]').get(0).value + '-' + $('select[@name=dayvalue_EndDate]').get(0).value; 
+        $('input[@name=tsvalue_EndDate]').get(0).value='' + $('select[@name=dayvalue_EndDate]').get(0).value+'-'+$('select[@name=monthvalue_EndDate]').get(0).value+'-'+$('select[@name=yearvalue_EndDate]').get(0).value; 
+    } 
+    else 
+    { 
+        $('input[@name=tsvalue_EndDate]').get(0).value= '1-10-2007'; 
+        $('input[@name=value_EndDate]').get(0).value= '';
+    }
+} 
+function updatevalue_EndDate(newDate)
+{
+    var dt_datetime; 
+    var curdate = new Date(); 
+    dt_datetime = newDate;
+    $('input[@name=value_EndDate]').get(0).value =  dt_datetime.getFullYear() + '-' + (dt_datetime.getMonth()+1) + '-' + dt_datetime.getDate();
+    $('select[@name=dayvalue_EndDate]').get(0).selectedIndex = dt_datetime.getDate();
+    $('select[@name=monthvalue_EndDate]').get(0).selectedIndex = dt_datetime.getMonth()+1;
+    for(i=0; i<$('select[@name=yearvalue_EndDate]').get(0).options.length;i++)
+        if($('select[@name=yearvalue_EndDate]').get(0).options[i].value==dt_datetime.getFullYear())
+        {
+            $('select[@name=yearvalue_EndDate]').get(0).selectedIndex=i; 
+            break;
+        }
+    $('input[@name=tsvalue_EndDate]').get(0).value = dt_datetime.getDate() + '-' + (dt_datetime.getMonth()+1) + '-' + dt_datetime.getFullYear();
+}
+function omd(ev)
+{
+    mclick=1;
+    if(is_ie)
+    {
+    	offx=ev.x-document.getElementById('addnew').offsetLeft;
+    	offy=ev.y-document.getElementById('addnew').offsetTop;
+    }
+    else
+    {
+    	offx=ev.clientX-document.getElementById('addnew').offsetLeft;
+    	offy=ev.clientY-document.getElementById('addnew').offsetTop;
+    }
+}
+</script>
+{/literal}
+

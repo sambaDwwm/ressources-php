@@ -1,0 +1,302 @@
+<html>
+<head>
+<title>Edit calendar: Advanced search page</title>
+</head>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+{$includes}
+<body bgcolor=white {$onload}>
+{include_if_exists file="include/header.php"}
+<!-- search form -->
+<form method="POST" 
+action="edit_calendar_list.php" 
+name="editform" {if $noAJAX} onkeydown="OnKeyDown(event);" {/if} >
+	<input type="hidden" id="a" name="a" value="advsearch">
+
+{doevent name="SearchOnLoad"}
+	
+<TABLE CELLPADDING=0 CELLSPACING=0 align=center border=0>
+<tr><td>
+
+<div class="xboxcontentb">
+<table cellpadding=0 cellspacing=0 border=0>
+<tr><td>
+<table cellpadding=0 cellspacing=0 border=0 width=100%>
+<tr>
+<td class=upeditmenu_left width=5px height=36px></td>
+<td class=upeditmenu_center align=center>
+Edit calendar</td>
+<td align=center class=upeditmenu_center>
+Advanced search</td>
+<td width=200 class=upeditmenu_center>&nbsp;</td>
+</td>
+<td class=upeditmenu_right width=5px height=36px></td>
+</tr>
+</table>
+
+</td></tr>
+
+<tr><td colspan=5 align=center valign=middle  class=borderedit>
+
+<table width=100% cellpadding=7><tr><td align=center>
+
+<b class="xtop"><b class="xb1"></b><b class="xb2"></b><b class="xb3"></b><b class="xb4"></b></b>
+<div class="xboxcontent">
+<span class=fieldname>Search for: </span>
+<input type="radio" name="type" value="and" {$all_checked}>All conditions
+&nbsp;&nbsp;&nbsp;
+<input type="radio" name="type" value="or" {$any_checked}>Any condition
+</div>
+<b class="xbottom"><b class="xb4"></b><b class="xb3"></b><b class="xb2"></b><b class="xb1"></b></b>
+
+</td></tr></table>
+</td></tr>
+<tr><td class=borderedit>
+<table cellpadding=7>
+<tr><td>
+<div class="xboxcontentb">
+<table cellpadding=7 cellspacing=0 border=0>
+<tr valign=center>
+<td align=center valign=middle class="searchlist_left">&nbsp;</td>
+<td width=30 align=center valign=middle class=searchlist>NOT</td>
+<td align=center valign=middle class="searchlist">&nbsp; </td>
+<td align=center valign=middle class="searchlist">&nbsp; </td>
+<td align=center valign=middle class="searchlist_right">&nbsp; </td></tr>
+
+		
+<tr>
+	<td class=editshade_b style="padding-left:15px;">Time
+	<input type="Hidden" name="asearchfield[]" value="TimeField"></td>
+	<td align=center class=editshade_lb style="padding-left:10px;"><input type=CheckBox name="not_TimeField" {$not_TimeField}></td>
+	
+	<td class=editshade_lb style="padding-left:10px;">
+	{$searchtype_TimeField}
+	</td>
+	
+	<td width=270 class=editshade_lb style="padding-left:10px;">{build_edit_control field="TimeField" value=$value_TimeField mode="search"}</td>
+
+	<td width=270 class=editshade_lb style="padding-left:10px;"><span id="second_TimeField">
+	{build_edit_control field="TimeField" second=true value=$value1_TimeField mode="search"}
+	</span>&nbsp;</td>
+	
+	
+</tr>
+		
+<tr>
+	<td class=editshade_b style="padding-left:15px;">Subject
+	<input type="Hidden" name="asearchfield[]" value="Theme"></td>
+	<td align=center class=editshade_lb style="padding-left:10px;"><input type=CheckBox name="not_Theme" {$not_Theme}></td>
+	
+	<td class=editshade_lb style="padding-left:10px;">
+	{$searchtype_Theme}
+	</td>
+	
+	<td width=270 class=editshade_lb style="padding-left:10px;">{build_edit_control field="Theme" value=$value_Theme mode="search"}</td>
+
+	<td width=270 class=editshade_lb style="padding-left:10px;"><span id="second_Theme">
+	{build_edit_control field="Theme" second=true value=$value1_Theme mode="search"}
+	</span>&nbsp;</td>
+	
+	
+</tr>
+		
+<tr>
+	<td class=editshade_b style="padding-left:15px;">customer
+	<input type="Hidden" name="asearchfield[]" value="Description"></td>
+	<td align=center class=editshade_lb style="padding-left:10px;"><input type=CheckBox name="not_Description" {$not_Description}></td>
+	
+	<td class=editshade_lb style="padding-left:10px;">
+	{$searchtype_Description}
+	</td>
+	
+	<td width=270 class=editshade_lb style="padding-left:10px;">{build_edit_control field="Description" value=$value_Description mode="search"}</td>
+
+	<td width=270 class=editshade_lb style="padding-left:10px;"><span id="second_Description">
+	{build_edit_control field="Description" second=true value=$value1_Description mode="search"}
+	</span>&nbsp;</td>
+	
+	
+</tr>
+		
+<tr>
+	<td class=editshade_b style="padding-left:15px;">task
+	<input type="Hidden" name="asearchfield[]" value="Category"></td>
+	<td align=center class=editshade_lb style="padding-left:10px;"><input type=CheckBox name="not_Category" {$not_Category}></td>
+	
+	<td class=editshade_lb style="padding-left:10px;">
+	{$searchtype_Category}
+	</td>
+	
+	<td width=270 class=editshade_lb style="padding-left:10px;">{build_edit_control field="Category" value=$value_Category mode="search"}</td>
+
+	<td width=270 class=editshade_lb style="padding-left:10px;"><span id="second_Category">
+	{build_edit_control field="Category" second=true value=$value1_Category mode="search"}
+	</span>&nbsp;</td>
+	
+	
+</tr>
+		
+<tr>
+	<td class=editshade_b style="padding-left:15px;">End Time
+	<input type="Hidden" name="asearchfield[]" value="EndTime"></td>
+	<td align=center class=editshade_lb style="padding-left:10px;"><input type=CheckBox name="not_EndTime" {$not_EndTime}></td>
+	
+	<td class=editshade_lb style="padding-left:10px;">
+	{$searchtype_EndTime}
+	</td>
+	
+	<td width=270 class=editshade_lb style="padding-left:10px;">{build_edit_control field="EndTime" value=$value_EndTime mode="search"}</td>
+
+	<td width=270 class=editshade_lb style="padding-left:10px;"><span id="second_EndTime">
+	{build_edit_control field="EndTime" second=true value=$value1_EndTime mode="search"}
+	</span>&nbsp;</td>
+	
+	
+</tr>
+		
+<tr>
+	<td class=editshade_b style="padding-left:15px;">Whole Day Event
+	<input type="Hidden" name="asearchfield[]" value="DayEvent"></td>
+	<td align=center class=editshade_lb style="padding-left:10px;"><input type=CheckBox name="not_DayEvent" {$not_DayEvent}></td>
+	
+	<td class=editshade_lb style="padding-left:10px;">
+	{$searchtype_DayEvent}
+	</td>
+	
+	<td width=270 class=editshade_lb style="padding-left:10px;">{build_edit_control field="DayEvent" value=$value_DayEvent mode="search"}</td>
+
+	<td width=270 class=editshade_lb style="padding-left:10px;"><span id="second_DayEvent">
+	{build_edit_control field="DayEvent" second=true value=$value1_DayEvent mode="search"}
+	</span>&nbsp;</td>
+	
+	
+</tr>
+		
+<tr>
+	<td class=editshade_b style="padding-left:15px;">End Date
+	<input type="Hidden" name="asearchfield[]" value="EndDate"></td>
+	<td align=center class=editshade_lb style="padding-left:10px;"><input type=CheckBox name="not_EndDate" {$not_EndDate}></td>
+	
+	<td class=editshade_lb style="padding-left:10px;">
+	{$searchtype_EndDate}
+	</td>
+	
+	<td width=270 class=editshade_lb style="padding-left:10px;">{build_edit_control field="EndDate" value=$value_EndDate mode="search"}</td>
+
+	<td width=270 class=editshade_lb style="padding-left:10px;"><span id="second_EndDate">
+	{build_edit_control field="EndDate" second=true value=$value1_EndDate mode="search"}
+	</span>&nbsp;</td>
+	
+	
+</tr>
+		
+<tr>
+	<td class=editshade_b style="padding-left:15px;">Period
+	<input type="Hidden" name="asearchfield[]" value="Period"></td>
+	<td align=center class=editshade_lb style="padding-left:10px;"><input type=CheckBox name="not_Period" {$not_Period}></td>
+	
+	<td class=editshade_lb style="padding-left:10px;">
+	{$searchtype_Period}
+	</td>
+	
+	<td width=270 class=editshade_lb style="padding-left:10px;">{build_edit_control field="Period" value=$value_Period mode="search"}</td>
+
+	<td width=270 class=editshade_lb style="padding-left:10px;"><span id="second_Period">
+	{build_edit_control field="Period" second=true value=$value1_Period mode="search"}
+	</span>&nbsp;</td>
+	
+	
+</tr>
+		
+<tr>
+	<td class=editshade_b style="padding-left:15px;">Recurrence
+	<input type="Hidden" name="asearchfield[]" value="Recurrence"></td>
+	<td align=center class=editshade_lb style="padding-left:10px;"><input type=CheckBox name="not_Recurrence" {$not_Recurrence}></td>
+	
+	<td class=editshade_lb style="padding-left:10px;">
+	{$searchtype_Recurrence}
+	</td>
+	
+	<td width=270 class=editshade_lb style="padding-left:10px;">{build_edit_control field="Recurrence" value=$value_Recurrence mode="search"}</td>
+
+	<td width=270 class=editshade_lb style="padding-left:10px;"><span id="second_Recurrence">
+	{build_edit_control field="Recurrence" second=true value=$value1_Recurrence mode="search"}
+	</span>&nbsp;</td>
+	
+	
+</tr>
+		
+<tr>
+	<td class=editshade_b style="padding-left:15px;">details
+	<input type="Hidden" name="asearchfield[]" value="details"></td>
+	<td align=center class=editshade_lb style="padding-left:10px;"><input type=CheckBox name="not_details" {$not_details}></td>
+	
+	<td class=editshade_lb style="padding-left:10px;">
+	{$searchtype_details}
+	</td>
+	
+	<td width=270 class=editshade_lb style="padding-left:10px;">{build_edit_control field="details" value=$value_details mode="search"}</td>
+
+	<td width=270 class=editshade_lb style="padding-left:10px;"><span id="second_details">
+	{build_edit_control field="details" second=true value=$value1_details mode="search"}
+	</span>&nbsp;</td>
+	
+	
+</tr>
+		
+<tr>
+	<td class=editshade_b style="padding-left:15px;">income
+	<input type="Hidden" name="asearchfield[]" value="income"></td>
+	<td align=center class=editshade_lb style="padding-left:10px;"><input type=CheckBox name="not_income" {$not_income}></td>
+	
+	<td class=editshade_lb style="padding-left:10px;">
+	{$searchtype_income}
+	</td>
+	
+	<td width=270 class=editshade_lb style="padding-left:10px;">{build_edit_control field="income" value=$value_income mode="search"}</td>
+
+	<td width=270 class=editshade_lb style="padding-left:10px;"><span id="second_income">
+	{build_edit_control field="income" second=true value=$value1_income mode="search"}
+	</span>&nbsp;</td>
+	
+	
+</tr>
+		
+<tr>
+	<td class=editshade_b style="padding-left:15px;">outcome
+	<input type="Hidden" name="asearchfield[]" value="outcome"></td>
+	<td align=center class=editshade_lb style="padding-left:10px;"><input type=CheckBox name="not_outcome" {$not_outcome}></td>
+	
+	<td class=editshade_lb style="padding-left:10px;">
+	{$searchtype_outcome}
+	</td>
+	
+	<td width=270 class=editshade_lb style="padding-left:10px;">{build_edit_control field="outcome" value=$value_outcome mode="search"}</td>
+
+	<td width=270 class=editshade_lb style="padding-left:10px;"><span id="second_outcome">
+	{build_edit_control field="outcome" second=true value=$value1_outcome mode="search"}
+	</span>&nbsp;</td>
+	
+	
+</tr>
+
+<tr><td colspan=5 align=center class=downedit>
+<span class=buttonborder><input type=button class=button name="SearchButton" value="&nbsp;&nbsp;Search&nbsp;&nbsp;"
+onClick="javascript:document.forms.editform.submit();"></span>
+<span class=buttonborder><input class=button type=button value="&nbsp;&nbsp;Reset&nbsp;&nbsp;" onclick="return ResetControls();"></span>
+<span class=buttonborder><input type=button class=button value="&nbsp;&nbsp;Back to list&nbsp;&nbsp;" onClick="javascript: document.forms.editform.a.value='return'; document.forms.editform.submit();"></span>
+</td></tr>
+</table>
+</div>
+<b class="xbottom"><b class="xb4a"></b><b class="xb3a"></b><b class="xb2a"></b><b class="xb1a"></b></b>
+</td></tr></table>
+</td></tr></table>
+</div>
+<b class="xbottom"><b class="xb4b4"></b><b class="xb3b4"></b><b class="xb2b4"></b><b class="xb1b4"></b></b>
+</td></tr>
+</table>
+</form>
+{include_if_exists file="include/footer.php"}
+{$linkdata}
+
+</body>
+</html>

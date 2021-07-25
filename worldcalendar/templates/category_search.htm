@@ -1,0 +1,158 @@
+<html>
+<head>
+<title>Tasks: Advanced search page</title>
+</head>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+{$includes}
+<body bgcolor=white {$onload}>
+{include_if_exists file="include/header.php"}
+<!-- search form -->
+<form method="POST" 
+action="category_list.php" 
+name="editform" {if $noAJAX} onkeydown="OnKeyDown(event);" {/if} >
+	<input type="hidden" id="a" name="a" value="advsearch">
+
+{doevent name="SearchOnLoad"}
+	
+<TABLE CELLPADDING=0 CELLSPACING=0 align=center border=0>
+<tr><td>
+
+<div class="xboxcontentb">
+<table cellpadding=0 cellspacing=0 border=0>
+<tr><td>
+<table cellpadding=0 cellspacing=0 border=0 width=100%>
+<tr>
+<td class=upeditmenu_left width=5px height=36px></td>
+<td class=upeditmenu_center align=center>
+Tasks</td>
+<td align=center class=upeditmenu_center>
+Advanced search</td>
+<td width=200 class=upeditmenu_center>&nbsp;</td>
+</td>
+<td class=upeditmenu_right width=5px height=36px></td>
+</tr>
+</table>
+
+</td></tr>
+
+<tr><td colspan=5 align=center valign=middle  class=borderedit>
+
+<table width=100% cellpadding=7><tr><td align=center>
+
+<b class="xtop"><b class="xb1"></b><b class="xb2"></b><b class="xb3"></b><b class="xb4"></b></b>
+<div class="xboxcontent">
+<span class=fieldname>Search for: </span>
+<input type="radio" name="type" value="and" {$all_checked}>All conditions
+&nbsp;&nbsp;&nbsp;
+<input type="radio" name="type" value="or" {$any_checked}>Any condition
+</div>
+<b class="xbottom"><b class="xb4"></b><b class="xb3"></b><b class="xb2"></b><b class="xb1"></b></b>
+
+</td></tr></table>
+</td></tr>
+<tr><td class=borderedit>
+<table cellpadding=7>
+<tr><td>
+<div class="xboxcontentb">
+<table cellpadding=7 cellspacing=0 border=0>
+<tr valign=center>
+<td align=center valign=middle class="searchlist_left">&nbsp;</td>
+<td width=30 align=center valign=middle class=searchlist>NOT</td>
+<td align=center valign=middle class="searchlist">&nbsp; </td>
+<td align=center valign=middle class="searchlist">&nbsp; </td>
+<td align=center valign=middle class="searchlist_right">&nbsp; </td></tr>
+
+		
+<tr>
+	<td class=editshade_b style="padding-left:15px;">task
+	<input type="Hidden" name="asearchfield[]" value="Category"></td>
+	<td align=center class=editshade_lb style="padding-left:10px;"><input type=CheckBox name="not_Category" {$not_Category}></td>
+	
+	<td class=editshade_lb style="padding-left:10px;">
+	{$searchtype_Category}
+	</td>
+	
+	<td width=270 class=editshade_lb style="padding-left:10px;">{build_edit_control field="Category" value=$value_Category mode="search"}</td>
+
+	<td width=270 class=editshade_lb style="padding-left:10px;"><span id="second_Category">
+	{build_edit_control field="Category" second=true value=$value1_Category mode="search"}
+	</span>&nbsp;</td>
+	
+	
+</tr>
+		
+<tr>
+	<td class=editshade_b style="padding-left:15px;">price
+	<input type="Hidden" name="asearchfield[]" value="price"></td>
+	<td align=center class=editshade_lb style="padding-left:10px;"><input type=CheckBox name="not_price" {$not_price}></td>
+	
+	<td class=editshade_lb style="padding-left:10px;">
+	{$searchtype_price}
+	</td>
+	
+	<td width=270 class=editshade_lb style="padding-left:10px;">{build_edit_control field="price" value=$value_price mode="search"}</td>
+
+	<td width=270 class=editshade_lb style="padding-left:10px;"><span id="second_price">
+	{build_edit_control field="price" second=true value=$value1_price mode="search"}
+	</span>&nbsp;</td>
+	
+	
+</tr>
+		
+<tr>
+	<td class=editshade_b style="padding-left:15px;">taskdetails
+	<input type="Hidden" name="asearchfield[]" value="taskdetails"></td>
+	<td align=center class=editshade_lb style="padding-left:10px;"><input type=CheckBox name="not_taskdetails" {$not_taskdetails}></td>
+	
+	<td class=editshade_lb style="padding-left:10px;">
+	{$searchtype_taskdetails}
+	</td>
+	
+	<td width=270 class=editshade_lb style="padding-left:10px;">{build_edit_control field="taskdetails" value=$value_taskdetails mode="search"}</td>
+
+	<td width=270 class=editshade_lb style="padding-left:10px;"><span id="second_taskdetails">
+	{build_edit_control field="taskdetails" second=true value=$value1_taskdetails mode="search"}
+	</span>&nbsp;</td>
+	
+	
+</tr>
+		
+<tr>
+	<td class=editshade_b style="padding-left:15px;">picture
+	<input type="Hidden" name="asearchfield[]" value="picture"></td>
+	<td align=center class=editshade_lb style="padding-left:10px;"><input type=CheckBox name="not_picture" {$not_picture}></td>
+	
+	<td class=editshade_lb style="padding-left:10px;">
+	{$searchtype_picture}
+	</td>
+	
+	<td width=270 class=editshade_lb style="padding-left:10px;">{build_edit_control field="picture" value=$value_picture mode="search"}</td>
+
+	<td width=270 class=editshade_lb style="padding-left:10px;"><span id="second_picture">
+	{build_edit_control field="picture" second=true value=$value1_picture mode="search"}
+	</span>&nbsp;</td>
+	
+	
+</tr>
+
+<tr><td colspan=5 align=center class=downedit>
+<span class=buttonborder><input type=button class=button name="SearchButton" value="&nbsp;&nbsp;Search&nbsp;&nbsp;"
+onClick="javascript:document.forms.editform.submit();"></span>
+<span class=buttonborder><input class=button type=button value="&nbsp;&nbsp;Reset&nbsp;&nbsp;" onclick="return ResetControls();"></span>
+<span class=buttonborder><input type=button class=button value="&nbsp;&nbsp;Back to list&nbsp;&nbsp;" onClick="javascript: document.forms.editform.a.value='return'; document.forms.editform.submit();"></span>
+</td></tr>
+</table>
+</div>
+<b class="xbottom"><b class="xb4a"></b><b class="xb3a"></b><b class="xb2a"></b><b class="xb1a"></b></b>
+</td></tr></table>
+</td></tr></table>
+</div>
+<b class="xbottom"><b class="xb4b4"></b><b class="xb3b4"></b><b class="xb2b4"></b><b class="xb1b4"></b></b>
+</td></tr>
+</table>
+</form>
+{include_if_exists file="include/footer.php"}
+{$linkdata}
+
+</body>
+</html>

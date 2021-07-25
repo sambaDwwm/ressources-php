@@ -1,0 +1,10 @@
+/* MENU LEGEND TABS */
+/** ------------------------------------------------------------------------ **/
+LEGEND SPAN {
+	margin-top:-5px;
+}
+
+/* EVENT WRAPPER */
+/** ------------------------------------------------------------------------ **/
+.event_day_block { margin-top:-3px; margin-bottom:0px;  }
+#calendar_wrapper .td_d  { height:15px; }

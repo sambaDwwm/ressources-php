@@ -1,0 +1,16 @@
+ApPHP has some restrictions on it's use. 
+
+[#001] [Limitation] 
+--------------------------------------------------------------------------------
+Description: 
+    ApPHP Calendar may work with different time blocks: 15 min, 30 min, 45 min or 60 min.
+    But if you work with some time block and then try to change it, you need to
+    take into account, that some events may disappear. It happens, when you increase
+    time block size. For example, you started to work with 15 min. time block and then
+    moved to 60 min. Event occurrences, that where placed on 15 and 45 minutes will
+    disappear with new configuration.
+Solution:
+    Re-define events occurrences for new configuration.
+
+
+

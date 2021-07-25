@@ -1,0 +1,163 @@
+<html>
+<head>
+    <title>ApPHP Calendar :: Installation</title>
+    <style>
+        BODY { padding:10px 20px 10px 20px; font-family: "Lucida Sans Unicode"; font-size: 14px; }
+        IMG  { border:1px solid #cccccc; }
+        PRE { background-color:#f1f2f3; border:1px solid #cccccc; padding:3px 5px 3px 5px; }
+		SPAN.black { color:black; }	
+		SPAN.darkred { color:darkred; }
+		SPAN.darkblue { color:darkblue; }
+		SPAN.green { color:green; }
+    </style>
+</head>
+<body>    
+
+<!-- last update 18.12.2013 -->
+<div class="box">
+<h1>Installation of ApPHP Calendar (version 2.0.0 or above)</h1>
+<div class="holder">
+<div class="frame-box">
+
+    <div class="blocks-holder blocks-subholder">
+    <div class="block-long">
+    <div class="text-box">
+
+        <ul style="padding-left:1px;list-style:none;font-size:14px;">
+            <li>
+            <span>1.</span> <a href="Installation.html#Installation_of_ApPHP_Calendar"><span>Manual Installation of ApPHP Calendar</span></a> 
+            <ul style="list-style:none;">
+                <li><span>1.1</span> <a href="Installation.html#Step_1._Uncompressing_downloaded_file."><span>Step 1. Uncompressing downloaded file.</span></a> 
+                <li><span>1.2</span> <a href="Installation.html#Step_2._Uploading_files."><span>Step 2. Uploading files.</span></a> 
+                <li><span>1.3</span> <a href="Installation.html#Step_3._Creating_database."><span>Step 3. Creating database.</span></a>                        
+                <li><span>1.4</span> <a href="Installation.html#Step_4._Settings_and_access_rights."><span>Step 4. Settings and access rights.</span></a>                        
+                <li><span>1.5</span> <a href="Installation.html#Step_5._Running_examples."><span>Step 5. Running examples.</span></a>
+            </ul>
+            <span>2.</span> <a href="Installation.html#Installation_with_the_Wizard"><span>Installation with the Wizard</span></a> 
+            </li>
+        </ul>
+        <br />
+
+        <a name="Installation_of_ApPHP_Calendar"></a>
+        <h3 class="sub-title">Installation of ApPHP Calendar</h3>
+        <br />
+		A new installation of ApPHP Calendar is a very straight forward process:
+		<br />
+       
+        
+        <a name="Step_1._Uncompressing_downloaded_file."></a>
+        <h3><b>Step 1. Uncompressing downloaded file.</b></h3>
+        <hr>
+        Uncompress the ApPHP Calendar script archive. The archive will create a directory called "PHPCAL_xxx".
+        <p><br /></p>
+        
+        
+        <a name="Step_2._Uploading_files."></a>
+        <h3><b>Step 2. Uploading files.</b></h3>
+        <hr>
+		
+		Upload content of sub-directory <b>calendar/</b> (all files and sub-directories it includes) to your 
+		document root (public_html, www, httpdocs etc.) or your calendar directory using FTP.
+        <br><br>
+
+        <b>Pay attention:</b> DON'T use the capital letters in the name of the folder (for Linux members).
+        <br><br>
+
+        For example:        
+        <pre><span class="black">public_html/</span></pre>
+        or
+        <pre><span class="black">public_html/{calendar directory}/</span></pre>
+        <p><br /></p>        
+        
+        
+        <a name="Step_3._Creating_database."></a>
+        <h3><b>Step 3. Creating database.</b></h3>
+        <hr>
+		3.1. Using your hosting Control Panel, phpMyAdmin or another tool, create your database and user, and assign 
+		that user to the database. Provide the user you created with required permissions to allow the user to
+		read, edit, execute and perform all tasks across the created database (SELECT, UPDATE, DELETE etc.).
+		Write down the name of the database, username, and password for the script installation procedure.
+        <br><br>
+        
+        3.2. Create all appropriate database tables using <b>examples/install/sql_dump/installation_new.sql</b> file (you have to import it).
+        Before importing, change '&lt;DB_PREFIX&gt;' table prefix holders on any prefix you want (for example, '<b>CAL_</b>').
+        <br><br>
+        
+        3.3. Create <b>config.inc.php</b> file in <b>calendar/inc/</b> folder (take example from examples/install/config.tpl) and change database host,
+        database name, username and user password with appropriate values, saved on step 3.1. Change in <b>define('DB_PREFIX', '');</b>
+        the the value with the prefix you have selected before for importing sql dump file. For example: <b>define('DB_PREFIX', 'CAL_')</b>;
+        
+<pre><span class="black">define('DATABASE_HOST', 'host');
+define('DATABASE_NAME', 'database name'); 
+define('DATABASE_USERNAME', 'user name');
+define('DATABASE_PASSWORD', 'user password');
+
+define('DB_PREFIX', 'CAL_');
+define('INSTALLATION_KEY', 'your_key'); // Unique key for installation
+define('DB_CONNECTION_MODE', 'production'); // 'debug' or 'production'
+</span></pre>
+        <p><br /></p>
+        
+        
+        <a name="Step_4._Settings_and_access_rights."></a>
+        <h3><b>Step 4. Settings and access rights.</b></h3>
+        <hr>
+            4.1. Set permissions: e.g chmod 755 for <b>calendar/inc/</b> and <b>calendar/tmp/</b> folders.
+            <br /><br />							
+            4.2. If you run ApPHP Calendar under IIS, you have to allow rewrite mode for Windows.
+            <br /><br />
+            - To do this, open the <b>httpd.conf</b> file and uncomment the following lines (remove the trailing #s):            
+            
+            <pre><span class="black">#LoadModule rewrite_module modules/mod_rewrite.so<br />#AddModule mod_rewrite.c</span></pre>
+            
+            - Another way is simply to "share" your <b>calendar/inc/</b> and <b>calendar/tmp/</b> folders.							
+        <p><br /></p>
+
+        
+        <a name="Step_5._Running_examples."></a>
+        <h3><b>Step 5. Running examples.</b></h3>
+        <hr>
+        
+        Now you can run the examples. To do this, open a browser and type in Address Bar
+        
+        <pre><span class="black">http://localhost/{calendar directory}/code_template.php</span></pre>
+        or 
+        <pre><span class="black">http://{www.example.com}/{calendar directory}/code_template.php</span></pre>
+        
+        then follow the instructions from <a href="GettingStarted.html">Getting Started</a>.
+        <p><br /></p>
+      
+        <b>Congratulations, you now have ApPHP Calendar installed!</b>
+    
+    </div>
+	</div>
+	</div>
+
+
+    <div class="blocks-holder blocks-subholder">
+    <div class="block-long">
+    <div class="text-box">
+
+        <a name="Installation_with_the_Wizard"></a>
+        <h3 class="sub-title">Using the installation wizard (version 3.0.0 or above)</h3>  
+        <br />
+
+        
+        Perform steps 1.1, 1.2 and 1.3 from Manual installation and then type in your browser
+        <pre><span class="black">http://localhost/{calendar directory}/index.php</span></pre>
+        Select setup with Wizard and follow the instructions on installing the script.
+
+        <p><br /></p> 
+            
+    </div>
+	</div>
+	</div>
+    
+    <div class="frame-box-holder"></div>      
+		
+</div>
+</div>
+</div>
+        
+</body>
+</html>        

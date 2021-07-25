@@ -1,0 +1,84 @@
+/* EVENT FORM CONTAINER */
+#divAddEvent #divAddEvent_Header { direction:rtl; }
+#divAddEvent #divAddEvent_Content { direction:rtl; }
+
+#divEditEvent #divEditEvent_Header { direction:rtl; }
+#divEditEvent #divEditEvent_Content { direction:rtl; }
+
+#calendar_header  				{ direction:rtl; width:99%; margin:0 auto; border:1px; }
+#calendar_header .caption_left 	{ text-align:right; font-weight:bold; }
+#calendar_header .types_changer { text-align:left; font-size: 12px; font-weight:normal; }
+#calendar_header .caption_right { text-align:left; font-weight:bold; }
+
+/* WEEKLY CALENDAR */
+#calendar_wrapper .td_header    { padding-right:3px; text-align:right; }
+#calendar_wrapper .week_navigation   { direction:rtl; }
+#calendar_wrapper .week { direction:rtl; }
+
+/* EVENT WRAPPER */
+.event_wrapper				{ display:block; height:14px; direction:rtl; }
+.event_wrapper IMG			{ visibility:hidden; position:relative; margin-left:0px; right:71px; cursor:pointer; }
+.event_wrapper:hover		{ }
+.event_wrapper:hover IMG	{ visibility: visible; }
+.event_wrapper LABEL		{ margin-right:-20px; }
+
+/* DOUBLE MONTH CALENDAR */
+#calendar_wrapper .double_month .table_navbar { direction:rtl; }
+
+/* MONTHLY CALENDAR */
+#calendar_wrapper .month     { direction:rtl; }
+#calendar_wrapper .td 		 { text-align:right; }
+#calendar_wrapper .td_sunday { text-align:right; }
+#calendar_wrapper .td_actday { text-align:right; }
+#calendar_wrapper .td_selday { text-align:right; }
+#calendar_wrapper .td_empty  { text-align:right; }
+
+/* DAILY CALENDAR */
+#calendar_wrapper .day_navigation   { direction:rtl; }
+#calendar_wrapper .tr_navbar_left 	{ text-align:right; padding-right:7px; }
+#calendar_wrapper .tr_navbar_right 	{ text-align:left; padding-left:7px; }
+#calendar_wrapper .tr_navbar   		{ }
+#calendar_wrapper .day  			{ direction:rtl; }
+#calendar_wrapper .td_acthour_d_h   { text-align:left; }
+#calendar_wrapper .td_acthour_d     { text-align:right; padding-right:3px; }
+#calendar_wrapper .td_d_h           { text-align:left; padding-left:3px; }
+#calendar_wrapper .td_d             { text-align:right; padding-right:3px; }
+.event_day_block            { }
+
+/* MONTHLY LIST VIEW CALENDAR */
+#calendar_wrapper .lv_lcolumn 	    { padding-right:7px; vertical-align:top; text-align:right; }
+#calendar_wrapper .lv_rcolumn 		{ text-align:right; }
+#calendar_wrapper .lv_separator 	{ text-align:right; margin-right:3px; width:100px; height:3px; border-bottom:1px dotted #cccccc; }
+#calendar_wrapper .events_list_inline  { font-size:11px; font-weight:normal; text-align:right; } 
+
+#calendar_wrapper .year_container   { direction:rtl; }
+#calendar_wrapper .month_small	    { width:96%; border:1px solid #cccccc; margin-top:5px; border-collapse:collapse; }
+#calendar_wrapper .legend_block     { float:right; }
+#calendar_wrapper .legend_text      { float:right; margin:1px 4px 1px 3px; }
+#calendar_wrapper .legend_f_block   { float:right; }
+#calendar_wrapper .legend_l_block   { float:right; }
+
+.message_box_success    	{ text-align:right; background-position:right center; }
+.message_box_error  		{ text-align:right; background-position:right center; }
+.message_box_important      { text-align:right; background-position:right center; }
+
+.cal_fieldset				{ direction:rtl; }
+.cal_legend					{ padding:0px 0px 0px 5px; text-align:left; font-size:12px; }
+
+/* styling for Chrome only */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .cal_fieldset { margin-top:20px; }
+    .cal_legend	{ float:right; margin:-13px 5px 5px 5px; background:#fff; }    
+}
+
+.left                       { text-align:right; }
+.right                      { text-align:left; }
+.cal_left                   { text-align:right; }
+.cal_right                  { text-align:left; }
+.cal_dleft                  { padding-right:8px; } 
+.cal_dright                 { padding-right:5px; } 
+
+IMG.cal_print	 		    { margin:0px 1px -3px 5px; }
+IMG.cal_export	 		    { margin:0px 1px -3px 5px; }
+
+LEGEND.cal_legend SPAN      { float:right; }

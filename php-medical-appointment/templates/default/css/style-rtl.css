@@ -1,0 +1,45 @@
+HR { height:2px; padding:0px; margin:5px 0px 3px 0px; border-top:1px solid #cbd3db; color:#ccc; }
+
+.header_search { float:left; }
+
+/* --- LEFT COLUMN */
+.side_box_content UL LI { background:url(../images/bull1.png) no-repeat right 8px; padding:0 9px 0 0; }
+
+/* --- LANGUAGES */
+#languages-wrap { position: absolute; margin: 15px 14px 0px 0px; width:203px; height:55px; }
+#languages-wrap DIV.lang_name { float:right; padding-top:3px; margin:0px 6px; }
+#languages-wrap DIV.flags { float:right; padding-top:4px; }   
+
+/* --- MAIN NAVIGATION */
+UL.nav { margin-right:30px; }
+UL.nav li a { padding:4px 8px 4px 8px;  }
+UL.down_inner li { margin-right:-1px; }
+
+
+/* --- FOOTER */
+#footer .fleft { float:right; }
+#footer .fright	{ float:left; text-align:left; }
+
+/* --- DOCTOR CARD */
+DIV.doctor_card { float:right; }
+DIV.doctor_card DIV.photo { float:right; }
+DIV.doctor_card DIV.description { float:right; }
+
+/* --- APPOINTMENT NAVIGATION */
+UL.appointment_navigation { list-style-type:none; display:block; width:690px; margin-bottom:60px; padding-right:0px; margin-right:-27px;}
+UL.appointment_navigation LI.active { float:right; padding:5px; border:1px solid #00ff00; margin-right:10px; background-color: #bee4e5; border:1px solid #5fb7c9; }
+UL.appointment_navigation LI { float:right; padding:5px; border:1px solid #00ff00; margin-right:10px; border:1px solid #cccccc; }
+
+/* --- MICRO GRID */
+TABLE.mgrid_table SELECT { margin-left:5px; }
+
+/* --- HOME PAGE ALERT */
+#divAlertRequired { float:right; }
+#divDashboardRequired { float:right; }
+#divDashboardMessagesImg { float:left; margin-left:-9px; margin-right:10px;  }
+
+/* Membership plans
+-------------------------------------------------- */
+DIV.membership_plans_container H2 { text-align: right; }
+
+DIV.doctor_info IMG.doctor_photo { float:right; margin:0 0px 5px 20px; }

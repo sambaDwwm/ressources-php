@@ -1,0 +1,110 @@
+======================================================================================
+- Version 3.0.1 [01.10.2020]
+======================================================================================
+1. Bug: [fixed] fixed some secure bugs
+
+
+======================================================================================
+- Version 3.0.0 [13.03.2014]
+======================================================================================
+1. Feature: [added] possibility to generate code for widgets and use them on external sites
+2. Feature: [added] new module Ratings
+3. Feature: [added] possibility to admins to make appointments
+4. Feature: [added] possibility to doctors to book membership plans 
+
+1. Feature: [improved] RTL styling for all templates
+2. Feature: [improved] doctor account dashboard: added more information 
+
+
+======================================================================================
+- Version 2.3.2 [17.02.2014]
+======================================================================================
+1. Feature: [added] new imageupload plugin to TinyMCE editor
+2. Feature: [added] possibility to define Week Start Day via General -> Datetime & Price
+3. Feature: [added] possibility to translate doctor specialties
+4. Feature: [added] new FAQ module with a sample data
+5. Feature: [added] possibility to select insurance while booking appointment
+6. Feature: [added] possibility to select visit reason while booking appointment
+7. Feature: [added] possibility to define different visit price for each specialty
+8. Feature: [added] new fields for doctor's profile: additional degree and years of experience
+9. Feature: [added] possibility to block multiple appointments to the doctor in the same day
+
+1. Feature: [improved] openWYSIWYG editor removed from the script
+2. Feature: [improved] appointments calendar - added "next appointment" notice
+3. Feature: [improved] doctor specialties management - added priority order
+4. Feature: [improved] site search procedure
+5. Feature: [improved] remove account procedure for patients and doctors
+6. Feature: [improved] possibility to book appointment from the same doctor
+7. Feature: [improved] procedures for sending email via SMTP
+8. Feature: [improved] dashboards for patient and doctor accounts
+ 
+1. Bug: [fixed] displaying Terms and Conditions page even if unpublished
+2. Bug: [fixed] in search doctors by name
+
+
+======================================================================================
+- Version 2.2.4 [07.01.2014]
+======================================================================================
+1. Feature: [added] possibility to use PDO extension and "mysqll_" instead of "mysql" functions
+2. Feature: [added] possibility to show modules icons on dashboard in admin panel
+3. Feature: [added] possibility to force SSL mode for specific areas on site
+4. Feature: [added] possibility to add watermark for doctor images
+5. Feature: [added] possibility to send mass mail to doctors
+6. Feature: [added] possibility to define access level for patients to view doctor schedules
+7. Feature: [added] added possibility to define number of doctor profiles shown on the search result page
+8. Feature: [added] possibility to create "hidden" menus
+9. Feature: [added] possibility to specify insurance while booking appointment
+10. Feature: [added] possibility to specify WYIWYG editor for email templates
+
+1. Feature: [improved] functionality of installation wizard
+2. Feature: [improved] minor changes in AJAX call procedures
+3. Feature: [improved] minor changes in Site Settings -> Visual Settings
+4. Feature: [improved] minor changes in News module
+5. Feature: [improved] page on add/edit behavior
+6. Feature: [improved] doctor profiles - added more fields
+7. Feature: [improved] updated Google Maps API (to API3)
+8. Feature: [improved] minor changes in admin panel menus management
+9. Feature: [improved] Countries definition - added possibility to define states for each country
+
+1. Bug: [fixed] access to doctor specialities and addresses management pages
+2. Bug: [fixed] finally removed using of GLOBALS
+3. Bug: [fixed] wrong search doctors by full name
+4. Bug: [fixed] wrong translation of dates on Search Results page
+
+
+======================================================================================
+- Version 2.1.1 [15.11.2012]
+======================================================================================
+
+1. Feature: [added] doctors login feature
+2. Feature: [added] doctors registration feature
+3. Feature: [added] alert message for doctors and admins about appointments awaiting approval
+4. Feature: [added] SEO links for doctor profile pages
+5. Feature: [added] possibility for doctor to edit specialities, addresses and other profile info
+6. Feature: [added] possibility to define multiple addresses for Doctors
+7. Feature: [added] new module Google Maps
+8. Feature: [added] possibility to view doctor or patient profile in popup window from appointments page
+9. Feature: [added] new module Reminders that allows to send email reminders to patients and doctors
+
+1. Feature: [improved] possibility to admin to configure Doctors Module settings
+2. Feature: [improved] banners Module - added possibility to use HTML tags in banner text
+3. Feature: [improved] appointments module - added possibility to send notification to admin and/or doctor
+4. Feature: [improved] appointments module - canceled appointments are not shown in past for patients and doctors
+5. Feature: [improved] possibility to search doctor by location/address
+6. Feature: [improved] secure URL for appointment process
+7. Feature: [improved] privacy and security of patient data
+
+1. Bug: [fixed] canceled appointments is not shown in Search Results
+
+
+======================================================================================
+- Version 2.0.1 [02.03.2012]
+======================================================================================
+1. Feature: [added] Schedules Management
+2. Feature: [added] Specialities Management
+3. Feature: [added] Doctors Management
+4. Feature: [added] new default template
+
+1. Feature: [improved] Appointments Module
+2. Feature: [improved] Appointment validation procedure
+

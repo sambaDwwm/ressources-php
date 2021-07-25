@@ -1,0 +1,615 @@
+<html>
+<head>
+<title>Edit calendar</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+</head>
+<body topmargin=5 {$onload}>
+{$includes}
+
+{include_if_exists file="include/header.php"}
+
+<form name="frmSearch" method="GET" action="edit_calendar_list.php">
+<input type="Hidden" name="a" value="search">
+<input type="Hidden" name="value" value="1">
+<input type="Hidden" name="SearchFor" value="">
+<input type="Hidden" name="SearchOption" value="">
+<input type="Hidden" name="SearchField" value="">
+</form>
+<table width=99% align=center border=0 cellpadding=0 cellspacing=0><tr><td>
+{include file="$showmasterfile"}
+{if $mastertable!=""}
+<p align=center><a href="{$mastertable_short}_list.php?a=return" class="toplinks"><b>Back to Master table</b></a></p>
+{/if}
+
+<table class="navigation" cellspacing="0" cellpadding="0" width=100% border=0 height=36>
+<tr>
+<td class=logged_left width=5></td>
+<td align=left class=logged valign=middle style="padding-top:2">
+<span style="white-space:nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font style="FONT-FAMILY: Verdana, Arial;">Logged as</font>&nbsp;<b>{$userid}</b>&nbsp;
+<span class=buttonborder><input type=button class=button value="Log out" onClick="window.location.href='login.php?a=logout';"></span>
+
+
+</span>
+<td align=right class=logged valign=middle style="padding-top:2">&nbsp;
+<span style="white-space:nowrap">
+ {if $allow_search} 
+&nbsp;&nbsp;&nbsp;
+<span class=buttonborder><input type=button class=button value="Advanced search" onClick="window.location.href='edit_calendar_search.php';"></span>
+ {/if} 
+
+{if $rowsfound}
+
+ {if $allow_export} 
+&nbsp;&nbsp;&nbsp;
+<span class=buttonborder><input type=button class=button value="Export results" onClick="window.open('edit_calendar_export.php','wExport');return false;"></span>
+ {/if} 
+
+ {if $allow_export} 
+&nbsp;&nbsp;&nbsp;
+<span class=buttonborder><input type=button class=button value="Printer-friendly version" onClick="window.open('edit_calendar_print.php','wPrint');return false;"></span>
+ {/if} 
+
+{/if}
+
+<!--language-->
+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</td>
+<td class=logged_right width=5></td>
+</tr>
+</table>
+
+<br>
+<table class="body2" cellspacing="0" cellpadding="0" border=0>
+<tr>
+{if $allow_howto}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="howto_list.php">How to (FAQ)</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_customer}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="customer_list.php">Customer</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_users}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="users_list.php">Users</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_category}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="category_list.php">Tasks - product</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_calendar}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="calendar_list.php">Calendar</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_edit_calendar}
+		<td width=5px><img src="include/img/but_left_1.gif" border=0></td>
+	<td class="td_border_menu_gif">
+	<a width=5px class="menu_db" href="edit_calendar_list.php">Edit calendar</a>
+	</td>
+	<td><img src="include/img/but_right_1.gif" border=0></td>
+{/if}
+{if $allow_yearly}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="yearly_list.php">Yearly</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_monthly}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="monthly_list.php">Monthly</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_weekly}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="weekly_list.php">Weekly</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+{if $allow_daily}
+		<td width=5px><img src="include/img/but_left_2.gif" border=0></td>
+	<td class="td_border_menu2_gif">
+	<a width=5px class="menu_db2" href="daily_list.php">Daily</a>
+	</td>
+	<td><img src="include/img/but_right_2.gif" border=0></td>
+{/if}
+</tr></table>
+
+
+
+<table class="main_table_border_P" cellspacing="0" cellpadding="0" width=100% border=0>
+<tr>
+<td width=100% height=10px></td>
+<td class=up_right2 width=5px height=10px>&nbsp;</td>
+</tr>
+<tr>
+<td height="40" style="padding-bottom:10px;" align=right colspan=2>
+ {if $allow_search} 
+
+    <span style="white-space:nowrap">
+<b>Search for </b> &nbsp;&nbsp;&nbsp;
+<select id="ctlSearchField">
+<option value="">Any field</option>
+<option value="TimeField" {$search_TimeField}>Time</option>
+<option value="Theme" {$search_Theme}>Subject</option>
+<option value="Description" {$search_Description}>customer</option>
+<option value="Category" {$search_Category}>task</option>
+<option value="EndTime" {$search_EndTime}>End Time</option>
+<option value="DayEvent" {$search_DayEvent}>Whole Day Event</option>
+<option value="EndDate" {$search_EndDate}>End Date</option>
+<option value="Period" {$search_Period}>Period</option>
+<option value="Recurrence" {$search_Recurrence}>Recurrence</option>
+<option value="details" {$search_details}>details</option>
+<option value="income" {$search_income}>income</option>
+<option value="outcome" {$search_outcome}>outcome</option>
+</select>
+&nbsp;
+<select id="ctlSearchOption">
+<option value="Contains" {$search_contains_option_selected}>Contains</option>
+<option value="Equals" {$search_equals_option_selected}>Equals</option>
+<option value="Starts with ..." {$search_startswith_option_selected}>Starts with ...</option>
+<option value="More than ..." {$search_more_option_selected}>More than ...</option>
+<option value="Less than ..." {$search_less_option_selected}>Less than ...</option>
+<option value="Equal or more than ..." {$search_equalormore_option_selected}>Equal or more than ...</option>
+<option value="Equal or less than ..." {$search_equalorless_option_selected}>Equal or less than ...</option>
+<option value="Empty" {$search_empty_option_selected}>Empty</option>
+</select>
+&nbsp;
+<input type=text size=20 {if $useAJAX} autocomplete="off" onkeydown="return listenEvent(event,this,'ordinary');" onkeyup="searchSuggest(event,this,'ordinary');" {else} onkeydown="e=event; if(!e) e = window.event; if (e.keyCode != 13) return true; e.cancel = true; RunSearch(); return false;" {/if} name="ctlSearchFor" id="ctlSearchFor" {$search_searchfor}>
+&nbsp;
+<span class=buttonborder><input type=button class="button" value="Search"
+onClick="javascript: RunSearch();"></span>
+&nbsp;		
+<span class=buttonborder><input type=button class=button value="Show all" 
+onClick="javascript: frmSearch.a.value = 'showall'; frmSearch.submit();"></span>
+
+ {/if}  
+
+&nbsp;&nbsp;&nbsp;
+Details found: {$records_found}&nbsp;
+Page {$page} of {$maxpages}
+
+
+&nbsp;&nbsp;&nbsp;Records Per Page:
+<select 
+onChange="javascript: document.location='edit_calendar_list.php?pagesize='+this.options[this.selectedIndex].value;">
+<option value="10" {$rpp10_selected}>10</option>
+<option value="20" {$rpp20_selected}>20</option>
+<option value="30" {$rpp30_selected}>30</option>
+<option value="50" {$rpp50_selected}>50</option>
+<option value="100" {$rpp100_selected}>100</option>
+<option value="500" {$rpp500_selected}>500</option>
+</select>
+</strong>&nbsp;&nbsp;&nbsp;
+</span>
+</td>
+</tr>
+
+ {if $allow_search} 
+<tr><td class=body2 width=100% height=1px colspan=2></td></tr>
+<table width="100%" cellpadding=0 cellspacing=0 disptype="controltable1" border=0>
+<tr><td class=body3 align=right style="padding-top:12px;padding-right:10px;" colspan=3 height=40px>
+
+ {if $allow_add} 
+ <!-- Add new record -->
+<span class=buttonborder><input disptype="control1" class=button type=button value="Add new" onclick="window.location.href='edit_calendar_add.php'"></span>
+ {/if} 
+	   
+{if $rowsfound}
+	 
+
+<span name="record_controls">
+	 
+ {if $allow_delete}  
+<span class=buttonborder><input disptype="control1" class=button type=button value="Delete selected" onClick="if (confirm('Do you really want to delete these records?')) frmAdmin.submit(); return false;"></span>
+ {/if}  
+
+ {if $allow_export} 
+<span class=buttonborder><input disptype="control1" class=button type=button value="Export selected" onclick="var c=0; if(frmAdmin.elements['selection[]'].length==undefined && frmAdmin.elements['selection[]'].checked) c=1; else for (i=0;i<frmAdmin.elements['selection[]'].length;++i) if (frmAdmin.elements['selection[]'][i].checked) c=1;  if(c==0) return true; frmAdmin.action='edit_calendar_export.php';frmAdmin.target='_blank';frmAdmin.submit(); frmAdmin.action='edit_calendar_list.php'; frmAdmin.target='_self';"></span>
+ {/if} 
+
+ {if $allow_export} 
+<span class=buttonborder><input disptype="control1" class=button type=button value="Print selected" onclick="var c=0;if(frmAdmin.elements['selection[]'].length==undefined && frmAdmin.elements['selection[]'].checked) c=1; else  for (i=0;i<frmAdmin.elements['selection[]'].length;++i) if (frmAdmin.elements['selection[]'][i].checked) c=1;  if(c==0) return true; frmAdmin.action='edit_calendar_print.php';frmAdmin.target='_blank';frmAdmin.submit(); frmAdmin.action='edit_calendar_list.php'; frmAdmin.target='_self';"></span>
+ {/if} 
+</span>
+   
+{/if}
+
+</td>
+</tr>
+
+ {/if} 
+
+<tr>
+<td class=navigat_left width=5px height=15px>&nbsp;</td>
+<td class=navigat width=100%>&nbsp;</td>
+<td class=navigat_right width=5px>&nbsp;</td>
+</tr>
+</table>
+
+<tr><td width=100% class=body2>&nbsp;</td></tr>
+ {if $rowsfound}
+
+ {if $allow_search} 
+<form method="POST" action="edit_calendar_list.php" name="frmAdmin">
+	<input type=hidden id="a" name="a" value="delete">
+<tr><td colspan=2>
+<!-- delete form -->
+
+
+<table name="maintable" class="data" align="center" width="100%" border="0" cellpadding=3 cellspacing=0>
+<!-- table header -->
+<tr valign="top" class=blackshade>
+
+<!--{if $column1show}-->
+
+<td class="headerlist_left_gif_P">&nbsp;</td>
+
+
+ {if $allow_edit} 
+<td width=50 align="center" class="headerlist"><img src="include/img/icon_edit.gif"></td>
+ {/if}  
+
+
+<td width=50 align="center" class="headerlist"><img src="include/img/icon_view.gif"></td>
+
+ {if $allow_delete || $allow_export } 
+<td width=50 align="center" class="headerlist">
+<input type=checkbox onClick = "var i; /*this.checked=!this.checked; */
+if ((typeof frmAdmin.elements['selection[]'].length)=='undefined')
+	frmAdmin.elements['selection[]'].checked=this.checked;
+else
+for (i=0;i<frmAdmin.elements['selection[]'].length;++i) 
+	frmAdmin.elements['selection[]'][i].checked=this.checked;">
+</td>
+ {/if}  
+
+
+<td class="headerlist">
+<table cellpadding=0 cellspacing=0 border=0 align=center><tr><td>
+<a class="tablelinks" 
+href="edit_calendar_list.php?orderby={$order_dir_Theme}Theme">
+Subject</a>
+</td>
+<td>{$order_image_Theme}</td>
+</table>
+</td>
+<td class="headerlist">
+<table cellpadding=0 cellspacing=0 border=0 align=center><tr><td>
+<a class="tablelinks" 
+href="edit_calendar_list.php?orderby={$order_dir_Description}Description">
+customer</a>
+</td>
+<td>{$order_image_Description}</td>
+</table>
+</td>
+<td class="headerlist">
+<table cellpadding=0 cellspacing=0 border=0 align=center><tr><td>
+<a class="tablelinks" 
+href="edit_calendar_list.php?orderby={$order_dir_Category}Category">
+task</a>
+</td>
+<td>{$order_image_Category}</td>
+</table>
+</td>
+<td class="headerlist">
+<table cellpadding=0 cellspacing=0 border=0 align=center><tr><td>
+<a class="tablelinks" 
+href="edit_calendar_list.php?orderby={$order_dir_details}details">
+details</a>
+</td>
+<td>{$order_image_details}</td>
+</table>
+</td>
+<td class="headerlist">
+<table cellpadding=0 cellspacing=0 border=0 align=center><tr><td>
+<a class="tablelinks" 
+href="edit_calendar_list.php?orderby={$order_dir_EndDate}EndDate">
+End Date</a>
+</td>
+<td>{$order_image_EndDate}</td>
+</table>
+</td>
+<td class="headerlist">
+<table cellpadding=0 cellspacing=0 border=0 align=center><tr><td>
+<a class="tablelinks" 
+href="edit_calendar_list.php?orderby={$order_dir_TimeField}TimeField">
+Time</a>
+</td>
+<td>{$order_image_TimeField}</td>
+</table>
+</td>
+<td class="headerlist">
+<table cellpadding=0 cellspacing=0 border=0 align=center><tr><td>
+<a class="tablelinks" 
+href="edit_calendar_list.php?orderby={$order_dir_EndTime}EndTime">
+End Time</a>
+</td>
+<td>{$order_image_EndTime}</td>
+</table>
+</td>
+<td class="headerlist">
+<table cellpadding=0 cellspacing=0 border=0 align=center><tr><td>
+<a class="tablelinks" 
+href="edit_calendar_list.php?orderby={$order_dir_income}income">
+income</a>
+</td>
+<td>{$order_image_income}</td>
+</table>
+</td>
+<td class="headerlist_right2">
+<table cellpadding=0 cellspacing=0 border=0 align=center><tr><td>
+<a class="tablelinks" 
+href="edit_calendar_list.php?orderby={$order_dir_outcome}outcome">
+outcome</a>
+</td>
+<td>{$order_image_outcome}</td>
+</table>
+</td>
+<td class="headerlist_right_gif_P">&nbsp;</td>
+<!--{/if}-->
+</tr>
+
+
+<!-- table data -->
+<!--{foreach from=$rowinfo item=row}-->
+
+
+<tr valign="top"
+{$row.shadeclass} 
+onmouseover="this.className = 'rowselected';" onmouseout="this.className = '{$row.shadeclassname}';"
+{$row.rowstyle}
+> 
+
+
+<!--{if $column1show}-->
+
+
+<td>&nbsp;</td>
+
+ {if $allow_edit} 
+<td align="center" valign=middle class=borderbody>
+
+
+<a class="tablelinks" href="edit_calendar_edit.php?{$row.1editlink}" >
+Edit</a>
+
+
+</td>
+ {/if}  
+
+
+
+<td align="center" valign=middle class=borderbody>
+
+<a class="tablelinks" href="edit_calendar_view.php?{$row.1editlink}" >
+View</a>
+
+</td>
+
+ {if $allow_delete || $allow_export } 
+<td align="center" valign=middle class=borderbody>
+
+
+<input type=checkbox name="selection[]" value="{$row.1keyblock}" id="check{$row.1recno}">
+
+
+</td>
+ {/if}  
+
+
+
+
+<td align=center valign=middle class=borderbody {$row.1Theme_style}>
+
+{$row.1Theme_value}
+
+&nbsp;
+
+</td>
+<td align=center valign=middle class=borderbody {$row.1Description_style}>
+
+{$row.1Description_value}
+
+&nbsp;
+
+</td>
+<td align=center valign=middle class=borderbody {$row.1Category_style}>
+
+{$row.1Category_value}
+
+&nbsp;
+
+</td>
+<td align=center valign=middle class=borderbody {$row.1details_style}>
+
+{$row.1details_value}
+
+&nbsp;
+
+</td>
+<td align=center valign=middle class=borderbody {$row.1EndDate_style}>
+
+{$row.1EndDate_value}
+
+&nbsp;
+
+</td>
+<td align=center valign=middle class=borderbody {$row.1TimeField_style}>
+
+{$row.1TimeField_value}
+
+&nbsp;
+
+</td>
+<td align=center valign=middle class=borderbody {$row.1EndTime_style}>
+
+{$row.1EndTime_value}
+
+&nbsp;
+
+</td>
+<td align=center valign=middle class=borderbody {$row.1income_style}>
+
+{$row.1income_value}
+
+&nbsp;
+
+</td>
+<td align=center valign=middle  {$row.1outcome_style}>
+
+{$row.1outcome_value}
+
+&nbsp;
+
+</td>
+<td>&nbsp;</td>
+
+<!--{/if} - column show-->
+<!--{/foreach}-->
+
+</tr>
+
+<tr class=blackshade>
+
+<!--{if $column1show}-->
+    <td class=blackshade>&nbsp;</td>
+		 {if $allow_edit} 
+	<td class=blackshade>&nbsp;</td>
+	 {/if}  
+	
+		
+		
+		<td class=blackshade>&nbsp;</td>
+	
+	     {if $allow_delete || $allow_export } 
+	<td class=blackshade>&nbsp;</td>
+	 {/if}  
+	
+
+		<td class=blackshade>
+				</td>
+		<td class=blackshade>
+				</td>
+		<td class=blackshade>
+				</td>
+		<td class=blackshade>
+				</td>
+		<td class=blackshade>
+				</td>
+		<td class=blackshade>
+				</td>
+		<td class=blackshade>
+				</td>
+		<td class=blackshade>
+					Total: {$showtotal_income}
+		</td>
+		<td class=blackshade>
+					Total: {$showtotal_outcome}
+		</td>
+	<td class=blackshade>&nbsp;</td>
+{/if}
+	</tr>
+
+<tr class=blackshade>
+
+<!--{if $column1show}-->
+    <td class=headerlistdown_left2_P height=15></td>
+		 {if $allow_edit} 
+	<td class=blackshade>&nbsp;</td>
+	 {/if}  
+	
+		
+		
+		<td class=blackshade>&nbsp;</td>
+	
+	     {if $allow_delete || $allow_export } 
+	<td class=blackshade>&nbsp;</td>
+	 {/if}  
+	
+
+		<td class=blackshade>&nbsp;
+		</td>
+		<td class=blackshade>&nbsp;
+		</td>
+		<td class=blackshade>&nbsp;
+		</td>
+		<td class=blackshade>&nbsp;
+		</td>
+		<td class=blackshade>&nbsp;
+		</td>
+		<td class=blackshade>&nbsp;
+		</td>
+		<td class=blackshade>&nbsp;
+		</td>
+		<td class=blackshade>&nbsp;
+		</td>
+		<td class=blackshade>&nbsp;
+		</td>
+	<td class=headerlistdown_right2_P height=15>&nbsp;</td>
+{/if}
+	</tr>
+
+
+
+{/if} 
+</table>
+<br>
+</td>
+</tr>
+ {/if}  
+
+{if $maxpages>1 || $message!=""}
+{if $message!=""}
+</table>
+{/if}
+<tr><td align=center>
+<b class="xtop"><b class="xb1"></b><b class="xb2"></b><b class="xb3"></b><b class="xb4"></b></b>
+<div class="xboxcontent">
+<table cellpadding=0 cellspacing=0 border=0 width=99% align=center>
+{if $rowsfound}
+<tr>
+<td align="center">{$pagination}</td>
+</tr>
+{/if} 
+<tr name=notfound_message>
+<td align="center" valign=middle>
+<b>{$message}</b>
+</td>
+</tr>
+</table>
+</div>
+<b class="xbottom"><b class="xb4"></b><b class="xb3"></b><b class="xb2"></b><b class="xb1"></b></b>
+</td></tr>
+{/if}
+
+</table>
+</td></tr></table>
+</td></tr></table>
+{doevent name="ListOnLoad"}
+</td></tr></table>
+</td></tr></table>
+</form>
+{include_if_exists file="include/footer.php"}
+{$linkdata}
+</body>
+</html>

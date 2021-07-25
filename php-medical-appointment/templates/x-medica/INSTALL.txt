@@ -1,0 +1,47 @@
+################################################################################
+##  ApPHP Medical Appointment X-Medica Template                                #
+##  -------------------------------------------------------------------------- #
+##  Developed by:  ApPHP <info@apphp.com>                                      #
+##  Version:       1.0.1                                                       #
+##  License:       ApPHP Template License v.1                                  #
+##  Site:          https://www.apphp.com/php-medical-appointment/              #
+##  Copyright:     ApPHP Medical Appointment Templates (c) 2013.               #
+##                 All rights reserved.                                        #
+################################################################################
+
+Thank you for using ApPHP.com software!
+--------------------------------------------------------------------------------
+
+Software requirements: ApPHP Medical Appointment 3.0.0 or later version.
+
+A new installation of the template for ApPHP Medical Appointment is a very straight
+forward process:
+
+Step 1. Uncompressing downloaded file.
+-------------------------------------
+   Uncompress the ApPHP Medical Appointment Template archive. The archive will create
+   a directory called "PHPMA_TPL_xxx"
+
+
+Step 2. Uploading files.
+-------------------------------------
+   Upload content of this folder (all files and directories it includes) to the
+   directory called "templates" in your medical appointment directory using FTP.
+   
+   Pay attention to DON'T use the capital letters in the name of the folder (for Linux users).
+
+   public_html/templates/
+   or
+   public_html/{medical-appointment directory}/templates/
+   
+
+Step 4. Selecting the new template for your site.
+-------------------------------------
+   Now you can select this template for your site. To do this, log into Administrator Panel
+   of your site and go to General -> Site Settings and then select Templates & Styles tab.
+
+   On this page choose "x-medica" option from the dropdown list of templates.
+   Save your selection by clicking on 'Change' button.
+
+
+Congratulations, you now have ApPHP Medical Appointment X-Medica template installed!

@@ -1,0 +1,21 @@
+a) unzip the files to a folder (for example c:\calendar)
+b) Go to your Web server (php/mysql) and run the phpmyadmin
+c) Create a mysql database worldcalendar , username root , password root (you can setup anything)
+d) Go on phpmyadmin and import the database.sql file at the created database
+
+The file include\dbcommon.php hat the settings
+
+$host="localhost";
+$user="root";
+$pwd="root";
+$port="";
+$sys_dbname="worldcalendar";
+
+You have to set it up, depents of your php/mysql server.
+(If you follow exaclty step A,B,C , D and mysql server is the same as Mysql then you dont have to change settings)
+
+E) copy(Ftp) whole folder (c:\calendar) to your ftp server
+F) You are ready!
+
+There is a user:admin , password:admin  , so you can use that or you can register a new one on login page
+Hope to find it usefull

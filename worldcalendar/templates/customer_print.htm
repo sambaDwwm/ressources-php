@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>Customers</title>
+<link REL="stylesheet" href="include/style.css" type="text/css">
+</head>
+<body style="background:white">
+{literal}
+<style> 
+table {  border-collapse: collapse} 
+td { 
+ padding: 5px; 
+ margin: 0px; 
+ border-width: 1px; 
+ border-style: solid; 
+ border-color: #000000; 
+}
+</style> 
+{/literal}
+{include_if_exists file="include/header.php"}
+{doevent name="PrintOnLoad"}
+	
+	
+<h1>Customers</h1>
+<table align='center' width='95%' border='0' cellpadding=3 cellspacing=2>
+
+
+<tr>
+<!--{if $column1show}-->
+		<td><b>idcustomer</b></td>
+	<td><b>name</b></td>
+	<td><b>contact</b></td>
+	<td><b>telephones</b></td>
+	<td><b>postinfo</b></td>
+	<td><b>customerdetails</b></td>
+	<td><b>username</b></td>
+	<td><b>password</b></td>
+	<td><b>email</b></td>
+<!--{/if}-->	
+</tr>
+{foreach from=$rowinfo item=row}
+<tr valign=top>
+
+
+
+
+<td>
+{$row.1idcustomer_value}
+</td>
+<td>
+{$row.1name_value}
+</td>
+<td>
+{$row.1contact_value}
+</td>
+<td>
+{$row.1telephones_value}
+</td>
+<td>
+{$row.1postinfo_value}
+</td>
+<td>
+{$row.1customerdetails_value}
+</td>
+<td>
+{$row.1username_value}
+</td>
+<td>
+{$row.1password_value}
+</td>
+<td>
+{$row.1email_value}
+</td>
+
+</tr>
+{/foreach}
+<!-- totals row -->
+</table>
+{include_if_exists file="include/footer.php"}
+</body>
+
+</html>
